@@ -17,7 +17,7 @@
         "laravel": {
             "providers": [
                 "LaravelDaily\\Larastarters\\LarastartersServiceProvider"
-            ],
+            ]
         }
     },
     "version": "0.1.0"
