@@ -3,6 +3,7 @@
 namespace LaravelDaily\Larastarters;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelDaily\Larastarters\Console\InstallCommand;
 
 class LarastartersServiceProvider extends ServiceProvider
 {
@@ -35,7 +36,7 @@ class LarastartersServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Console\InstallCommand::class,
+                InstallCommand::class,
             ]);
         }
     }
