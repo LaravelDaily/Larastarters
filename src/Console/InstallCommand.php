@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace LaravelDaily\Larastarters\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
