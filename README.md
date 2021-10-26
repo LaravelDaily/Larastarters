@@ -54,7 +54,7 @@ php artisan larastarters:install --theme=notusjs
 
 Screenshots:
 
-![Login](https://laraveldaily.com/wp-content/uploads/2021/10/Screenshot-2021-10-26-at-07.38.21.png)
+![Register](https://laraveldaily.com/wp-content/uploads/2021/10/Screenshot-2021-10-26-at-07.53.06.png)
 
 ![Dashboard](https://laraveldaily.com/wp-content/uploads/2021/10/Screenshot-2021-10-26-at-07.28.09.png)
 
