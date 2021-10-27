@@ -14,7 +14,6 @@ class InstallCommand extends Command
      * @var string
      */
     protected $signature = 'larastarters:install
-                            {--theme=windmill : Theme name with which breeze should be replaced}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -41,21 +40,47 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        // Install breeze
-        $this->requireComposerPackages('laravel/breeze:^1.4');
-        shell_exec('php artisan breeze:install');
+        $kit = $this->choice(
+            'Which Laravel starter kit you want to use?',
+            ['Laravel Breeze (Tailwind)', 'Laravel UI (Bootstrap)'],
+            0
+        );
 
-        if ($this->option('theme') === 'windmill') {
-            return $this->replaceWindmill();
+        if ($kit === "Laravel Breeze (Tailwind)") {
+            $theme = $this->choice(
+                'Which design theme you want to use?',
+                ['windmill', 'notusjs', 'tailwindcomponents'],
+                0
+            );
+
+            // Install breeze
+            $this->requireComposerPackages('laravel/breeze:^1.4');
+            shell_exec('php artisan breeze:install');
+
+            if ($theme === 'windmill') {
+                return $this->replaceWindmill();
+            }
+
+            if ($theme === 'notusjs') {
+                return $this->replaceWithNotusjs();
+            }
+
+            if ($theme === 'tailwindcomponents') {
+                return $this->replaceWithTailwindComponents();
+            }
         }
 
-        if ($this->option('theme') === 'notusjs') {
-            return $this->replaceWithNotusjs();
+        if ($kit === "Laravel UI (Bootstrap)") {
+            $this->requireComposerPackages('laravel/ui:^3.3');
+            shell_exec('php artisan ui bootstrap --auth');
+
+            $theme = $this->choice(
+                'Which design theme you want to use?',
+                ['coreui'],
+                0
+            );
         }
 
-        if ($this->option('theme') === 'tailwindcomponents') {
-            return $this->replaceWithTailwindComponents();
-        }
     }
 
     protected function replaceWindmill()
@@ -63,9 +88,9 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                'color' => '^4.0.1',
-                'tailwindcss-multi-theme' => '^1.0.4'
-            ] + $packages;
+                    'color' => '^4.0.1',
+                    'tailwindcss-multi-theme' => '^1.0.4'
+                ] + $packages;
         });
 
         // Views...
@@ -79,7 +104,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/windmill/views/layouts', resource_path('views/layouts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/windmill/views/components', resource_path('views/components'));
 
-        copy(__DIR__.'/../../resources/stubs/windmill/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/windmill/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Assets
         copy(__DIR__ . '/../../resources/stubs/windmill/tailwind.config.js', base_path('tailwind.config.js'));
@@ -106,7 +131,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/notusjs/views/layouts', resource_path('views/layouts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/notusjs/views/components', resource_path('views/components'));
 
-        copy(__DIR__.'/../../resources/stubs/notusjs/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/notusjs/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Assets
         copy(__DIR__ . '/../../resources/stubs/notusjs/tailwind.config.js', base_path('tailwind.config.js'));
@@ -129,7 +154,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/tailwindcomponents/views/layouts', resource_path('views/layouts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/tailwindcomponents/views/components', resource_path('views/components'));
 
-        copy(__DIR__.'/../../resources/stubs/tailwindcomponents/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/tailwindcomponents/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
