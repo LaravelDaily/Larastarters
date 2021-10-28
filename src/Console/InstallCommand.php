@@ -71,14 +71,18 @@ class InstallCommand extends Command
         }
 
         if ($kit === "Laravel UI (Bootstrap)") {
-            $this->requireComposerPackages('laravel/ui:^3.3');
-            shell_exec('php artisan ui bootstrap --auth');
-
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['coreui'],
+                ['adminlte'],
                 0
             );
+
+            $this->requireComposerPackages('laravel/ui:^3.3');
+            $this->call('ui:auth');
+
+            if ($theme === 'adminlte') {
+                return $this->replaceWithAdminLTETheme();
+            }
         }
 
     }
@@ -100,20 +104,20 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
         (new Filesystem)->ensureDirectoryExists(public_path('js'));
 
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/windmill/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/windmill/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/windmill/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/views/components', resource_path('views/components'));
 
-        copy(__DIR__ . '/../../resources/stubs/windmill/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Assets
-        copy(__DIR__ . '/../../resources/stubs/windmill/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../resources/stubs/windmill/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../resources/stubs/windmill/js/app.js', resource_path('js/app.js'));
-        copy(__DIR__ . '/../../resources/stubs/windmill/js/init-alpine.js', public_path('js/init-alpine.js'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/js/init-alpine.js', public_path('js/init-alpine.js'));
 
         // Images
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/windmill/images', public_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/images', public_path('images'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -127,17 +131,17 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
 
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/notusjs/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/notusjs/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/notusjs/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/components', resource_path('views/components'));
 
-        copy(__DIR__ . '/../../resources/stubs/notusjs/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Assets
-        copy(__DIR__ . '/../../resources/stubs/notusjs/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/tailwind.config.js', base_path('tailwind.config.js'));
 
         // Images
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/notusjs/images', public_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/images', public_path('images'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -150,13 +154,39 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
 
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/tailwindcomponents/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/tailwindcomponents/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/tailwindcomponents/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/components', resource_path('views/components'));
 
-        copy(__DIR__ . '/../../resources/stubs/tailwindcomponents/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         $this->info('Breeze scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceWithAdminLTETheme()
+    {
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/views/auth/passwords', resource_path('views/auth/passwords'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/views/layouts', resource_path('views/layouts'));
+
+        // Assets
+        (new Filesystem)->ensureDirectoryExists(public_path('css'));
+        (new Filesystem)->ensureDirectoryExists(public_path('js'));
+        (new Filesystem)->ensureDirectoryExists(public_path('images'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/css', public_path('css'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/js', public_path('js'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/images', public_path('images'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/home.blade.php', resource_path('views/home.blade.php'));
+
+        $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
