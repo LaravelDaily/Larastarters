@@ -1,0 +1,211 @@
+/*===========================
+		COMMON css
+===========================*/
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font;
+  font-weight: normal;
+  font-style: normal;
+  color: $gray;
+  overflow-x: hidden;
+  background: #f1f5f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  @include box-sizing(border-box);
+}
+
+a:focus,
+input:focus,
+textarea:focus,
+button:focus,
+.btn:focus,
+.btn.focus,
+.btn:not(:disabled):not(.disabled).active,
+.btn:not(:disabled):not(.disabled):active {
+  text-decoration: none;
+  outline: none;
+  @include box-shadow(none);
+}
+
+a:hover {
+  color: $primary;
+}
+button,
+a {
+  @include transition(0.3s);
+}
+
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+i,
+span,
+a {
+  display: inline-block;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+  margin: 0px;
+}
+
+.img-bg {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.para-width-500 {
+  max-width: 500px;
+  width: 100%;
+}
+
+.container {
+  @media #{$xs} {
+    padding: 0 30px;
+  }
+}
+
+/* ========== cart style ========== */
+.card-style {
+  background: $white;
+  box-sizing: border-box;
+  padding: 25px 30px;
+  position: relative;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0px 10px 20px rgba(200, 208, 216, 0.3);
+  border-radius: 10px;
+
+  @media #{$xs} {
+    padding: 20px;
+  }
+
+  .dropdown-toggle {
+    border: none;
+    background: none;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .dropdown-menu {
+    @include box-shadow(0px 0px 5px rgba(0, 0, 0, 0.07));
+
+    li {
+      &:hover {
+        a {
+          color: $primary !important;
+        }
+      }
+
+      a {
+        display: block;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* ======= Border Radius ========= */
+.radius-4 {
+  border-radius: 4px;
+}
+.radius-10 {
+  border-radius: 10px;
+}
+.radius-30 {
+  border-radius: 30px;
+}
+.radius-50 {
+  border-radius: 50px;
+}
+.radius-full {
+  border-radius: 50%;
+}
+
+// scroll-top
+.scroll-top {
+  width: 45px;
+  height: 45px;
+  background: $primary;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: $white;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9;
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    color: $white;
+    background: rgba($primary, 0.8);
+  }
+}
+
+.form-control {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.form-control.is-valid:focus,
+.was-validated .form-control:valid:focus,
+.form-control.is-invalid:focus,
+.was-validated .form-control:invalid:focus,
+.form-check-input.is-valid:focus,
+.was-validated .form-check-input:valid:focus,
+.form-check-input.is-invalid:focus,
+.was-validated .form-check-input:invalid:focus,
+.form-check-input:focus,
+.radio-style.radio-success .form-check-input:focus,
+.radio-style.radio-warning .form-check-input:focus,
+.radio-style.radio-danger .form-check-input:focus {
+  box-shadow: none;
+}

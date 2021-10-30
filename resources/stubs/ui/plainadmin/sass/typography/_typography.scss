@@ -1,0 +1,98 @@
+/* ============= typography css ============= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $dark;
+  margin: 0;
+}
+
+h1,
+.h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2,
+.h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h3,
+.h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+h4,
+.h4 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h5,
+.h5 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+h6,
+.h6 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+.text-semi-bold {
+  font-weight: 600;
+}
+.text-medium {
+  font-weight: 500;
+}
+.text-regular {
+  font-weight: 400;
+}
+.text-light {
+  font-weight: 300;
+}
+
+.text-sm {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* ========== breadcrumb ============ */
+.breadcrumb-wrapper {
+  display: flex;
+  justify-content: flex-end;
+
+  @media #{$xs} {
+    justify-content: flex-start;
+  }
+
+  .breadcrumb {
+    li {
+      font-size: 14px;
+      color: $primary;
+
+      a {
+        color: $gray;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}

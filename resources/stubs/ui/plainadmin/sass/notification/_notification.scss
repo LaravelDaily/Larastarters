@@ -1,0 +1,108 @@
+/* ============= notification css ============= */
+.single-notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid $light;
+
+  &.readed {
+    opacity: 0.7;
+  }
+
+  &:first-child {
+    padding-top: 0px;
+  }
+  &:last-child {
+    padding-bottom: 0px;
+    border-bottom: 0px;
+  }
+
+  .checkbox {
+    max-width: 50px;
+    width: 100%;
+    padding-top: 10px;
+
+    @media #{$xs} {
+      display: none;
+    }
+
+    input {
+      background-color: $light;
+      border-color: $light-2;
+
+      &:checked {
+        background-color: $primary;
+        border-color: $primary;
+      }
+    }
+  }
+
+  .notification {
+    display: flex;
+    width: 100%;
+
+    @media #{$xs} {
+      flex-direction: column;
+    }
+
+    .image {
+      max-width: 50px;
+      width: 100%;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      color: $white;
+      @include flex-center;
+      font-weight: 600;
+      margin-right: 15px;
+
+      @media #{$xs} {
+        margin-bottom: 15px;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .content {
+      display: block;
+      max-width: 800px;
+
+      h6 {
+        margin-bottom: 15px;
+      }
+      p {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .action {
+    display: inline-flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+
+    @media #{$xs} {
+      display: none;
+    }
+
+    button {
+      border: none;
+      background: transparent;
+      color: $gray;
+      margin-left: 20px;
+      font-size: 18px;
+
+      &.delete-btn {
+        &:hover {
+          color: $danger;
+        }
+      }
+    }
+    .dropdown-toggle::after {
+      display: none;
+    }
+  }
+}

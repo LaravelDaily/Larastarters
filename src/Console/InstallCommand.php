@@ -73,12 +73,12 @@ class InstallCommand extends Command
         if ($kit === "Laravel UI (Bootstrap)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['adminlte', 'coreui'],
+                ['adminlte', 'coreui', 'plainadmin'],
                 0
             );
 
-            $this->requireComposerPackages('laravel/ui:^3.3');
-            shell_exec('php artisan ui bootstrap --auth');
+            /*$this->requireComposerPackages('laravel/ui:^3.3');
+            shell_exec('php artisan ui bootstrap --auth');*/
 
             if ($theme === 'adminlte') {
                 return $this->replaceWithAdminLTETheme();
@@ -86,6 +86,10 @@ class InstallCommand extends Command
 
             if ($theme === 'coreui') {
                 return $this->replaceWithCoreUITheme();
+            }
+
+            if ($theme === 'plainadmin') {
+                return $this->replaceWithPlainAdminTheme();
             }
         }
 
@@ -217,6 +221,42 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/home.blade.php', resource_path('views/home.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
+    }
+
+    protected function replaceWithPlainAdminTheme()
+    {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                    'bootstrap' => '^5.1.3',
+                ] + $packages;
+        });
+
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/auth/passwords', resource_path('views/auth/passwords'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/layouts', resource_path('views/layouts'));
+
+        // Assets
+        (new Filesystem)->ensureDirectoryExists(public_path('css'));
+        (new Filesystem)->ensureDirectoryExists(public_path('fonts'));
+        (new Filesystem)->ensureDirectoryExists(public_path('images'));
+        (new Filesystem)->ensureDirectoryExists(public_path('images/auth'));
+        (new Filesystem)->ensureDirectoryExists(public_path('images/logo'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/fonts', public_path('fonts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/css', public_path('css'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/images/auth', public_path('images/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/images/logo', public_path('images/logo'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/home.blade.php', resource_path('views/home.blade.php'));
+
+        $this->info('Laravel UI scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     /**

@@ -1,0 +1,445 @@
+/* =========== form elements css ========== */
+
+/* ===== input style ===== */
+.input-style-1 {
+  position: relative;
+  margin-bottom: 30px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    background: rgba($light, 0.5);
+    border: 1px solid $light-2;
+    border-radius: 4px;
+    padding: 16px;
+    color: $gray;
+    resize: none;
+
+    &:focus {
+      border-color: $primary;
+    }
+
+    &[type="date"],
+    &[type="time"] {
+      background: transparent;
+    }
+  }
+}
+
+.input-style-2 {
+  position: relative;
+  margin-bottom: 30px;
+  z-index: 1;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    background: rgba($light, 0.5);
+    border: 1px solid $light-2;
+    border-radius: 4px;
+    padding: 16px;
+    color: $gray;
+    resize: none;
+
+    &:focus {
+      border-color: $primary;
+    }
+
+    &[type="date"],
+    &[type="time"] {
+      background: transparent;
+    }
+  }
+
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+
+  input[type="date"] ~ .icon {
+    z-index: -1;
+  }
+
+  .icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 17px;
+  }
+}
+
+.input-style-3 {
+  position: relative;
+  margin-bottom: 30px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    background: rgba($light, 0.5);
+    border: 1px solid $light-2;
+    border-radius: 4px;
+    padding: 16px;
+    padding-left: 45px;
+    color: $gray;
+    resize: none;
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    padding: 16px;
+  }
+}
+
+/* ========= select style ========== */
+.select-style-1 {
+  margin-bottom: 30px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .select-position {
+    position: relative;
+
+    &::after {
+      border-bottom: 2px solid $gray;
+      border-right: 2px solid $gray;
+      content: "";
+      display: block;
+      height: 10px;
+      width: 10px;
+      margin-top: -5px;
+      pointer-events: none;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -webkit-transition: all 0.15s ease-in-out;
+      transition: all 0.15s ease-in-out;
+    }
+
+    &.select-sm {
+      &::after {
+        margin-top: -8px;
+      }
+
+      select {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 14px;
+      }
+    }
+
+    select {
+      width: 100%;
+      background: transparent;
+      border: 1px solid $light-2;
+      border-radius: 10px;
+      padding: 16px;
+      padding-right: 38px;
+      color: $gray;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      @include transition(0.3s);
+
+      &:focus {
+        border-color: $primary;
+        outline: none;
+      }
+
+      &.light-bg {
+        background: rgba($light, 0.5);
+      }
+
+      &.radius-30 {
+        border-radius: 30px;
+      }
+    }
+  }
+}
+
+.select-style-2 {
+  margin-bottom: 30px;
+
+  .select-position {
+    position: relative;
+
+    &.select-sm {
+      &::after {
+        margin-top: -8px;
+      }
+      &::before {
+        margin-top: 0;
+      }
+
+      select {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 14px;
+      }
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      height: 8px;
+      width: 8px;
+      pointer-events: none;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -webkit-transition: all 0.15s ease-in-out;
+      transition: all 0.15s ease-in-out;
+    }
+
+    &::before {
+      margin-top: 0px;
+      border-bottom: 1px solid $gray;
+      border-right: 1px solid $gray;
+    }
+
+    &::after {
+      margin-top: -8px;
+      border-top: 1px solid $gray;
+      border-left: 1px solid $gray;
+    }
+
+    select {
+      width: 100%;
+      background: transparent;
+      border: 1px solid $light-2;
+      border-radius: 10px;
+      padding: 16px;
+      padding-right: 38px;
+      color: $gray;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      @include transition(0.3s);
+
+      &:focus {
+        border-color: $primary;
+        outline: none;
+      }
+
+      &.light-bg {
+        background: rgba($light, 0.5);
+      }
+      &.select-sm {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.select-style-3 {
+  margin-bottom: 30px;
+
+  .select-position {
+    position: relative;
+
+    &::after {
+      border-bottom: 2px solid $gray;
+      border-right: 2px solid $gray;
+      content: "";
+      display: block;
+      height: 10px;
+      width: 10px;
+      margin-top: -7px;
+      pointer-events: none;
+      position: absolute;
+      right: 0px;
+      top: 50%;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -webkit-transition: all 0.15s ease-in-out;
+      transition: all 0.15s ease-in-out;
+    }
+
+    &.select-sm {
+      &::after {
+        margin-top: -8px;
+      }
+
+      select {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 14px;
+      }
+    }
+
+    select {
+      width: 100%;
+      background: transparent;
+      border: transparent;
+      border-radius: 10px;
+      padding-right: 38px;
+      color: $black;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      @include transition(0.3s);
+
+      &:focus {
+        border-color: $primary;
+        outline: none;
+      }
+
+      &.light-bg {
+        background: rgba($light, 0.5);
+      }
+    }
+  }
+}
+
+.toggle-switch {
+  padding-left: 60px;
+  min-height: 30px;
+
+  .form-check-input {
+    width: 50px;
+    height: 28px;
+    margin-left: -60px;
+  }
+
+  label {
+    margin-top: 6px;
+    font-size: 14px;
+    color: $dark;
+  }
+}
+
+//* ===== checkbox style  */
+.checkbox-style {
+  padding-left: 40px;
+  min-height: 28px;
+
+  .form-check-input {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    margin-left: -40px;
+  }
+  label {
+    margin-top: 6px;
+  }
+
+  &.checkbox-success {
+    .form-check-input {
+      &:checked {
+        background-color: $success;
+        border-color: $success;
+      }
+    }
+  }
+  &.checkbox-warning {
+    .form-check-input {
+      &:checked {
+        background-color: $warning;
+        border-color: $warning;
+      }
+    }
+  }
+  &.checkbox-danger {
+    .form-check-input {
+      &:checked {
+        background-color: $danger;
+        border-color: $danger;
+      }
+    }
+  }
+}
+
+//* ===== radio style  */
+.radio-style {
+  padding-left: 40px;
+  min-height: 28px;
+
+  .form-check-input {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-left: -40px;
+  }
+  label {
+    margin-top: 6px;
+  }
+
+  &.radio-success {
+    .form-check-input {
+      &:checked {
+        background-color: $success;
+        border-color: $success;
+      }
+    }
+  }
+  &.radio-warning {
+    .form-check-input {
+      &:checked {
+        background-color: $warning;
+        border-color: $warning;
+      }
+    }
+  }
+  &.radio-danger {
+    .form-check-input {
+      &:checked {
+        background-color: $danger;
+        border-color: $danger;
+      }
+    }
+  }
+}
+
+.button-group {
+  @media #{$xs} {
+    .main-btn {
+      width: 100%;
+    }
+  }
+}

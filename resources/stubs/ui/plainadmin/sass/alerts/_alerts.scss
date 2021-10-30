@@ -1,0 +1,219 @@
+/* ============ alerts css ============ */
+.alert-box {
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+
+  @media #{$xs} {
+    padding-left: 0px !important;
+  }
+
+  .left {
+    max-width: 75px;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background: $danger;
+    position: absolute;
+    left: 0;
+    top: 0;
+    @include flex-center;
+
+    @media #{$xs} {
+      display: none;
+    }
+
+    h5 {
+      @include transform(rotate(-90deg));
+      color: $white;
+    }
+  }
+
+  .alert {
+    margin-bottom: 0px;
+    padding: 25px 40px;
+
+    @media #{$xs} {
+      padding: 20px;
+    }
+  }
+}
+/* Alert Primary */
+.primary-alert {
+  .left {
+    background: $primary;
+  }
+
+  .alert {
+    color: $primary;
+    border: 1px solid $primary;
+    background: rgba($primary, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $primary;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Alert Danger */
+.danger-alert {
+  .left {
+    background: $danger;
+  }
+
+  .alert {
+    color: $danger;
+    border: 1px solid $danger;
+    background: rgba($danger, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $danger;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Alert warning */
+.warning-alert {
+  .left {
+    background: $warning;
+  }
+  .alert {
+    color: $warning;
+    border: 1px solid $warning;
+    background: rgba($warning, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $warning;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Alert warning */
+.warning-alert {
+  .left {
+    background: $warning;
+  }
+  .alert {
+    color: $warning;
+    border: 1px solid $warning;
+    background: rgba($warning, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $warning;
+      margin-bottom: 15px;
+    }
+  }
+}
+/* Alert info */
+.info-alert {
+  .left {
+    background: $info;
+  }
+  .alert {
+    color: $info;
+    border: 1px solid $info;
+    background: rgba($info, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $info;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Alert success */
+.success-alert {
+  .left {
+    background: $success;
+  }
+  .alert {
+    color: $success;
+    border: 1px solid $success;
+    background: rgba($success, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $success;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Alert secondary */
+.secondary-alert {
+  .left {
+    background: $secondary;
+  }
+  .alert {
+    color: $secondary;
+    border: 1px solid $secondary;
+    background: rgba($secondary, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $secondary;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Alert gray */
+.gray-alert {
+  .left {
+    background: $gray;
+  }
+  .alert {
+    color: $gray;
+    border: 1px solid $gray;
+    background: rgba($gray, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $gray;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Alert black */
+.black-alert {
+  .left {
+    background: $black;
+  }
+  .alert {
+    color: $black;
+    border: 1px solid $black;
+    background: rgba($black, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $black;
+      margin-bottom: 15px;
+    }
+  }
+}
+/* Alert orange */
+.orange-alert {
+  .left {
+    background: $orange;
+  }
+  .alert {
+    color: $orange;
+    border: 1px solid $orange;
+    background: rgba($orange, 0.2);
+    width: 100%;
+
+    .alert-heading {
+      color: $orange;
+      margin-bottom: 15px;
+    }
+  }
+}

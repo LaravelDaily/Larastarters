@@ -1,0 +1,231 @@
+/* ========== DEFAULT CSS ======== */
+
+/* ======= Margin Top ======= */
+@for $i from 1 through 45 {
+  .mt-#{5 * $i} {
+    margin-top: 5px * $i;
+  }
+}
+
+/* ======= Margin Bottom ======= */
+@for $i from 1 through 45 {
+  .mb-#{5 * $i} {
+    margin-bottom: 5px * $i;
+  }
+}
+
+/* ======= Margin Left ======= */
+@for $i from 1 through 45 {
+  .ml-#{5 * $i} {
+    margin-left: 5px * $i;
+  }
+}
+
+/* ======= Margin Right ======= */
+@for $i from 1 through 45 {
+  .mr-#{5 * $i} {
+    margin-right: 5px * $i;
+  }
+}
+
+/* ======= Padding Top ======= */
+@for $i from 1 through 45 {
+  .pt-#{5 * $i} {
+    padding-top: 5px * $i;
+  }
+}
+
+/* ======= Padding Bottom ======= */
+@for $i from 1 through 45 {
+  .pb-#{5 * $i} {
+    padding-bottom: 5px * $i;
+  }
+}
+
+/* ======= Padding Left ======= */
+@for $i from 1 through 45 {
+  .pl-#{5 * $i} {
+    padding-left: 5px * $i;
+  }
+}
+
+/* ======= Padding Right ======= */
+@for $i from 1 through 45 {
+  .pr-#{5 * $i} {
+    padding-right: 5px * $i;
+  }
+}
+
+/* ======= bg-primary shades ========= */
+@for $i from 1 through 9 {
+  .bg-primary-#{100 * $i} {
+    background: rgba($primary, 0.1 * $i);
+  }
+}
+
+/* ======= bg-secondary shades ========= */
+@for $i from 1 through 9 {
+  .bg-secondary-#{100 * $i} {
+    background: rgba($secondary, 0.1 * $i);
+  }
+}
+
+/* ======= bg-success shades ========= */
+@for $i from 1 through 9 {
+  .bg-success-#{100 * $i} {
+    background: rgba($success, 0.1 * $i);
+  }
+}
+
+/* ======= bg-danger shades ========= */
+@for $i from 1 through 9 {
+  .bg-danger-#{100 * $i} {
+    background: rgba($danger, 0.1 * $i);
+  }
+}
+
+/* ======= bg-warning shades ========= */
+@for $i from 1 through 9 {
+  .bg-warning-#{100 * $i} {
+    background: rgba($warning, 0.1 * $i);
+  }
+}
+
+/* ======= bg-info shades ========= */
+@for $i from 1 through 9 {
+  .bg-info-#{100 * $i} {
+    background: rgba($info, 0.1 * $i);
+  }
+}
+
+/* ======= bg-dark shades ========= */
+@for $i from 1 through 9 {
+  .bg-dark-#{100 * $i} {
+    background: rgba($dark, 0.1 * $i);
+  }
+}
+
+/* ======= bg-purple shades ========= */
+@for $i from 1 through 9 {
+  .bg-purple-#{100 * $i} {
+    background: rgba($purple, 0.1 * $i);
+  }
+}
+
+/* ======= bg-orange shades ========= */
+@for $i from 1 through 9 {
+  .bg-orange-#{100 * $i} {
+    background: rgba($orange, 0.1 * $i);
+  }
+}
+
+/* ======== Background Colors ========== */
+.primary-bg {
+  background-color: $primary;
+}
+.secondary-bg {
+  background-color: $secondary;
+}
+.success-bg {
+  background-color: $success;
+}
+.danger-bg {
+  background-color: $danger;
+}
+.warning-bg {
+  background-color: $warning;
+}
+.info-bg {
+  background-color: $info;
+}
+.dark-bg {
+  background-color: $dark;
+}
+.light-bg {
+  background-color: $light;
+}
+.active-bg {
+  background-color: $active;
+}
+.deactive-bg {
+  background-color: $deactive;
+}
+.deactive-bg {
+  background-color: $deactive;
+}
+.gray-bg {
+  background-color: $gray;
+}
+.purple-bg {
+  background-color: $purple;
+}
+.orange-bg {
+  background-color: $orange;
+}
+.deep-blue-bg {
+  background-color: $deep-blue;
+}
+
+/* ======== Text Colors ========== */
+.text-primary {
+  color: $primary !important;
+}
+.text-secondary {
+  color: $secondary !important;
+}
+.text-success {
+  color: $success !important;
+}
+.text-danger {
+  color: $danger !important;
+}
+.text-warning {
+  color: $warning !important;
+}
+.text-info {
+  color: $info !important;
+}
+.text-dark {
+  color: $dark !important;
+}
+.text-light {
+  color: $light !important;
+}
+.text-active {
+  color: $active !important;
+}
+.text-deactive {
+  color: $deactive !important;
+}
+.text-deactive {
+  color: $deactive !important;
+}
+.text-gray {
+  color: $gray !important;
+}
+.text-orange {
+  color: $orange !important;
+}
+
+/* ========= Font Weight =========== */
+.fw-300 {
+  font-weight: 300;
+}
+.fw-400 {
+  font-weight: 400;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-700 {
+  font-weight: 700;
+}
+.fw-800 {
+  font-weight: 800;
+}
+.fw-900 {
+  font-weight: 900;
+}
