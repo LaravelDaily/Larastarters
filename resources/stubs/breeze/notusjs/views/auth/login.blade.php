@@ -5,7 +5,7 @@
             <div class="px-6 py-6 mb-0 rounded-t">
                 <div class="mb-3 text-center">
                     <h6 class="text-sm font-bold text-blueGray-500">
-                        Sign in
+                        {{__('Sign in')}}
                     </h6>
                 </div>
 
