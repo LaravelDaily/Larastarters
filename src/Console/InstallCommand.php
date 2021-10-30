@@ -96,9 +96,9 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    'color' => '^4.0.1',
-                    'tailwindcss-multi-theme' => '^1.0.4'
-                ] + $packages;
+                'color' => '^4.0.1',
+                'tailwindcss-multi-theme' => '^1.0.4'
+            ] + $packages;
         });
 
         // Views...
@@ -196,10 +196,18 @@ class InstallCommand extends Command
 
     protected function replaceWithCoreUITheme()
     {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                '@coreui/coreui' => '^4.0.2',
+                ] + $packages;
+        });
+
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
 
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/auth', resource_path('views/auth'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/auth/passwords', resource_path('views/auth/passwords'));
@@ -207,16 +215,16 @@ class InstallCommand extends Command
 
         // Assets
         (new Filesystem)->ensureDirectoryExists(public_path('icons'));
-        (new Filesystem)->ensureDirectoryExists(public_path('css'));
         (new Filesystem)->ensureDirectoryExists(public_path('js'));
 
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/icons', public_path('icons'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/css', public_path('css'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/sass', resource_path('sass'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/js', public_path('js'));
 
         copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/home.blade.php', resource_path('views/home.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     /**
