@@ -6,7 +6,7 @@
             <div class="rounded-t mb-0 px-6 py-6">
                 <div class="text-center mb-3">
                     <h6 class="text-blueGray-500 text-sm font-bold">
-                        Sign up
+                        {{__('Sign up')}}
                     </h6>
                 </div>
                 <hr class="mt-6 border-b-1 border-blueGray-300"/>
