@@ -19,11 +19,13 @@
                     @csrf
 
                     <div class="mt-4">
-                        <x-label :value="__('Password')"/>
+                        <x-label for="password" :value="__('Password')"/>
                         <x-input type="password"
-                               name="password"
-                               required
-                               autocomplete="current-password"/>
+                                 name="password"
+                                 id="password"
+                                 required
+                                 autocomplete="current-password"
+                        />
                     </div>
 
                     <button class="mt-4 block w-full">

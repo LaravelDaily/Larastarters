@@ -8,17 +8,18 @@
 
             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form method="POST" action="{{ route('password.update') }}">
-                @csrf
+                    @csrf
 
-                <!-- Password Reset Token -->
+                    <!-- Password Reset Token -->
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                     <!-- Email Address -->
                     <div class="relative w-full mb-3">
-                        <x-label htmlFor="grid-password" :value="__('Email')" />
+                        <x-label for="email" :value="__('Email')" />
                         <x-input
                             type="email"
                             name="email"
+                            id="email"
                             value="{{ old('email', $request->email)}}"
                             placeholder="{{ __('Email') }}"
                             required
@@ -27,20 +28,22 @@
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label htmlFor="grid-password" :value="__('Password')" />
+                        <x-label for="password" :value="__('Password')" />
                         <x-input
                             type="password"
                             name="password"
+                            id="password"
                             placeholder="{{ __('Password') }}"
                             required
                         />
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label htmlFor="grid-password" :value="__('Confirm Password')" />
+                        <x-label for="password_confirmation" :value="__('Confirm Password')" />
                         <x-input
                             type="password"
                             name="password_confirmation"
+                            id="password_confirmation"
                             placeholder="{{ __('Confirm Password') }}"
                             required
                         />

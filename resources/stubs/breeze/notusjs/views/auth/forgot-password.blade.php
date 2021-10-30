@@ -25,13 +25,14 @@
 
                     <!-- Email Address -->
                     <div class="relative w-full mb-3">
-                        <x-label :value="__('Email')" />
+                        <x-label for="email" :value="__('Email')" />
                         <x-input
                             type="email"
                             value="{{ old('email') }}"
                             required
                             autofocus
                             name="email"
+                            id="email"
                             placeholder="{{ __('Email') }}"
                         />
                     </div>

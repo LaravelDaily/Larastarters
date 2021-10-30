@@ -24,6 +24,7 @@
                         <x-input type="email"
                                  id="email"
                                  name="email"
+                                 value="{{ old('email') }}"
                                  class="block w-full"
                                  required
                                  autofocus/>
@@ -31,7 +32,7 @@
 
                     <!-- Input[ype="password"] -->
                     <div class="mt-4">
-                        <x-label :value="__('Password')"/>
+                        <x-label for="password" :value="__('Password')"/>
                         <x-input type="password"
                                  id="password"
                                  name="password"

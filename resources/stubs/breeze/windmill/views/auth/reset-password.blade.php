@@ -22,8 +22,10 @@
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                     <div class="mt-4">
-                        <x-label :value="__('Email')"/>
+                        <x-label for="email" :value="__('Email')"/>
                         <x-input type="email"
+                                 id="email"
+                                 value="{{ old('email', $request->email) }}"
                                  required
                                  autofocus/>
                     </div>

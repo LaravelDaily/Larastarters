@@ -84,7 +84,7 @@
             <h6
                 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
             >
-                Admin Layout Pages
+                {{ __('Admin Layout Pages') }}
             </h6>
             <!-- Navigation -->
 
@@ -95,7 +95,7 @@
                         class="text-xs uppercase py-3 font-bold block text-pink-500 hover:text-pink-600"
                     >
                         <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
-                        Dashboard
+                        {{ __('Dashboard') }}
                     </a>
                 </li>
             </ul>

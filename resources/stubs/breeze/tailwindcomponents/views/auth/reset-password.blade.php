@@ -14,26 +14,30 @@
 
         <!-- Email Address -->
         <div>
-            <x-label :value="__('Email')"/>
+            <x-label for="email" :value="__('Email')"/>
             <x-input type="email"
                      name="email"
+                     id="email"
                      value="{{ old('email', $request->email) }}"
-                     required/>
+                     required
+            />
         </div>
 
         <!-- Password -->
         <div class="mt-3">
-            <x-label :value="__('Password')"/>
+            <x-label for="password" :value="__('Password')"/>
             <x-input type="password"
                      name="password"
+                     id="password"
                      required autocomplete="current-password"/>
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-3">
-            <x-label :value="__('Confirm Password')"/>
-            <x-input type="password" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600"
+            <x-label for="password_confirmation" :value="__('Confirm Password')"/>
+            <x-input type="password"
                      name="password_confirmation"
+                     id="password_confirmation"
                      required/>
         </div>
 

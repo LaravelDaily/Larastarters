@@ -14,10 +14,13 @@
     @csrf
 
         <!-- Password -->
-        <x-label :value="__('Password')"/>
+        <x-label for="password" :value="__('Password')"/>
         <x-input type="password"
-               name="password"
-               required autocomplete="current-password"/>
+                 name="password"
+                 id="password"
+                 required
+                 autocomplete="current-password"
+        />
 
         <div class="flex justify-end mt-4">
             <x-button>
