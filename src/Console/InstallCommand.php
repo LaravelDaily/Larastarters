@@ -73,15 +73,19 @@ class InstallCommand extends Command
         if ($kit === "Laravel UI (Bootstrap)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['adminlte'],
+                ['adminlte', 'coreui'],
                 0
             );
 
             $this->requireComposerPackages('laravel/ui:^3.3');
-            $this->call('ui:auth');
+            shell_exec('php artisan ui bootstrap --auth');
 
             if ($theme === 'adminlte') {
                 return $this->replaceWithAdminLTETheme();
+            }
+
+            if ($theme === 'coreui') {
+                return $this->replaceWithCoreUITheme();
             }
         }
 
@@ -188,6 +192,31 @@ class InstallCommand extends Command
 
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceWithCoreUITheme()
+    {
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/auth/passwords', resource_path('views/auth/passwords'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/layouts', resource_path('views/layouts'));
+
+        // Assets
+        (new Filesystem)->ensureDirectoryExists(public_path('icons'));
+        (new Filesystem)->ensureDirectoryExists(public_path('css'));
+        (new Filesystem)->ensureDirectoryExists(public_path('js'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/icons', public_path('icons'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/css', public_path('css'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/js', public_path('js'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/home.blade.php', resource_path('views/home.blade.php'));
+
+        $this->info('Laravel UI scaffolding replaced successfully.');
     }
 
     /**
