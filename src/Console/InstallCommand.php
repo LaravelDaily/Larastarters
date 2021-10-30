@@ -77,8 +77,8 @@ class InstallCommand extends Command
                 0
             );
 
-            /*$this->requireComposerPackages('laravel/ui:^3.3');
-            shell_exec('php artisan ui bootstrap --auth');*/
+            $this->requireComposerPackages('laravel/ui:^3.3');
+            shell_exec('php artisan ui bootstrap --auth');
 
             if ($theme === 'adminlte') {
                 return $this->replaceWithAdminLTETheme();
