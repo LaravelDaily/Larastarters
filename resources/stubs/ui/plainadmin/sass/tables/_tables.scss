@@ -1,0 +1,266 @@
+/* =========== tables css =========== */
+
+.table {
+  & > :not(caption) > * > * {
+    padding: 15px 0;
+    border-bottom-color: $light;
+    vertical-align: middle;
+  }
+  & > :not(:last-child) > :last-child > * {
+    border-bottom-color: $light;
+  }
+  tbody {
+    tr {
+      &:first-child > * {
+        padding-top: 20px;
+      }
+      &:last-child > * {
+        border-bottom-color: transparent;
+        padding-bottom: 0px;
+      }
+    }
+  }
+
+  th {
+    h6 {
+      font-weight: 500;
+      color: $dark;
+      font-size: 14px;
+    }
+  }
+
+  td {
+    &.min-width {
+      padding: 5px;
+
+      @media #{$xs} {
+        min-width: 150px;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      color: $gray;
+
+      a {
+        color: inherit;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  .lead-info {
+    min-width: 200px;
+  }
+  .lead-email {
+    min-width: 150px;
+    white-space: nowrap;
+  }
+  .lead-phone {
+    min-width: 160px;
+  }
+  .lead-company {
+    min-width: 180px;
+  }
+
+  .referrals-image {
+    min-width: 150px;
+
+    .image {
+      width: 55px;
+      max-width: 100%;
+      height: 55px;
+      border-radius: 4px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .lead {
+    display: flex;
+    align-items: center;
+
+    .lead-image {
+      max-width: 50px;
+      width: 100%;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+
+      img {
+        width: 100%;
+      }
+    }
+    .lead-text {
+      width: 100%;
+    }
+  }
+  .employee-image {
+    width: 50px;
+    max-width: 100%;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .action {
+    display: flex;
+    align-items: center;
+
+    button {
+      border: none;
+      background: transparent;
+      padding: 0px 6px;
+      font-size: 18px;
+
+      &.edit {
+        &:hover {
+          color: $primary;
+        }
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .dropdown-menu {
+      @include box-shadow(0px 0px 5px rgba(0, 0, 0, 0.07));
+
+      li {
+        &:hover {
+          a {
+            color: $primary !important;
+          }
+        }
+        a {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// ===== Top selling table
+.top-selling-table {
+  tr {
+    th,
+    td {
+      vertical-align: middle;
+      padding: 10px 5px;
+    }
+
+    .min-width {
+      min-width: 80px;
+      white-space: nowrap;
+    }
+  }
+
+  .form-check-input[type="checkbox"] {
+    margin-left: 5px;
+  }
+  .product {
+    display: flex;
+    align-items: center;
+    min-width: 150px;
+
+    .image {
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 15px;
+      max-width: 50px;
+      width: 100%;
+      height: 50px;
+
+      img {
+        width: 100%;
+      }
+    }
+    p {
+      width: 100%;
+    }
+  }
+}
+
+// ===== referrals-table
+.referrals-table-card {
+  .title {
+    @media #{$xs} {
+      .right {
+        width: 100%;
+      }
+    }
+    @media #{$sm} {
+      .right {
+        width: auto;
+      }
+    }
+  }
+  .referrals-table {
+    td {
+      padding: 10px;
+    }
+  }
+}
+
+/* ===== lead-table ===== */
+.lead-table {
+  th,
+  td {
+    padding: 10px 5px;
+  }
+
+  .name {
+    min-width: 120px;
+  }
+
+  .email {
+    min-width: 130px;
+  }
+  .project {
+    min-width: 150px;
+  }
+
+  .status {
+    min-width: 120px;
+    text-align: center;
+  }
+  .action {
+    min-width: 60px;
+  }
+}
+
+// ======== Clients Table
+.clients-table-card {
+  .table {
+    .employee-info {
+      min-width: 150px;
+    }
+  }
+}
+.clients-table {
+  th,
+  td {
+    padding: 5px;
+
+    &.min-width {
+      min-width: 150px;
+    }
+  }
+
+  .employee-image {
+    margin-right: 0px;
+  }
+}

@@ -1,0 +1,92 @@
+/* ============ signin css ============= */
+.auth-row {
+  background: $white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.auth-cover-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 45px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+
+  @media #{$xs} {
+    padding: 30px 20px;
+  }
+
+  .auth-cover {
+    .title {
+      text-align: cover;
+      margin-bottom: 40px;
+
+      @media #{$xs} {
+        h1 {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .cover-image {
+      max-width: 100%;
+      margin: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+    .shape-image {
+      position: absolute;
+      z-index: -1;
+      right: 0;
+      bottom: 5%;
+    }
+  }
+}
+
+.signin-wrapper {
+  background: $white;
+  padding: 60px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media #{$lg} {
+    padding: 40px;
+  }
+
+  @media #{$xs} {
+    padding: 30px;
+  }
+  .form-wrapper {
+    width: 100%;
+  }
+  .singin-option {
+    button {
+      font-size: 16px;
+      font-weight: 600;
+
+      @media #{$laptop} {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+
+      @media #{$lg} {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      @media #{$xs} {
+        width: 100%;
+      }
+
+      @media #{$sm} {
+        width: auto;
+      }
+    }
+  }
+}
