@@ -22,12 +22,13 @@
 
                     <!-- Password -->
                     <div class="relative w-full mb-3">
-                        <x-label for="grid-password" :value="__('Password')" />
+                        <x-label for="password" :value="__('Password')" />
                         <x-input
                             type="password"
                             required
                             autocomplete="current-password"
                             name="password"
+                            id="password"
                             placeholder="{{ __('Password') }}"
                         />
                     </div>

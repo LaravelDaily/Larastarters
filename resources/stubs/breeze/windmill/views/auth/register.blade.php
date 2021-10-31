@@ -19,7 +19,7 @@
                 @csrf
 
                     <div class="mt-4">
-                        <x-label :value="__('Name')"/>
+                        <x-label for="name" :value="__('Name')"/>
                         <x-input type="text"
                                  id="name"
                                  name="name"
@@ -30,14 +30,15 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-label :value="__('Email')"/>
-                        <x-input name="email" type="email"
+                        <x-label for="email" :value="__('Email')"/>
+                        <x-input name="email"
+                                 type="email"
                                  class="block w-full"
                                  value="{{ old('email') }}"/>
                     </div>
 
                     <div class="mt-4">
-                        <x-label :value="__('Password')"/>
+                        <x-label for="password" :value="__('Password')"/>
                         <x-input type="password"
                                  name="password"
                                  class="block w-full"
@@ -45,7 +46,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-label :value="__('Confirm Password')"/>
+                        <x-label id="password_confirmation" :value="__('Confirm Password')"/>
                         <x-input type="password"
                                  name="password_confirmation"
                                  class="block w-full"

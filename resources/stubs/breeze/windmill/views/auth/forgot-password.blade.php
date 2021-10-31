@@ -22,11 +22,13 @@
                     @csrf
 
                     <div class="mt-4">
-                        <x-label :value="__('Email')"/>
+                        <x-label for="email" :value="__('Email')"/>
                         <x-input type="email"
+                                 class="block w-full"
                                  name="email"
-                                 class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:ring-gray focus-within:text-primary-600 dark:focus-within:text-primary-400"
-                                 required/>
+                                 id="email"
+                                 required
+                        />
                     </div>
 
                     <x-button class="block mt-4 w-full">

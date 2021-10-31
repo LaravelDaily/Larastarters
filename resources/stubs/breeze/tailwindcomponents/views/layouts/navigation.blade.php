@@ -14,7 +14,7 @@
                     fill="white"/>
             </svg>
 
-            <span class="text-white text-2xl mx-2 font-semibold">Dashboard</span>
+            <span class="text-white text-2xl mx-2 font-semibold">{{ __('Dashboard') }}</span>
         </div>
     </div>
 

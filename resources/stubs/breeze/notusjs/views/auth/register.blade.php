@@ -16,11 +16,12 @@
                     @csrf
 
                     <div class="relative w-full mb-3">
-                        <x-label htmlFor="grid-password" :value="__('Name')"/>
+                        <x-label for="name" :value="__('Name')"/>
                         <x-input
                             type="text"
                             placeholder="{{ __('Name') }}"
                             name="name"
+                            id="name"
                             value="{{ old('name') }}"
                             required
                             autofocus
@@ -28,10 +29,11 @@
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label htmlFor="grid-password" :value="__('Email')" />
+                        <x-label for="email" :value="__('Email')" />
                         <x-input
                             type="email"
                             name="email"
+                            id="email"
                             value="{{ old('email') }}"
                             placeholder="{{ __('Email') }}"
                             required
@@ -39,20 +41,22 @@
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label htmlFor="grid-password" :value="__('Password')" />
+                        <x-label for="password" :value="__('Password')" />
                         <x-input
                             type="password"
                             name="password"
+                            id="password"
                             placeholder="{{ __('Password') }}"
                             required
                         />
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label htmlFor="grid-password" :value="__('Confirm Password')" />
+                        <x-label for="password_confirmation" :value="__('Confirm Password')" />
                         <x-input
                             type="password"
                             name="password_confirmation"
+                            id="password_confirmation"
                             placeholder="{{ __('Confirm Password') }}"
                             required
                         />

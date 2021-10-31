@@ -51,7 +51,7 @@
                                 class="ml-1 w-5 h-5 rounded border-0 transition-all duration-150 ease-linear form-checkbox text-blueGray-700"
                             /><span
                                 class="ml-2 text-sm font-semibold text-blueGray-600"
-                            >Remember me</span
+                            >{{ __('Remember me') }}</span
                             ></label
                         >
                     </div>

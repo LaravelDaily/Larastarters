@@ -11,36 +11,45 @@
 
         <!-- Name -->
         <div>
-            <x-label :value="__('Name')"/>
+            <x-label for="name" :value="__('Name')"/>
             <x-input type="text"
                      name="name"
+                     id="name"
                      value="{{ old('name') }}"
-                     required autofocus/>
+                     required
+                     autofocus
+            />
         </div>
 
         <!-- Email Address -->
         <div class="mt-3">
-            <x-label :value="__('Email')"/>
+            <x-label for="email" :value="__('Email')"/>
             <x-input type="email"
                      name="email"
+                     id="email"
                      value="{{ old('email') }}"
                      required/>
         </div>
 
         <!-- Password -->
         <div class="mt-3">
-            <x-label :value="__('Password')"/>
+            <x-label for="password" :value="__('Password')"/>
             <x-input type="password"
                      name="password"
-                     required autocomplete="current-password"/>
+                     id="password"
+                     required
+                     autocomplete="current-password"
+            />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-3">
-            <x-label :value="__('Confirm Password')"/>
+            <x-label for="password_confirmation" :value="__('Confirm Password')"/>
             <x-input type="password"
                      name="password_confirmation"
-                     required/>
+                     id="password_confirmation"
+                     required
+            />
         </div>
 
         <div class="flex flex-col items-end mt-4">
