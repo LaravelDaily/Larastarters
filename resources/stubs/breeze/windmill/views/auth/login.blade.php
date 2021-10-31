@@ -1,15 +1,13 @@
 <x-guest-layout>
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
-            <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
+            <img aria-hidden="true" class="object-cover w-full h-full"
                  src="{{ asset('images/login-office.jpeg') }}"
                  alt="Office"/>
-            <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block"
-                 src="../assets/img/login-office-dark.jpeg" alt="Office"/>
         </div>
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-                <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                <h1 class="mb-4 text-xl font-semibold text-gray-700">
                     Login
                 </h1>
 
@@ -43,7 +41,7 @@
                         <label class="flex items-center dark:text-gray-400">
                             <input type="checkbox"
                                    name="remember"
-                                   class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                   class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
                             <span class="ml-2">{{ __('Remember me') }}</span>
                         </label>
                     </div>
@@ -59,7 +57,7 @@
 
                 @if (Route::has('password.request'))
                     <p class="mt-4">
-                        <a class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
+                        <a class="text-sm font-medium text-primary-600 hover:underline"
                            href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>

@@ -16,7 +16,7 @@
 </head>
 <body>
 <div
-    class="flex h-screen bg-gray-50 dark:bg-gray-900"
+    class="flex h-screen bg-gray-50"
     :class="{ 'overflow-hidden': isSideMenuOpen }"
 >
     <!-- Desktop sidebar -->
@@ -28,7 +28,7 @@
         @include('layouts.top-menu')
         <main class="h-full overflow-y-auto">
             <div class="container px-6 mx-auto grid">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700">
                     {{ $header }}
                 </h2>
 

@@ -1,15 +1,13 @@
 <x-guest-layout>
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
-            <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
+            <img aria-hidden="true" class="object-cover w-full h-full"
                  src="{{ asset('images/create-account-office.jpeg') }}" alt="Office"/>
-            <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block"
-                 src="../assets/img/create-account-office-dark.jpeg" alt="Office"/>
         </div>
 
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-                <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                <h1 class="mb-4 text-xl font-semibold text-gray-700">
                     Create account
                 </h1>
 
@@ -63,7 +61,7 @@
                 <hr class="my-8"/>
 
                 <p class="mt-4">
-                    <a class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
+                    <a class="text-sm font-medium text-primary-600 hover:underline"
                        href="{{ route('login') }}">{{ __('Already registered?') }}</a>
                 </p>
             </div>

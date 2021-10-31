@@ -100,8 +100,7 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                'color' => '^4.0.1',
-                'tailwindcss-multi-theme' => '^1.0.4'
+                'color' => '^4.0.1'
             ] + $packages;
         });
 
