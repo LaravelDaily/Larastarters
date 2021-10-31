@@ -259,11 +259,37 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(public_path('images/auth'));
         (new Filesystem)->ensureDirectoryExists(public_path('images/logo'));
 
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/js', resource_path('js'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/alerts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/buttons'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/cards'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/forms'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/header'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/icons'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/notification'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/tables'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/typography'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/js/bootstrap.js', resource_path('js/bootstrap.js'));
+        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/js/main.js', public_path('js/main.js'));
+
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/fonts', public_path('fonts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/css', public_path('css'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/images/auth', public_path('images/auth'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/images/logo', public_path('images/logo'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass', resource_path('sass'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/alerts', resource_path('sass/alerts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/auth', resource_path('sass/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/buttons', resource_path('sass/buttons'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/cards', resource_path('sass/cards'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/forms', resource_path('sass/forms'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/header', resource_path('sass/header'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/icons', resource_path('sass/icons'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/notification', resource_path('sass/notification'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/tables', resource_path('sass/tables'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/typography', resource_path('sass/typography'));
 
         copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/home.blade.php', resource_path('views/home.blade.php'));
 
