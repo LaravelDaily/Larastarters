@@ -236,8 +236,10 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    'bootstrap' => '^5.1.3',
-                ] + $packages;
+                'bootstrap' => '^5.1.3',
+                '@popperjs/core' => '^2.10.2',
+                'resolve-url-loader' => '^4.0.0',
+            ] + $packages;
         });
 
         // Views...
@@ -250,12 +252,14 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/layouts', resource_path('views/layouts'));
 
         // Assets
+        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
         (new Filesystem)->ensureDirectoryExists(public_path('css'));
         (new Filesystem)->ensureDirectoryExists(public_path('fonts'));
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
         (new Filesystem)->ensureDirectoryExists(public_path('images/auth'));
         (new Filesystem)->ensureDirectoryExists(public_path('images/logo'));
 
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/js', resource_path('js'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/fonts', public_path('fonts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/css', public_path('css'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/images/auth', public_path('images/auth'));
