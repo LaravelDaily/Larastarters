@@ -1,5 +1,5 @@
-<header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-    <div class="container flex justify-between items-center px-6 mx-auto h-full text-purple-600 md:justify-end dark:text-purple-300">
+<header class="z-10 py-4 bg-white shadow-md">
+    <div class="container flex justify-between items-center px-6 mx-auto h-full text-purple-600 md:justify-end">
         <!-- Mobile hamburger -->
         <button
             class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"

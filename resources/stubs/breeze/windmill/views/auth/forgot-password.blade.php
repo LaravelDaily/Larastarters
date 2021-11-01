@@ -1,14 +1,12 @@
 <x-guest-layout>
     <div class="flex overflow-y-auto flex-col md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
-            <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
+            <img aria-hidden="true" class="object-cover w-full h-full"
                  src="{{ asset('images/forgot-password-office.jpeg') }}" alt="Office"/>
-            <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block"
-                 src="../assets/img/forgot-password-office-dark.jpeg" alt="Office"/>
         </div>
         <div class="flex justify-center items-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-                <h1 class="mb-4 font-semibold text-gray-700 dark:text-gray-200">
+                <h1 class="mb-4 font-semibold text-gray-700">
                     {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                 </h1>
 
