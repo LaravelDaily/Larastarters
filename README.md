@@ -3,7 +3,7 @@
 Package to install a regular Laravel Starter Kit with a non-regular different design theme.
 
 For current version 0.1, we support only [Laravel Breeze](https://github.com/laravel/breeze).
-Laravel Jestream and Laravel UI are potentially in plans.
+Laravel Jetstream and Laravel UI are potentially in plans.
 
 
 ## Important
