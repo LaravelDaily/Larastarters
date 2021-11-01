@@ -253,6 +253,7 @@ class InstallCommand extends Command
 
         // Assets
         (new Filesystem)->ensureDirectoryExists(resource_path('js'));
+        (new Filesystem)->ensureDirectoryExists(public_path('js'));
         (new Filesystem)->ensureDirectoryExists(public_path('css'));
         (new Filesystem)->ensureDirectoryExists(public_path('fonts'));
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
