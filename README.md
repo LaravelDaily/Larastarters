@@ -14,11 +14,27 @@ This package should be used **immediately after installing Laravel**. If you add
 ## Usage
 
 1. Install fresh Laravel project
-2. Run `composer require laraveldaily/larastarters --dev`
-3. Run `php artisan larastarters:install --theme=XXXXX` (available themes listed below)
-4. Run `npm install && npm run dev`
-5. That's it, you have Laravel Auth starter, just visit the home page and click Log in / Register
+2. Require Laravel Breeze `composer require laravel/breeze --dev`
+3. Install Breeze `php artisan breeze:install`
+4. Run `composer require laraveldaily/larastarters --dev`
+5. Run `php artisan larastarters:install --theme=XXXXX` (available themes listed below)
+6. Run `npm install && npm run dev`
+7. That's it, you have Laravel Auth starter, just visit the home page and click Log in / Register
 
+### Using Tailwind JIT?
+Ensure that the 'jit' mode is enabled (it is not enabled by default).
+
+1. Go to `tailwind.config.js` file
+2. Add the `mode: 'jit'` to the `module.exports ={` object
+
+```
+module.exports = {
+    mode: 'jit',  // Add this line
+    purge: [
+```
+3. Run `npm run watch` as usual.
+
+More info on Tailwind's JIT mode can be found [here](https://tailwindcss.com/docs/just-in-time-mode).
 
 ## Available Themes
 
@@ -32,6 +48,9 @@ How to install:
 
 ```
 php artisan larastarters:install --theme=windmill
+
+// Until the Dark theme is removed, run npm install with the --force tag
+npm install --force
 ```
 
 Screenshots:
