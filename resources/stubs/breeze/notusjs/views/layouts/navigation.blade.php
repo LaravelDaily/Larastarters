@@ -81,22 +81,29 @@
                 </div>
             </div>
             <!-- Heading -->
-            <h6
-                class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-            >
+            <x-nav-heading>
                 {{ __('Admin Layout Pages') }}
-            </h6>
+            </x-nav-heading>
+
             <!-- Navigation -->
 
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a
-                        href="{{ route('dashboard') }}"
-                        class="text-xs uppercase py-3 font-bold block text-pink-500 hover:text-pink-600"
-                    >
-                        <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-slot name="icon">
+                            <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
+                        </x-slot>
                         {{ __('Dashboard') }}
-                    </a>
+                    </x-nav-link>
+                </li>
+
+                <li class="items-center">
+                    <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                        <x-slot name="icon">
+                            <i class="far fa-address-card mr-2 text-sm opacity-75"></i>
+                        </x-slot>
+                        {{ __('About us') }}
+                    </x-nav-link>
                 </li>
             </ul>
         </div>
