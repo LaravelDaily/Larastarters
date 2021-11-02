@@ -4,7 +4,15 @@
             <svg class="nav-icon">
                 <use xlink:href="{{ asset('icons/coreui.svg#cil-speedometer') }}"></use>
             </svg>
-            Dashboard
+            {{ __('Dashboard') }}
+        </a>
+    </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ route('about') }}">
+            <svg class="nav-icon">
+                <use xlink:href="{{ asset('icons/coreui.svg#cil-speedometer') }}"></use>
+            </svg>
+            {{ __('About us') }}
         </a>
     </li>
 </ul>
