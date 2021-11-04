@@ -96,6 +96,8 @@ class InstallCommand extends Command
 
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/controllers', app_path('Http/Controllers/'));
 
+            copy(__DIR__ . '/../../resources/stubs/ui/AppServiceProvider.php', app_path('Providers/AppServiceProvider.php'));
+
             if ($theme === 'adminlte') {
                 return $this->replaceWithAdminLTETheme();
             }
