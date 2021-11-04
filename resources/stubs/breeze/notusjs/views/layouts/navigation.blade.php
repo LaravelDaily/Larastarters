@@ -98,6 +98,15 @@
                 </li>
 
                 <li class="items-center">
+                    <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                        <x-slot name="icon">
+                            <i class="fas fa-users mr-2 text-sm opacity-75"></i>
+                        </x-slot>
+                        {{ __('Users') }}
+                    </x-nav-link>
+                </li>
+
+                <li class="items-center">
                     <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                         <x-slot name="icon">
                             <i class="far fa-address-card mr-2 text-sm opacity-75"></i>

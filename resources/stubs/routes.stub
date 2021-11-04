@@ -1,2 +1,4 @@
 
 Route::view('about', 'about')->name('about')->middleware('auth');
+
+Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
