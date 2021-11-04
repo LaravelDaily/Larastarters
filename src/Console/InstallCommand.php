@@ -148,7 +148,7 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/vendor/pagination'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/vendor/pagination/tailwind.blade.php', resource_path('views/vendor/pagination/tailwind.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/pagination/tailwind.blade.php', resource_path('views/vendor/pagination/tailwind.blade.php'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
