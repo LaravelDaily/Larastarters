@@ -63,6 +63,8 @@ class InstallCommand extends Command
                 FILE_APPEND
             );
 
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/controllers', app_path('Http/Controllers/'));
+
             if ($theme === 'windmill') {
                 return $this->replaceWindmill();
             }
@@ -91,6 +93,8 @@ class InstallCommand extends Command
                 file_get_contents(__DIR__ . '/../../resources/stubs/routes.stub'),
                 FILE_APPEND
             );
+
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/controllers', app_path('Http/Controllers/'));
 
             if ($theme === 'adminlte') {
                 return $this->replaceWithAdminLTETheme();
@@ -138,6 +142,12 @@ class InstallCommand extends Command
         // Images
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/images', public_path('images'));
 
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/vendor/pagination'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/vendor/pagination/tailwind.blade.php', resource_path('views/vendor/pagination/tailwind.blade.php'));
+
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
@@ -163,6 +173,10 @@ class InstallCommand extends Command
         // Images
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/images', public_path('images'));
 
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
+
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
@@ -180,6 +194,10 @@ class InstallCommand extends Command
 
         copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/about.blade.php', resource_path('views/about.blade.php'));
+
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -210,6 +228,10 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/home.blade.php', resource_path('views/home.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/about.blade.php', resource_path('views/about.blade.php'));
 
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
+
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
@@ -220,6 +242,7 @@ class InstallCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 '@coreui/coreui' => '^4.0.2',
+                'resolve-url-loader' => '^4.0.0',
                 ] + $packages;
         });
 
@@ -243,6 +266,10 @@ class InstallCommand extends Command
 
         copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/home.blade.php', resource_path('views/home.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/about.blade.php', resource_path('views/about.blade.php'));
+
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -311,6 +338,10 @@ class InstallCommand extends Command
 
         copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/home.blade.php', resource_path('views/home.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/about.blade.php', resource_path('views/about.blade.php'));
+
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
