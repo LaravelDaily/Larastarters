@@ -133,7 +133,6 @@ class InstallCommand extends Command
         // Assets
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/js/app.js', resource_path('js/app.js'));
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/js/init-alpine.js', public_path('js/init-alpine.js'));
 
         // Images

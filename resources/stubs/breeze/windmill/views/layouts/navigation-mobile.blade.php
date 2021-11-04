@@ -17,7 +17,7 @@
         x-transition:leave="transition ease-in-out duration-150"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0 transform -translate-x-20"
-        @click.away="closeSideMenu"
+        @click.outside="closeSideMenu"
         @keydown.escape="closeSideMenu"
 >
     <div class="py-4 text-gray-500 dark:text-gray-400">
