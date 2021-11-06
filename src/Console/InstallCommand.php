@@ -106,6 +106,11 @@ class InstallCommand extends Command
                 ] + $packages;
             });
 
+            file_put_contents(
+                base_path('/.gitignore'),
+                file_get_contents(__DIR__ . '/../../resources/stubs/breeze/vuetify/.gitignore.stub'),
+                FILE_APPEND
+            );
             // delete js compoents & layouts using ue3 for now
             (new FileSystem)->deleteDirectory(resource_path('/js/'));
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/vuetify/resources', resource_path('/'));
