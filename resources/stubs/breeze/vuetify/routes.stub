@@ -1,0 +1,4 @@
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Admin/Welcome');
+})->middleware(['auth'])->name('admin.dashboard');
