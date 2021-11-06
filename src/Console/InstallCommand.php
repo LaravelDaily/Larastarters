@@ -42,10 +42,10 @@ class InstallCommand extends Command
     {
         $kit = $this->choice(
             'Which Laravel starter kit you want to use?',
-            ['Laravel Breeze (Tailwind)', 'Laravel UI (Bootstrap)'],
+            ['Laravel Breeze (Tailwind)', 'Laravel Breeze (Voltbs5)', 'Laravel UI (Bootstrap)'],
             0
         );
-
+        
         if ($kit === "Laravel Breeze (Tailwind)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
@@ -76,6 +76,13 @@ class InstallCommand extends Command
             if ($theme === 'tailwindcomponents') {
                 return $this->replaceWithTailwindComponents();
             }
+        }
+
+        if ($kit === "Laravel Breeze (Voltbs5)") {
+            $this->requireComposerPackages('laravel/breeze:^1.4');
+            shell_exec('php artisan breeze:install');
+
+            return $this->replaceWithVoltbs5();
         }
 
         if ($kit === "Laravel UI (Bootstrap)") {
@@ -200,6 +207,59 @@ class InstallCommand extends Command
         // Demo table
         (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
         copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
+
+        $this->info('Breeze scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceWithVoltbs5()
+    {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            $dependencies = [
+                "@fortawesome/fontawesome-free" => "^5.15.4",
+                "@popperjs/core" => "^2.10.2",
+                "bootstrap" => "^5.1.3",
+                "chartist" => "^0.11.4",
+                "chartist-plugin-tooltips" => "0.0.17",
+                "cross-env" => "^7.0.3",
+                "node-sass" => "^6.0.0",
+                "notyf" => "^3.9.0",
+                "nouislider" => "11.0.3",
+                "onscreen" => "1.3.4",
+                "resolve-url-loader" => "4.0.0",
+                "sass" => "^1.43.4",
+                "sass-loader" => "12.1.0",
+                "simplebar" => "^5.3.6",
+                "smooth-scroll" => "^16.1.3",
+                "sweetalert2" => "^9.17.1",
+                "vanillajs-datepicker" => "^1.1.4",
+                "waypoints" => "4.0.1"
+            ];
+            return $dependencies + $packages;
+        });
+
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
+        (new Filesystem)->ensureDirectoryExists(public_path('assets'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/voltbs5/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/voltbs5/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/voltbs5/views/components', resource_path('views/components'));
+
+        copy(__DIR__ . '/../../resources/stubs/breeze/voltbs5/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+
+        // Assets
+        copy(__DIR__ . '/../../resources/stubs/breeze/voltbs5/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/voltbs5/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/voltbs5/js/chart.js', resource_path('js/chart.js'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/voltbs5/sass', resource_path('sass'));
+
+        // Images
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/voltbs5/assets', public_path('assets'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
