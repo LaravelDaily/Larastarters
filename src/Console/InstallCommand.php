@@ -106,6 +106,8 @@ class InstallCommand extends Command
                 ] + $packages;
             });
 
+            // delete js compoents & layouts using ue3 for now
+            (new FileSystem)->deleteDirectory(resource_path('/js/'));
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/vuetify/resources', resource_path('/'));
             copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/middleware/HandleInertiaRequests.php', base_path('app/Http/Middleware/HandleInertiaRequests.php'));
             copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/webpack.config.js', base_path('/webpack.config.js'));
