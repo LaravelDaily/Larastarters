@@ -1,6 +1,7 @@
 import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import { InertiaProgress } from '@inertiajs/progress'
+import { Head, Link } from '@inertiajs/inertia-vue'
 import vuetify from '@/plugins/vuetify'
 import AdminLayout from '@/layouts/AdminLayout'
 import store from './store'
@@ -17,6 +18,9 @@ InertiaProgress.init({
 })
 
 Vue.use(plugin)
+
+Vue.component('InertiaHead', Head)
+Vue.component('InertiaLink', Link)
 
 const el = document.getElementById('app')
 
