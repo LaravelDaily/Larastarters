@@ -20,7 +20,7 @@
                         @csrf
 
                         <div>
-                            <x-button>
+                            <x-button class="w-full">
                                 {{ __('Resend Verification Email') }}
                             </x-button>
                         </div>
@@ -29,7 +29,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <x-button>
+                        <x-button class="w-full">
                             {{ __('Log Out') }}
                         </x-button>
                     </form>

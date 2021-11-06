@@ -53,7 +53,7 @@
         </div>
 
         <div class="flex flex-col items-end mt-4">
-            <x-button>
+            <x-button class="w-full">
                 {{ __('Register') }}
             </x-button>
 

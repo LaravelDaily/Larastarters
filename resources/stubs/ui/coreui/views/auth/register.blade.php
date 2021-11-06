@@ -26,7 +26,7 @@
                     <svg class="icon">
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
                     </svg></span>
-                        <input class="form-control" type="text" name="email" placeholder="Email" required
+                        <input class="form-control" type="text" name="email" placeholder="{{ __('Email') }}" required
                                autocomplete="email">
                         @error('email')
                         <span class="invalid-feedback">
@@ -40,7 +40,7 @@
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
                     </svg></span>
                         <input class="form-control @error('password') is-invalid @enderror" type="password"
-                               name="password" placeholder="Password" required autocomplete="new-password">
+                               name="password" placeholder="{{ __('Password') }}" required autocomplete="new-password">
                         @error('password')
                         <span class="invalid-feedback">
                             {{ $message }}

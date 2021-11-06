@@ -34,7 +34,7 @@
                         </a>
                     </x-slot>
                     <x-slot name="content">
-                        <x-dropdown-link href="#">Demo link</x-dropdown-link>
+                        <x-dropdown-link href="{{ route('profile.show') }}">{{ __('My profile') }}</x-dropdown-link>
                         <x-divider />
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

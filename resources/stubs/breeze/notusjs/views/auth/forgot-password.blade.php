@@ -37,7 +37,7 @@
                         />
                     </div>
 
-                    <x-button>
+                    <x-button class="w-full">
                         {{ __('Email Password Reset Link') }}
                     </x-button>
                 </form>
