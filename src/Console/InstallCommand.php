@@ -42,7 +42,7 @@ class InstallCommand extends Command
     {
         $kit = $this->choice(
             'Which Laravel starter kit you want to use?',
-            ['Laravel Breeze (Tailwind)', 'Laravel UI (Bootstrap)'],
+            ['Laravel Breeze (Tailwind)', 'Laravel Breeze (InertiaJS & Vuetify)', 'Laravel UI (Bootstrap)'],
             0
         );
 
@@ -76,6 +76,39 @@ class InstallCommand extends Command
             if ($theme === 'tailwindcomponents') {
                 return $this->replaceWithTailwindComponents();
             }
+        }
+
+        if ($kit === "Laravel Breeze (InertiaJS & Vuetify)") {
+            $this->requireComposerPackages('laravel/breeze:^1.4');
+            shell_exec('php artisan breeze:install vue');
+            
+            // NPM Packages...
+            $this->updateNodePackages(function ($packages) {
+                return [
+                    '@inertiajs/inertia' => '^0.10.1',
+                    '@inertiajs/inertia-vue' => '^0.7.2',
+                    '@vue/eslint-config-standard' => '^6.0.0',
+                    "eslint" => "^7.21.0",
+                    "eslint-plugin-import" => "^2.22.1",
+                    "eslint-plugin-node" => "^11.1.0",
+                    "eslint-plugin-promise" => "^4.3.1",
+                    "eslint-plugin-vue" => "^7.6.0",
+                    "eslint-webpack-plugin" => "^2.5.2",
+                    "sass"=> '^1.32.8',
+                    'sass-loader'=> '^11.0.1',
+                    'vue' => '^2.6.10',
+                    'vue-i18n' => '^8.23.0',
+                    'vue-template-compiler' => '^2.6.12',
+                    'vuetify' => '^2.4.5',
+                    'vuetify-loader' => '^1.7.2',
+                    'vuex' => '^3.6.2',
+                ] + $packages;
+            });
+
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/vuetify/resources', resource_path('/'));
+            copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/middleware', base_path('app/Http/Middleware'));
+            copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/webpack.config.js', base_path('views/dashboard.blade.php'));
+            copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/webpack.mix.js', base_path('views/dashboard.blade.php'));
         }
 
         if ($kit === "Laravel UI (Bootstrap)") {
