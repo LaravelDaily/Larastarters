@@ -95,7 +95,7 @@ class InstallCommand extends Command
                     "eslint-plugin-promise" => "^4.3.1",
                     "eslint-plugin-vue" => "^7.6.0",
                     "eslint-webpack-plugin" => "^2.5.2",
-                    "sass"=> '^1.32.8',
+                    "sass"=> '~1.32.8',
                     'sass-loader'=> '^11.0.1',
                     'vue' => '^2.6.10',
                     'vue-i18n' => '^8.23.0',
