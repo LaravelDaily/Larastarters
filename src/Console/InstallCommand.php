@@ -110,6 +110,7 @@ class InstallCommand extends Command
             copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/middleware/HandleInertiaRequests.php', base_path('app/Http/Middleware/HandleInertiaRequests.php'));
             copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/webpack.config.js', base_path('/webpack.config.js'));
             copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/webpack.mix.js', base_path('/webpack.mix.js'));
+            copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/.eslintrc.js', base_path('/.eslintrc.js'));
         }
 
         if ($kit === "Laravel UI (Bootstrap)") {
