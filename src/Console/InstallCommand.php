@@ -83,6 +83,7 @@ class InstallCommand extends Command
             shell_exec('php artisan breeze:install vue');
             
             // NPM Packages...
+            // TODO remove vue3 related packages package (vuetify official vue 3 support is not here yet)
             $this->updateNodePackages(function ($packages) {
                 return [
                     '@inertiajs/inertia' => '^0.10.1',

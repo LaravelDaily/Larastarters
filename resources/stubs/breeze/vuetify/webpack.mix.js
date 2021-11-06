@@ -25,7 +25,6 @@ Mix.listen('configReady', config => {
 })
 
 mix.js('resources/js/app.js', 'public/js').vue()
-  .copyDirectory('resources/js/assets/images', 'public/images')
   .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('autoprefixer')
