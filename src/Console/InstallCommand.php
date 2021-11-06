@@ -83,7 +83,8 @@ class InstallCommand extends Command
             shell_exec('php artisan breeze:install vue');
             
             // NPM Packages...
-            shell_exec('npm remove @inertiajs/inertia-vue3 @tailwindcss/forms @vue/compiler-sfc tailwindcss');
+            // TODO remove these packages someway
+            // shell_exec('npm remove @inertiajs/inertia-vue3 @tailwindcss/forms @vue/compiler-sfc tailwindcss');
             $this->updateNodePackages(function ($packages) {
                 return [
                     '@inertiajs/inertia' => '^0.10.1',
