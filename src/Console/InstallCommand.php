@@ -106,7 +106,7 @@ class InstallCommand extends Command
             });
 
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/vuetify/resources', resource_path('/'));
-            copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/middleware', base_path('app/Http/Middleware'));
+            copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/middleware/HandleInertiaRequests.php', base_path('app/Http/Middleware/HandleInertiaRequests.php'));
             copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/webpack.config.js', base_path('views/dashboard.blade.php'));
             copy(__DIR__ . '/../../resources/stubs/breeze/vuetify/webpack.mix.js', base_path('views/dashboard.blade.php'));
         }
