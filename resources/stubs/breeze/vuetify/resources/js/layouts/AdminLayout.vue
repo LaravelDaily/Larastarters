@@ -39,7 +39,7 @@
       app
       small
     >
-      &copy; {{ new Date().getFullYear() }} Infinite Info
+      &copy; {{ new Date().getFullYear() }} {{ $page.props.app.name }}
     </v-footer>
   </v-app>
 </template>
