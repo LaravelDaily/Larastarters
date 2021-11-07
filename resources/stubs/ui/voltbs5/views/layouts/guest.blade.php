@@ -10,20 +10,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>
-    @include('layouts.nav')
-    @include('layouts.sidenav')
-    <main class="content">
-        {{-- TopBar --}}
-        @include('layouts.topbar')
-        {{ $slot }}
-        {{-- Footer --}}
-        @include('layouts.footer')
+    <main>
+        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            @yield('content')
+        </section>
     </main>
 </body>
 
