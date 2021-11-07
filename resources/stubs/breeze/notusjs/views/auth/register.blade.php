@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="text-center mt-6">
-                        <x-button>
+                        <x-button class="w-full">
                             {{ __('Register') }}
                         </x-button>
 

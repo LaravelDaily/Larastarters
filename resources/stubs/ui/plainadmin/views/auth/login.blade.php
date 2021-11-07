@@ -63,7 +63,7 @@
                                     <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
                                 </div>
                             </div>
-                    @endif
+                        @endif
                     <!-- end col -->
                         <div class="col-12">
                             <div class="button-group d-flex justify-content-center flex-wrap">

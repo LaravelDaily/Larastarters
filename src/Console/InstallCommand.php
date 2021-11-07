@@ -65,6 +65,9 @@ class InstallCommand extends Command
 
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/controllers', app_path('Http/Controllers/'));
 
+            (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
+
             if ($theme === 'windmill') {
                 return $this->replaceWindmill();
             }
@@ -95,6 +98,9 @@ class InstallCommand extends Command
             );
 
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/controllers', app_path('Http/Controllers/'));
+
+            (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
 
             copy(__DIR__ . '/../../resources/stubs/ui/AppServiceProvider.php', app_path('Providers/AppServiceProvider.php'));
 

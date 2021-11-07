@@ -1,1 +1,1 @@
-<div class="h-0 my-2 border border-solid border-blueGray-100"></div>
+<hr class="mt-6 border-b-1 border-blueGray-300">

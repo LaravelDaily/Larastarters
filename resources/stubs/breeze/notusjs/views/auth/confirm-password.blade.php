@@ -33,7 +33,7 @@
                         />
                     </div>
 
-                    <x-button>
+                    <x-button class="w-full">
                         {{ __('Confirm') }}
                     </x-button>
                 </form>
