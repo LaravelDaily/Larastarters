@@ -15,6 +15,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/init-alpine.js') }}" defer></script>
     </head>
     <body>
         <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">

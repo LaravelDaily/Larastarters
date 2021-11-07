@@ -17,5 +17,10 @@ document.addEventListener('alpine:init', () => {
         closeSideMenu() {
             this.isSideMenuOpen = false
         },
+
+        isMultiLevelMenuOpen: false,
+        toggleMultiLevelMenu() {
+            this.isMultiLevelMenuOpen = !this.isMultiLevelMenuOpen
+        }
     }))
 })
