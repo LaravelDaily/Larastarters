@@ -34,7 +34,7 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link href="#">
+                <x-dropdown-link href="{{ route('profile.show') }}">
                     <x-slot name="icon">
                         <svg class="mr-3 w-4 h-4" aria-hidden="true" fill="none" stroke-linecap="round"
                              stroke-linejoin="round"
@@ -44,7 +44,7 @@
                             <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         </svg>
                     </x-slot>
-                    Demo link
+                    My profile
                 </x-dropdown-link>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

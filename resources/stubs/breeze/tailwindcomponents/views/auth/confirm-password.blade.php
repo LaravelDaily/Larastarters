@@ -23,7 +23,7 @@
         />
 
         <div class="flex justify-end mt-4">
-            <x-button>
+            <x-button class="w-full">
                 {{ __('Confirm') }}
             </x-button>
         </div>

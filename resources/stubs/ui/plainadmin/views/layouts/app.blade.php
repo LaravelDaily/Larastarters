@@ -61,10 +61,10 @@
                                 </div>
                                 <i class="lni lni-chevron-down"></i>
                             </button>
-                            <ul
-                                class="dropdown-menu dropdown-menu-end"
-                                aria-labelledby="profile"
-                            >
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                                <li>
+                                        <a href="{{ route('profile.show') }}"> <i class="lni lni-user"></i> {{ __('My profile') }}</a>
+                                </li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                     @csrf

@@ -53,7 +53,7 @@
         </div>
 
         <div class="mt-6">
-            <x-button>
+            <x-button class="w-full">
                 {{ __('Log in') }}
             </x-button>
         </div>
