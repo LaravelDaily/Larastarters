@@ -1,6 +1,7 @@
 <x-app-layout>
     <div class="px-4 w-full">
         <div class="flex relative flex-col mb-6 min-w-0 break-words bg-white rounded shadow-lg bg-blueGray-100 xl:mb-0">
+
             <div class="px-6 py-6 mb-0 bg-white rounded-t">
                 <div class="flex justify-between text-center">
                     <h6 class="text-xl font-bold text-blueGray-700">
@@ -10,6 +11,17 @@
             </div>
 
             <div class="flex-auto p-4">
+
+                @if ($message = Session::get('success'))
+                    <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500">
+                        <span class="text-xl inline-block mr-5 align-middle">
+                            <i class="fas fa-bell"></i>
+                        </span>
+                        <span class="inline-block align-middle mr-8">
+                            <b class="capitalize">Success!</b> {{ $message }}
+                        </span>
+                    </div>
+                @endif
 
                 <form action="{{ route('profile.update') }}" method="POST">
                     @csrf
@@ -56,7 +68,7 @@
                         </div>
                         <div class="w-full lg:w-6/12 px-4">
                             <div class="relative w-full mb-3">
-                                <x-labelfor="password_confirmation" :value="__('New password confirmation')"/>
+                                <x-label for="password_confirmation" :value="__('New password confirmation')"/>
                                 <x-input
                                         type="password"
                                         name="password_confirmation"

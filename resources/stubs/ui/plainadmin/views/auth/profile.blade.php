@@ -19,6 +19,17 @@
         <div class="card-style-3 mb-30">
             <div class="card-content">
 
+                @if ($message = Session::get('success'))
+                    <div class="alert-box success-alert">
+                        <div class="alert">
+                            <h4 class="alert-heading">Success</h4>
+                            <p class="text-medium">
+                                {{ $message }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
+
                 <form action="{{ route('profile.update') }}" method="POST">
                     @csrf
                     @method('PUT')
