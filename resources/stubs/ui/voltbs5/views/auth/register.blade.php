@@ -10,12 +10,17 @@
                     </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        
                         <!-- Form -->
                         <div class="form-group mt-4 mb-4">
                             <label for="name">{{ __('Your Name') }}</label>
-
-                            <input name="name" id="name" type="name" class="form-control" placeholder="{{ __('Name') }}"
-                                value="{{ old('name') }}" autofocus required>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="fas fa-user-alt fa-fw"></i>
+                                </span>
+                                <input name="name" id="name" type="name" class="form-control"
+                                    placeholder="{{ __('Name') }}" value="{{ old('name') }}" autofocus required>
+                            </div>
 
                             @error('name') <div class="invalid-feedback"> {{ $message }} </div> @enderror
                         </div>

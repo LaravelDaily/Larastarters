@@ -24,8 +24,8 @@
 
     <li class="nav-item {{ request()->routeIs('users.index') ? 'active' : '' }}">
         <a href="{{ route('users.index') }}" class="nav-link">
-            <span class="sidebar-icon">
-                <i class="fas fa-user me-2"></i>
+            <span class="sidebar-icon me-3">
+                <i class="fas fa-user-alt fa-fw"></i>
             </span>
             <span class="sidebar-text">{{ __('Users') }}</span>
         </a>

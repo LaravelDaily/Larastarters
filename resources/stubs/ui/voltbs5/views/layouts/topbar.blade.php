@@ -1,26 +1,6 @@
 <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
     <div class="container-fluid px-0">
-        <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
-            <div class="d-flex align-items-center">
-                <!-- Search form -->
-                <form class="navbar-search form-inline" id="navbar-search-main">
-                    <div class="input-group input-group-merge search-bar">
-                        <span class="input-group-text" id="topbar-addon">
-                            <svg class="icon icon-xs" x-description="Heroicon name: solid/search"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd">
-                                </path>
-                            </svg>
-
-                        </span>
-                        <input type="text" class="form-control" id="topbarInputIconLeft" placeholder="Search"
-                            aria-label="Search" aria-describedby="topbar-addon">
-                    </div>
-                </form>
-            </div>
+        <div class="d-flex justify-content-end w-100" id="navbarSupportedContent">
             <!-- Navbar links -->
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item dropdown ms-lg-3">
