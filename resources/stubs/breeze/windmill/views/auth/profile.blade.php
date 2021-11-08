@@ -36,6 +36,11 @@
                          class="block w-full"
                          value="{{ old('name', auth()->user()->name) }}"
                          required/>
+                @error('name')
+                    <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
 
             <div class="mt-4">
@@ -45,6 +50,11 @@
                          class="block w-full"
                          value="{{ old('email', auth()->user()->email) }}"
                          required/>
+                @error('email')
+                    <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
 
             <div class="mt-4">
@@ -53,6 +63,11 @@
                          name="password"
                          class="block w-full"
                          required/>
+                @error('password')
+                    <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
 
             <div class="mt-4">
