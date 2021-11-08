@@ -45,7 +45,7 @@ class InstallCommand extends Command
             ['Laravel Breeze (Tailwind)', 'Laravel UI (Bootstrap)'],
             0
         );
-        
+
         if ($kit === "Laravel Breeze (Tailwind)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
@@ -120,7 +120,6 @@ class InstallCommand extends Command
                 return $this->replaceWithVoltbs5();
             }
         }
-
     }
 
     protected function replaceWindmill()
@@ -255,7 +254,7 @@ class InstallCommand extends Command
             return [
                 '@coreui/coreui' => '^4.0.2',
                 'resolve-url-loader' => '^4.0.0',
-                ] + $packages;
+            ] + $packages;
         });
 
         // Views...
