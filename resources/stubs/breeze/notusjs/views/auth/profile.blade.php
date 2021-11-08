@@ -79,7 +79,7 @@
                         </div>
                     </div>
 
-                    <x-divider/>
+                    <x-divider class="mt-6"/>
 
                     <div class="mt-6">
                         <x-button>
