@@ -23,6 +23,8 @@
                     </div>
                 @endif
 
+                <x-errors class="mb-4" :errors="$errors" />
+
                 <form action="{{ route('profile.update') }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -50,7 +52,6 @@
                                         id="email"
                                         value="{{ old('email', auth()->user()->email) }}"
                                         placeholder="{{ __('Email') }}"
-                                        required
                                 />
                             </div>
                         </div>
@@ -62,7 +63,6 @@
                                         name="password"
                                         id="password"
                                         placeholder="{{ __('New password') }}"
-                                        required
                                 />
                             </div>
                         </div>
@@ -74,7 +74,6 @@
                                         name="password_confirmation"
                                         id="password_confirmation"
                                         placeholder="{{ __('New password confirmation') }}"
-                                        required
                                 />
                             </div>
                         </div>

@@ -22,6 +22,8 @@
         </div>
     @endif
 
+    <x-errors class="mb-4" :errors="$errors" />
+
     <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
         <div class="p-6 border-b border-gray-200">
 
@@ -55,7 +57,6 @@
                         <x-input type="password"
                                  name="password"
                                  id="password"
-                                 required
                         />
                     </div>
 
@@ -64,7 +65,6 @@
                         <x-input type="password"
                                  name="password_confirmation"
                                  id="password_confirmation"
-                                 required
                         />
                     </div>
                 </div>
