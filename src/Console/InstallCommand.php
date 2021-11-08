@@ -84,7 +84,7 @@ class InstallCommand extends Command
         if ($kit === "Laravel UI (Bootstrap)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['adminlte', 'coreui', 'plainadmin'],
+                ['adminlte', 'coreui', 'plainadmin', 'voltbs5'],
                 0
             );
 
@@ -115,8 +115,11 @@ class InstallCommand extends Command
             if ($theme === 'plainadmin') {
                 return $this->replaceWithPlainAdminTheme();
             }
-        }
 
+            if ($theme === 'voltbs5') {
+                return $this->replaceWithVoltbs5();
+            }
+        }
     }
 
     protected function replaceWindmill()
@@ -251,7 +254,7 @@ class InstallCommand extends Command
             return [
                 '@coreui/coreui' => '^4.0.2',
                 'resolve-url-loader' => '^4.0.0',
-                ] + $packages;
+            ] + $packages;
         });
 
         // Views...
@@ -350,6 +353,69 @@ class InstallCommand extends Command
         // Demo table
         (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
         copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
+
+        $this->info('Laravel UI scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceWithVoltbs5()
+    {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            $dependencies = [
+                "@fortawesome/fontawesome-free" => "^5.15.4",
+                "@popperjs/core" => "^2.10.2",
+                "bootstrap" => "^5.1.3",
+                "cross-env" => "^7.0.3",
+                "node-sass" => "^6.0.0",
+                "onscreen" => "1.3.4",
+                "resolve-url-loader" => "4.0.0",
+                "simplebar" => "^5.3.6",
+                "smooth-scroll" => "^16.1.3",
+            ];
+            return $dependencies + $packages;
+        });
+
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/auth/passwords', resource_path('views/auth/passwords'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/layouts', resource_path('views/layouts'));
+
+        // Assets
+        (new Filesystem)->ensureDirectoryExists(public_path('images'));
+        (new Filesystem)->ensureDirectoryExists(public_path('images/brand'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/custom'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/forms'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/layout'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/mixins'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/images', public_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/images/brand', public_path('images/brand'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/js/app.js', resource_path('js/app.js'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass', resource_path('sass'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/custom', resource_path('sass/custom'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt', resource_path('sass/volt'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/components', resource_path('sass/volt/components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/forms', resource_path('sass/volt/forms'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/layout', resource_path('sass/volt/layout'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/mixins', resource_path('sass/volt/mixins'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/home.blade.php', resource_path('views/home.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/about.blade.php', resource_path('views/about.blade.php'));
+
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');

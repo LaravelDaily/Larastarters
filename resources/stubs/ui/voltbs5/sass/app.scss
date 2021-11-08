@@ -1,0 +1,16 @@
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+
+@import "volt";
+
+.invalid-feedback {
+    display: block;
+}
+
+.main {
+    min-height: calc(100vh - 180px);
+}
+
+.table > :not(:first-child) {
+    border-top: 0;
+}
