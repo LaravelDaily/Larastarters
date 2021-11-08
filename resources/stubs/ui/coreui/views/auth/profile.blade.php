@@ -12,6 +12,10 @@
 
             <div class="card-body">
 
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success" role="alert">{{ $message }}</div>
+                @endif
+
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
