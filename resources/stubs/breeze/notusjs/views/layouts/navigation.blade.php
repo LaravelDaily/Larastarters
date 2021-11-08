@@ -115,6 +115,21 @@
                     </x-nav-link>
                 </li>
             </ul>
+
+            <x-divider class="my-4" />
+
+            <x-nav-heading>
+                Menu Heading
+            </x-nav-heading>
+
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+                <x-nav-link href="#">
+                    <x-slot name="icon">
+                        <i class="far fa-circle mr-2 text-sm opacity-75"></i>
+                    </x-slot>
+                    Demo link
+                </x-nav-link>
+            </ul>
         </div>
     </div>
 </nav>

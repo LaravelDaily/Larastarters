@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <nav class="mt-10">
+    <nav class="mt-10" x-data="{ isMultiLevelMenuOpen: false }">
         <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,5 +46,26 @@
             </x-slot>
             {{ __('About us') }}
         </x-nav-link>
+
+        <x-nav-link href="#" @click="isMultiLevelMenuOpen = !isMultiLevelMenuOpen">
+            <x-slot name="icon">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"></path>
+                </svg>
+            </x-slot>
+            Two-level menu
+        </x-nav-link>
+        <template x-if="isMultiLevelMenuOpen">
+            <ul x-transition:enter="transition-all ease-in-out duration-300"
+                x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl"
+                x-transition:leave="transition-all ease-in-out duration-300"
+                x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0"
+                class="p-2 mx-4 mt-2 space-y-2 overflow-hidden text-sm font-medium text-white bg-gray-700 bg-opacity-50 rounded-md shadow-inner"
+                aria-label="submenu">
+                <li class="px-2 py-1 transition-colors duration-150">
+                    <a class="w-full" href="#">Child menu</a>
+                </li>
+            </ul>
+        </template>
     </nav>
 </div>
