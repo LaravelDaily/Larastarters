@@ -19,8 +19,13 @@
             <div class="row">
                 <div class="col-lg-12">
 
+                    <div class="alert alert-info">
+                        Sample table page
+                    </div>
+
                     <div class="card">
                         <div class="card-body p-0">
+
                             <table class="table">
                                 <thead>
                                     <tr>

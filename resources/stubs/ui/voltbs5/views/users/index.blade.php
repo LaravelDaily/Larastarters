@@ -3,6 +3,9 @@
 @section('content')
     <div class="main py-4">
         <div class="card card-body border-0 shadow table-wrapper table-responsive">
+
+            <p class="text-info mb-0">Sample table page</p>
+
             <table class="table table-hover">
                 <thead>
                     <tr>
