@@ -29,7 +29,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" name="name"
                                            class="form-control @error('name') is-invalid @enderror"
-                                           placeholder="{{ __('Name') }}" value="{{ old('email', auth()->user()->name) }}" required>
+                                           placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user"></span>
@@ -61,7 +61,7 @@
                                 <div class="input-group mb-3">
                                     <input type="password" name="password"
                                            class="form-control @error('password') is-invalid @enderror"
-                                           placeholder="{{ __('New password') }}" required>
+                                           placeholder="{{ __('New password') }}">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-lock"></span>
@@ -77,7 +77,7 @@
                                 <div class="input-group mb-3">
                                     <input type="password" name="password_confirmation"
                                            class="form-control @error('password_confirmation') is-invalid @enderror"
-                                           placeholder="{{ __('New password confirmation') }}" required
+                                           placeholder="{{ __('New password confirmation') }}"
                                            autocomplete="new-password">
                                     <div class="input-group-append">
                                         <div class="input-group-text">

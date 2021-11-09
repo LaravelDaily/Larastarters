@@ -21,7 +21,7 @@
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
                     </svg></span>
                     <input class="form-control" type="text" name="name" placeholder="{{ __('Name') }}"
-                           value="{{ old('email', auth()->user()->name) }}" required>
+                           value="{{ old('name', auth()->user()->name) }}" required>
                     @error('name')
                     <span class="invalid-feedback">
                             {{ $message }}
