@@ -28,18 +28,25 @@
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </a>
-                </form>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                    <i class="fas fa-expand-arrows-alt"></i>
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                    {{ Auth::user()->name }}
                 </a>
+                <div class="dropdown-menu dropdown-menu-right" style="left: inherit; right: 0px;">
+                    <a href="{{ route('profile.show') }}" class="dropdown-item">
+                        <i class="mr-2 fas fa-file"></i>
+                        {{ __('My profile') }}
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" class="dropdown-item"
+                           onclick="event.preventDefault(); this.closest('form').submit();">
+                            <i class="mr-2 fas fa-sign-out-alt"></i>
+                            {{ __('Log Out') }}
+                        </a>
+                    </form>
+                </div>
             </li>
         </ul>
     </nav>
@@ -89,8 +96,6 @@
 <!-- REQUIRED SCRIPTS -->
 
 <script src="{{ asset('js/app.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
