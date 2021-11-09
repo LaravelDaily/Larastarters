@@ -84,7 +84,7 @@ class InstallCommand extends Command
         if ($kit === "Laravel UI (Bootstrap)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['adminlte', 'coreui', 'plainadmin', 'voltbs5'],
+                ['adminlte', 'coreui', 'plainadmin', 'volt'],
                 0
             );
 
@@ -116,8 +116,8 @@ class InstallCommand extends Command
                 return $this->replaceWithPlainAdminTheme();
             }
 
-            if ($theme === 'voltbs5') {
-                return $this->replaceWithVoltbs5();
+            if ($theme === 'volt') {
+                return $this->replaceWithVolt();
             }
         }
     }
@@ -358,7 +358,7 @@ class InstallCommand extends Command
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    protected function replaceWithVoltbs5()
+    protected function replaceWithVolt()
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {

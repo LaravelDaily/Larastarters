@@ -5,12 +5,24 @@
         <div class="row">
             <div class="col-12 col-xl-12">
                 <div class="card card-body border-0 shadow mb-4">
-                    <h2 class="h5 mb-4">General information</h2>
+                    <h2 class="h5 mb-4">{{ __('My profile') }}</h2>
                     <form action="{{ route('profile.update') }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="row align-items-center">
+                            <div class="col-md-6 mb-3">
+                                <label for="name">{{ 'Your Name' }}</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user-alt fa-fw"></i>
+                                    </span>
+                                    <input id="name" class="form-control" type="text" name="name"
+                                        placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}"
+                                        required>
+                                </div>
+                                @error('name') <div class="invalid-feedback"> {{ $message }} </div> @enderror
+                            </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">{{ __('Your Email') }}</label>
                                 <div class="input-group">
@@ -30,18 +42,6 @@
                                 </div>
                                 @error('email') <div class="invalid-feedback"> {{ $message }} </div> @enderror
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="name">{{ 'Your Name' }}</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-user-alt fa-fw"></i>
-                                    </span>
-                                    <input id="name" class="form-control" type="text" name="name"
-                                        placeholder="{{ __('Name') }}" value="{{ old('email', auth()->user()->name) }}"
-                                        required>
-                                </div>
-                                @error('name') <div class="invalid-feedback"> {{ $message }} </div> @enderror
-                            </div>
                         </div>
                         <div class="row align-items-center">
                             <div class="col-md-6 mb-3">
@@ -58,7 +58,7 @@
 
                                     </span>
                                     <input type="password" name="password" placeholder="{{ __('New Password') }}"
-                                        class="form-control" id="password" required>
+                                        class="form-control" id="password">
                                 </div>
                                 @error('password') <div class="invalid-feedback"> {{ $message }} </div> @enderror
                             </div>
@@ -77,7 +77,7 @@
                                     </span>
                                     <input type="password" name="password_confirmation" class="form-control"
                                         id="password_confirmation" placeholder="{{ __('New password confirmation') }}"
-                                        required autocomplete="new-password">
+                                        autocomplete="new-password">
                                 </div>
                             </div>
                         </div>
@@ -89,4 +89,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    @if ($message = Session::get('success'))
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: '{{ $message }}',
+            })
+        </script>
+    @endif
 @endsection
