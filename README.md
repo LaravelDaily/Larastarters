@@ -2,9 +2,9 @@
 
 Package to install a regular Laravel Starter Kit with a non-regular different design theme.
 
-For current version 0.2, we support [Laravel Breeze](https://github.com/laravel/breeze) and [Laravel UI](https://github.com/laravel/ui) starter kits.
+The package suggest to install [Laravel Breeze](https://github.com/laravel/breeze) (Tailwind) or [Laravel UI](https://github.com/laravel/ui) (Bootstrap) starter kit, and adds a design theme on top.
 
-Laravel Jetstream is not in plans at the moment.
+**Notice**: if you want more functionality than just the Starter Kit, check our premium product [QuickAdminPanel](https://quickadminpanel.com)
 
 
 ## Important
@@ -26,7 +26,7 @@ This package should be used **immediately after installing Laravel**. If you add
 
 ## Available Themes
 
-In the current version, there are 6 themes supported. 
+In the current version, there are 7 themes supported. 
 
 **Tailwind Themes with Laravel Breeze**
 
@@ -48,6 +48,7 @@ Example screenshots from Windmill theme:
 - [Core UI - Bootstrap 5](https://coreui.io/)
 - [AdminLTE - Bootstrap 4](https://adminlte.io/)
 - [Plainadmin - Bootstrap 5](https://plainadmin.com/)
+- [Volt - Bootstrap 5](https://demo.themesberg.com/volt/) - contributed by [@knaazimkhan](https://github.com/knaazimkhan)
 
 ---
 
