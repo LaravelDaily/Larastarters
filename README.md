@@ -4,13 +4,15 @@ Package to install a regular Laravel Starter Kit with a non-regular different de
 
 The package suggest to install [Laravel Breeze](https://github.com/laravel/breeze) (Tailwind) or [Laravel UI](https://github.com/laravel/ui) (Bootstrap) starter kit, and adds a design theme on top.
 
-**Notice**: if you want more functionality than just the Starter Kit, check our premium product [QuickAdminPanel](https://quickadminpanel.com)
+**Notice**: if you want more functionality than just the Starter Kit, check our premium product [QuickAdminPanel](https://quickadminpanel.com).
 
+---
 
 ## Important
 
 This package should be used **immediately after installing Laravel**. If you add any more functionality, like routes or controllers, they may get overridden by Larastarters.
 
+---
 
 ## Usage
 
@@ -49,6 +51,19 @@ Example screenshots from Windmill theme:
 - [AdminLTE - Bootstrap 4](https://adminlte.io/)
 - [Plainadmin - Bootstrap 5](https://plainadmin.com/)
 - [Volt - Bootstrap 5](https://demo.themesberg.com/volt/) - contributed by [@knaazimkhan](https://github.com/knaazimkhan)
+
+---
+
+## Pre-Installed Functions
+
+Along with the design themes, we add a few features that are typical for almost any project:
+
+- Profile management form to change name/email/password
+- A sample table of Users list
+- A sample static text page
+- Two-level menu on the sidebar
+
+Want more functions? Raise an issue with your suggestion, or check out our [QuickAdminPanel](https://quickadminpanel.com).
 
 ---
 
