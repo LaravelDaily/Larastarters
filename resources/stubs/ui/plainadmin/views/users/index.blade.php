@@ -19,6 +19,14 @@
         <div class="card-style-3 mb-30">
             <div class="card-content">
 
+                <div class="alert-box primary-alert">
+                    <div class="alert">
+                        <p class="text-medium">
+                            Sample table page
+                        </p>
+                    </div>
+                </div>
+
                 <div class="table-wrapper table-responsive">
                     <table class="table striped-table">
                         <thead>

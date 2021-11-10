@@ -5,6 +5,8 @@
         <div class="card card-body border-0 shadow table-wrapper table-responsive">
             <h2 class="mb-4 h5">{{ __('Users') }}</h2>
 
+            <p class="text-info mb-0">Sample table page</p>
+
             <table class="table table-hover">
                 <thead>
                     <tr>

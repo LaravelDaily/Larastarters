@@ -119,7 +119,7 @@
             <x-divider class="my-4" />
 
             <x-nav-heading>
-                Menu Heading
+                Two-level menu
             </x-nav-heading>
 
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
@@ -127,7 +127,7 @@
                     <x-slot name="icon">
                         <i class="far fa-circle mr-2 text-sm opacity-75"></i>
                     </x-slot>
-                    Demo link
+                    Child menu
                 </x-nav-link>
             </ul>
         </div>

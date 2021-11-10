@@ -10,6 +10,14 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-lightBlue-500">
+                <span class="inline-block align-middle">
+                    Sample table page
+                </span>
+            </div>
+
             <div class="block w-full overflow-x-auto">
                 <table class="items-center w-full bg-transparent border-collapse">
                     <thead>

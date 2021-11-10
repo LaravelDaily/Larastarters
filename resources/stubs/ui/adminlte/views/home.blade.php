@@ -20,8 +20,6 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-
                             <p class="card-text">
                                 {{ __('You are logged in!') }}
                             </p>

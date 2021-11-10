@@ -5,6 +5,9 @@
         <div class="card-header">
             {{ __('Users') }}
         </div>
+
+        <div class="alert alert-info" role="alert">Sample table page</div>
+
         <div class="card-body">
 
             <table class="table">
