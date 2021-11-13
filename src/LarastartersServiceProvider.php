@@ -37,6 +37,7 @@ class LarastartersServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 InstallCommand::class,
+                GenerateServiceClass::class,
             ]);
         }
     }
