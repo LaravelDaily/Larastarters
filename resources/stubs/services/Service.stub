@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Services{{extendedPath}};
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+
+{{addedModel}}
+
+class {{serviceName}} extends BaseRepository
+{
+	/**
+	 * Create New Service Instance
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		//
+	}
+}
