@@ -279,11 +279,10 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a href="{{ route('logout') }}" class="btn btn-primary"
-                       onclick="event.preventDefault(); this.closest('form').submit();">
+                    <button type="submit" class="btn btn-primary">
                         <i class="mr-2 fas fa-sign-out-alt"></i>
                         {{ __('Log Out') }}
-                    </a>
+                    </button>
                 </form>
 
             </div>
