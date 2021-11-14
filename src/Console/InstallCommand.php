@@ -42,7 +42,7 @@ class InstallCommand extends Command
     {
         $kit = $this->choice(
             'Which Laravel starter kit you want to use?',
-            ['Laravel Breeze (Tailwind)', 'Laravel UI (Bootstrap)'],
+            ['Laravel Breeze (Tailwind)', 'Laravel Breeze & Inertia (Tailwind)', 'Laravel UI (Bootstrap)'],
             0
         );
 
@@ -78,6 +78,35 @@ class InstallCommand extends Command
 
             if ($theme === 'tailwindcomponents') {
                 return $this->replaceWithTailwindComponents();
+            }
+        }
+
+        if ($kit === "Laravel Breeze & Inertia (Tailwind)") {
+            $theme = $this->choice(
+                'Which design theme you want to use?',
+                ['windmill'],
+                0
+            );
+
+            // Install breeze
+            $this->requireComposerPackages('laravel/breeze:^1.4');
+            shell_exec('php artisan breeze:install vue');
+
+            file_put_contents(
+                base_path('routes/web.php'),
+                file_get_contents(__DIR__ . '/../../resources/stubs/breeze/inertia/routes.stub'),
+                FILE_APPEND
+            );
+
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/controllers', app_path('Http/Controllers/'));
+
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/Middleware', app_path('Http/Middleware/'));
+
+            (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
+
+            if ($theme === 'windmill') {
+                return $this->replaceInertiaWindmill();
             }
         }
 
@@ -418,6 +447,22 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceInertiaWindmill()
+    {
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Users'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/js/Pages', resource_path('js/Pages'));
+
+        // Images
+        (new Filesystem)->ensureDirectoryExists(public_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/images', public_path('images'));
+
+        $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
