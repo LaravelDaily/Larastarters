@@ -1,6 +1,6 @@
 
 Route::middleware('auth')->group(function () {
-    Route::view('about', 'about')->name('about')->middleware('auth');
+    Route::view('about', 'about')->name('about');
 
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
