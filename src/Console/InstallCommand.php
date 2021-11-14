@@ -254,6 +254,7 @@ class InstallCommand extends Command
             return [
                 '@coreui/coreui' => '^4.0.2',
                 'resolve-url-loader' => '^4.0.0',
+                'bootstrap' => '^5.1.3',
             ] + $packages;
         });
 
