@@ -22,7 +22,9 @@
                     <div class="mt-4">
                         <x-label for="email" :value="__('Email')"/>
                         <x-input type="email"
+                                 class="block w-full"
                                  id="email"
+                                 name="email"
                                  value="{{ old('email', $request->email) }}"
                                  required
                                  autofocus/>
@@ -31,6 +33,7 @@
                     <div class="mt-4">
                         <x-label :value="__('Password')"/>
                         <x-input type="password"
+                                 class="block w-full"
                                  name="password"
                                  required/>
                     </div>
@@ -38,6 +41,7 @@
                     <div class="mt-4">
                         <x-label :value="__('Confirm Password')"/>
                         <x-input type="password"
+                                 class="block w-full"
                                  name="password_confirmation"
                                  required/>
                     </div>
