@@ -27,7 +27,7 @@
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
                       </svg></span>
                         <input class="form-control @error('password') is-invalid @enderror" type="password"
-                               name="password"
+                               id="password" name="password"
                                placeholder="{{ __('Password') }}">
                         @error('password')
                         <div class="invalid-feedback">
@@ -41,7 +41,7 @@
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
                       </svg></span>
                         <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password"
-                               name="password"
+                               id="password_confirmation" name="password_confirmation"
                                placeholder="{{ __('Confirm Password') }}">
                         @error('password_confirmation')
                         <div class="invalid-feedback">
