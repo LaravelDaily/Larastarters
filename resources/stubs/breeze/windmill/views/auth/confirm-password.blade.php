@@ -19,6 +19,7 @@
                     <div class="mt-4">
                         <x-label for="password" :value="__('Password')"/>
                         <x-input type="password"
+                                 class="block w-full"
                                  name="password"
                                  id="password"
                                  required
