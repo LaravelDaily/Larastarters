@@ -84,7 +84,7 @@ class InstallCommand extends Command
         if ($kit === "Laravel Breeze & Inertia (Tailwind)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['windmill'],
+                ['windmill', 'notusjs'],
                 0
             );
 
@@ -107,6 +107,10 @@ class InstallCommand extends Command
 
             if ($theme === 'windmill') {
                 return $this->replaceInertiaWindmill();
+            }
+            
+            if ($theme === 'notusjs') {
+                return $this->replaceInertiaNotusjs();
             }
         }
 
@@ -462,6 +466,36 @@ class InstallCommand extends Command
         // Images
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/images', public_path('images'));
+
+        $this->info('Breeze scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceInertiaNotusjs()
+    {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                'color' => '^4.0.1'
+            ] + $packages;
+        });
+
+        // Js
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Users'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/js/Pages', resource_path('js/Pages'));
+
+        // Assets
+        copy(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/tailwind.config.js', base_path('tailwind.config.js'));
+
+        // Views
+        copy(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/views/app.blade.php', resource_path('views/app.blade.php'));
+
+        // Images
+        (new Filesystem)->ensureDirectoryExists(public_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/images', public_path('images'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
