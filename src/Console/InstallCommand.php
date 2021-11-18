@@ -84,7 +84,7 @@ class InstallCommand extends Command
         if ($kit === "Laravel Breeze & Inertia (Tailwind)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['windmill', 'notusjs'],
+                ['windmill', 'notusjs', 'tailwindcomponents'],
                 0
             );
 
@@ -106,11 +106,15 @@ class InstallCommand extends Command
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
 
             if ($theme === 'windmill') {
-                return $this->replaceInertiaWindmill();
+                return $this->replaceWithInertiaWindmill();
             }
             
             if ($theme === 'notusjs') {
-                return $this->replaceInertiaNotusjs();
+                return $this->replaceWithInertiaNotusjs();
+            }
+
+            if ($theme === 'tailwindcomponents') {
+                return $this->replaceWithInertiaTailwindComponents();
             }
         }
 
@@ -455,7 +459,7 @@ class InstallCommand extends Command
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    protected function replaceInertiaWindmill()
+    protected function replaceWithInertiaWindmill()
     {
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Users'));
 
@@ -471,7 +475,7 @@ class InstallCommand extends Command
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    protected function replaceInertiaNotusjs()
+    protected function replaceWithInertiaNotusjs()
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -496,6 +500,16 @@ class InstallCommand extends Command
         // Images
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/images', public_path('images'));
+
+        $this->info('Breeze scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceWithInertiaTailwindComponents()
+    {
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/tailwindcomponents/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/tailwindcomponents/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/tailwindcomponents/js/Pages', resource_path('js/Pages'));
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');

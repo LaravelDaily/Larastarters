@@ -102,9 +102,6 @@ export default {
   },
 
   setup() {
-    props: {
-      showingMobileMenu: Boolean
-    }
     let showingTwoLevelMenu = ref(false)
 
     return {

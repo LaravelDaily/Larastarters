@@ -29,55 +29,32 @@
       <BreezeValidationErrors class="mb-4"/>
 
       <form @submit.prevent="submit">
-        <div class="mt-4">
+        <div class="mt-3">
           <BreezeLabel for="name" value="Name"/>
-          <BreezeInput
-              id="name"
-              type="text"
-              class="block mt-1 w-full"
-              v-model="form.name"
-              required
-          />
+          <BreezeInput id="name" type="text" class="block mt-1 w-full" v-model="form.name" required/>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-3">
           <BreezeLabel for="email" value="Email"/>
-          <BreezeInput
-              id="email"
-              type="email"
-              class="block mt-1 w-full"
-              v-model="form.email"
-              required
-          />
+          <BreezeInput id="email" type="email" class="block mt-1 w-full" v-model="form.email" required/>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-3">
           <BreezeLabel for="password" value="New password"/>
-          <BreezeInput
-              id="password"
-              type="password"
-              class="block mt-1 w-full"
-              v-model="form.password"
-          />
+          <BreezeInput id="password" type="password" class="block mt-1 w-full" v-model="form.password"/>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-3">
           <BreezeLabel for="password_confirmation" value="New password confirmation"/>
-          <BreezeInput
-              id="password_confirmation"
-              type="password"
-              class="block mt-1 w-full"
-              v-model="form.password_confirmation"
-          />
+          <BreezeInput id="password_confirmation" type="password" class="block mt-1 w-full"
+                       v-model="form.password_confirmation"/>
         </div>
 
-        <BreezeButton
-            class="block mt-4 w-full"
-            :class="{ 'opacity-25': form.processing }"
-            :disabled="form.processing"
-        >
-          Submit
-        </BreezeButton>
+        <div class="flex justify-end mt-4">
+          <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            Submit
+          </BreezeButton>
+        </div>
       </form>
     </div>
   </BreezeAuthenticatedLayout>

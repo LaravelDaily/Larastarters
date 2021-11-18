@@ -131,7 +131,8 @@ export default {
     methods: {
         submit() {
             this.form.put(this.route('profile.update'), {
-                onSuccess: () => this.form.reset('password', 'password_confirmation')
+                onSuccess: () => this.form.reset('password', 'password_confirmation'),
+                onError: () => this.form.reset('password', 'password_confirmation'),
             })
         },
     },
