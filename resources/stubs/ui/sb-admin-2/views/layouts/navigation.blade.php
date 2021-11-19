@@ -13,20 +13,20 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item @if(request()->routeIs('home')) active @endif">
         <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>{{ __('Dashboard') }}</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item @if(request()->routeIs('users.index')) active @endif">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>{{ __('Users') }}</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item @if(request()->routeIs('about')) active @endif">
         <a class="nav-link" href="{{ route('about') }}">
             <i class="fas fa-fw fa-eye"></i>
             <span>{{ __('About') }}</span></a>
