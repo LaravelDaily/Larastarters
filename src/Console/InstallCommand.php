@@ -441,13 +441,11 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(public_path('js'));
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
         (new Filesystem)->ensureDirectoryExists(public_path('webfonts'));
-        (new Filesystem)->ensureDirectoryExists(public_path('vendor'));
 
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/css', public_path('css'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/js', public_path('js'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/images', public_path('images'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/webfonts', public_path('webfonts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/vendors', public_path('vendor'));
 
         copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/home.blade.php', resource_path('views/home.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/about.blade.php', resource_path('views/about.blade.php'));
@@ -457,7 +455,7 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
-        //$this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     /**

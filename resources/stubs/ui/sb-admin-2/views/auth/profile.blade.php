@@ -1,30 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1 class="m-0">{{ __('My profile') }}</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">{{ __('My profile') }}</h1>
+
             <div class="row">
                 <div class="col-lg-12">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-primary alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            {{ $message }}
+                        </div>
+                    @endif
+
+
                     <div class="card">
 
                         <form action="{{ route('profile.update') }}" method="POST">
                             @csrf
                             @method('PUT')
 
-                            <div class="card-body">
+                            <div class="card-body col-lg-8">
 
                                 <div class="input-group mb-3">
                                     <input type="text" name="name"
@@ -35,12 +34,12 @@
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
-                                    @error('name')
-                                    <div class="form-group custom-control">
-                                        <label class="">{{ $message }}</label>
-                                    </div>
-                                    @enderror
                                 </div>
+                                @error('name')
+                                <div class="form-group custom-control">
+                                    <label class="">{{ $message }}</label>
+                                </div>
+                                @enderror
 
                                 <div class="input-group mb-3">
                                     <input type="email" name="email"
@@ -51,12 +50,12 @@
                                             <span class="fas fa-envelope"></span>
                                         </div>
                                     </div>
-                                    @error('email')
-                                    <div class="form-group custom-control">
-                                        <label class="">{{ $message }}</label>
-                                    </div>
-                                    @enderror
                                 </div>
+                                @error('email')
+                                <div class="form-group custom-control">
+                                    <label class="">{{ $message }}</label>
+                                </div>
+                                @enderror
 
                                 <div class="input-group mb-3">
                                     <input type="password" name="password"
@@ -67,12 +66,12 @@
                                             <span class="fas fa-lock"></span>
                                         </div>
                                     </div>
-                                    @error('password')
-                                    <div class="form-group custom-control">
-                                        <label class="">{{ $message }}</label>
-                                    </div>
-                                    @enderror
                                 </div>
+                                @error('password')
+                                <div class="form-group custom-control">
+                                    <label class="">{{ $message }}</label>
+                                </div>
+                                @enderror
 
                                 <div class="input-group mb-3">
                                     <input type="password" name="password_confirmation"
@@ -91,7 +90,6 @@
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

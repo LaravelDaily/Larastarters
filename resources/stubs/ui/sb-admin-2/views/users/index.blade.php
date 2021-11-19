@@ -1,23 +1,17 @@
 @extends('layouts.app')
 
-@section('custom_styles')
-    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Users</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                                                                       href="https://datatables.net">official DataTables documentation</a>.</p>
+        <p class="mb-4">For more information about DataTables and use It here, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Users Table</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -55,10 +49,4 @@
 
     </div>
     <!-- /.container-fluid -->
-@endsection
-
-@section('custom_scripts')
-    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 @endsection

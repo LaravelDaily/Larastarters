@@ -33,7 +33,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" target="_blank" href="https://github.com/StartBootstrap/startbootstrap-sb-admin-2">
+        <a class="nav-link" href="https://github.com/StartBootstrap/startbootstrap-sb-admin-2">
             <i class="fa fa-fw fa-link"></i>
             <span>{{ __('View on Github') }}</span></a>
     </li>
@@ -41,39 +41,22 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo">
+           aria-expanded="true" aria-controls="collapseTwo" style="padding-top: inherit;">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Multi Level</span>
+            <span>Two-level menu</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Submenu:</h6>
-                <a class="collapse-item" href="#">Submenu 1</a>
-                <a class="collapse-item" href="#">Submenu 2</a>
+                <a class="collapse-item" href="#">Child menu</a>
             </div>
         </div>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-            <i class="fas fa-fw fa-power-off"></i>
-            <span>{{ __('Logout') }}</span></a>
-    </li>
-
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
+    <div class="text-center d-none d-md-inline pt-4">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
