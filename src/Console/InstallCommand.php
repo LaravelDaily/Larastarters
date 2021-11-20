@@ -121,7 +121,7 @@ class InstallCommand extends Command
         if ($kit === "Laravel UI (Bootstrap)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['adminlte', 'coreui', 'plainadmin', 'volt'],
+                ['adminlte', 'coreui', 'plainadmin', 'volt','sb-admin-2'],
                 0
             );
 
@@ -155,6 +155,10 @@ class InstallCommand extends Command
 
             if ($theme === 'volt') {
                 return $this->replaceWithVolt();
+            }
+
+            if ($theme === 'sb-admin-2') {
+                return $this->replaceWithSBAdmin2();
             }
         }
     }
@@ -454,6 +458,39 @@ class InstallCommand extends Command
         // Demo table
         (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
         copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
+
+        $this->info('Laravel UI scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+    
+	protected function replaceWithSBAdmin2()
+    {
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/auth/passwords', resource_path('views/auth/passwords'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/layouts', resource_path('views/layouts'));
+
+        // Assets
+        (new Filesystem)->ensureDirectoryExists(public_path('css'));
+        (new Filesystem)->ensureDirectoryExists(public_path('js'));
+        (new Filesystem)->ensureDirectoryExists(public_path('images'));
+        (new Filesystem)->ensureDirectoryExists(public_path('webfonts'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/css', public_path('css'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/js', public_path('js'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/images', public_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/webfonts', public_path('webfonts'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/home.blade.php', resource_path('views/home.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/about.blade.php', resource_path('views/about.blade.php'));
+
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
