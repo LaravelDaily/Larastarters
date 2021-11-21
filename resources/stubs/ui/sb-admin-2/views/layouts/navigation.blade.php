@@ -32,12 +32,6 @@
             <span>{{ __('About') }}</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="https://github.com/StartBootstrap/startbootstrap-sb-admin-2">
-            <i class="fa fa-fw fa-link"></i>
-            <span>{{ __('View on Github') }}</span></a>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 
