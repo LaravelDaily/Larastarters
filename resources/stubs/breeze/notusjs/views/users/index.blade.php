@@ -40,8 +40,8 @@
                                 {{ $user->email }}
                             </td>
                         </tr>
-                    </tbody>
                     @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
