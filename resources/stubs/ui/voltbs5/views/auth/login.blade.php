@@ -55,7 +55,7 @@
                             <!-- End of Form -->
                             <div class="d-flex justify-content-between align-items-top mb-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" value="" id="remember">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember">
                                     <label class="form-check-label mb-0" for="remember">
                                         {{ __('Remember me') }}
                                     </label>
