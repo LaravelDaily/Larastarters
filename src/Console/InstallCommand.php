@@ -108,7 +108,7 @@ class InstallCommand extends Command
             if ($theme === 'windmill') {
                 return $this->replaceWithInertiaWindmill();
             }
-            
+
             if ($theme === 'notusjs') {
                 return $this->replaceWithInertiaNotusjs();
             }
@@ -257,6 +257,15 @@ class InstallCommand extends Command
 
     protected function replaceWithAdminLTETheme()
     {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                    'jquery'=> '^3.6.0',
+                    'resolve-url-loader' => '^4.0.0',
+                    'bootstrap' => '^5.1.3',
+                ] + $packages;
+        });
+
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
@@ -267,6 +276,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/views/layouts', resource_path('views/layouts'));
 
         // Assets
+        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
         (new Filesystem)->ensureDirectoryExists(public_path('css'));
         (new Filesystem)->ensureDirectoryExists(public_path('js'));
         (new Filesystem)->ensureDirectoryExists(public_path('images'));
@@ -279,6 +289,7 @@ class InstallCommand extends Command
 
         copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/home.blade.php', resource_path('views/home.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/about.blade.php', resource_path('views/about.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/ui/adminlte/js/bootstrap.js', resource_path('js/bootstrap.js'));
 
         // Demo table
         (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
@@ -462,7 +473,7 @@ class InstallCommand extends Command
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
-    
+
 	protected function replaceWithSBAdmin2()
     {
         // Views...
