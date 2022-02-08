@@ -28,7 +28,7 @@ This package should be used **immediately after installing Laravel**. If you add
 
 ## Available Themes
 
-In the current version, there are 8 themes supported. 
+In the current version, there are 9 themes supported. 
 
 **Tailwind Themes with Laravel Breeze**
 
@@ -52,6 +52,7 @@ Example screenshots from Windmill theme:
 - [Plainadmin - Bootstrap 5](https://plainadmin.com/)
 - [Volt - Bootstrap 5](https://demo.themesberg.com/volt/) - contributed by [@knaazimkhan](https://github.com/knaazimkhan)
 - [SB Admin 2 - Bootstrap 4](https://startbootstrap.github.io/startbootstrap-sb-admin-2/) - contributed by [@pcmehrdad](https://github.com/pcmehrdad)
+- [Tabler.io - Bootstrap 5](https://tabler.io/) - contributed by [@PierreLebedel](https://github.com/PierreLebedel)
 
 ---
 
