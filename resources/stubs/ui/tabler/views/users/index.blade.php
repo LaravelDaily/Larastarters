@@ -4,21 +4,18 @@
     <div class="container-xl">
         <!-- Page title -->
         <div class="page-header d-print-none">
-            <div class="row align-items-center">
-                <div class="col">
-                <!-- Page pre-title -->
-                <div class="page-pretitle">
-                    {{ config('app.name') }}
-                </div>
-                    <h2 class="page-title">
-                        {{ __('Users') }}
-                    </h2>
-                </div>
-            </div>
+            <h2 class="page-title">
+                {{ __('Users') }}
+            </h2>
         </div>
     </div>
     <div class="page-body">
         <div class="container-xl">
+
+            <div class="alert alert-info">
+                <div class="alert-title">Sample table page</div>
+            </div>
+
             <div class="card">
                 <div class="table-responsive">
                     <table class="table" id="dataTable" width="100%" cellspacing="0">
@@ -42,11 +39,9 @@
                         </tbody>
                     </table>
                 </div>
-                @if( $users->hasPages() )
                 <div class="card-footer pb-0">
                     {{ $users->links() }}
                 </div>
-                @endif
             </div>
         </div>
     </div>

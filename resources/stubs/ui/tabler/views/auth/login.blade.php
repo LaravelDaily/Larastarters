@@ -32,7 +32,7 @@
 
             <div>
                 <label class="form-check">
-                    <input type="checkbox" class="form-check-input" tabindex="3" name="remember" />
+                    <input type="checkbox" class="form-check-input" tabindex="3"/>
                     <span class="form-check-label">{{ __('Remember me on this device') }}</span>
                 </label>
             </div>
