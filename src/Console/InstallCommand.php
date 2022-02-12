@@ -121,7 +121,7 @@ class InstallCommand extends Command
         if ($kit === "Laravel UI (Bootstrap)") {
             $theme = $this->choice(
                 'Which design theme you want to use?',
-                ['adminlte', 'coreui', 'plainadmin', 'volt','sb-admin-2'],
+                ['adminlte', 'coreui', 'plainadmin', 'volt', 'sb-admin-2', 'tabler'],
                 0
             );
 
@@ -159,6 +159,10 @@ class InstallCommand extends Command
 
             if ($theme === 'sb-admin-2') {
                 return $this->replaceWithSBAdmin2();
+            }
+
+            if ($theme === 'tabler') {
+                return $this->replaceWithTabler();
             }
         }
     }
@@ -502,6 +506,48 @@ class InstallCommand extends Command
         // Demo table
         (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
         copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
+
+        $this->info('Laravel UI scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    protected function replaceWithTabler()
+    {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            $dependencies = [
+                "@tabler/core"       => "^1.0.0-beta8",
+                "resolve-url-loader" => "^5.0.0",
+                "autosize"           => "^5.0.1",
+                "imask"              => "^6.4.0"
+            ];
+            return $dependencies + $packages;
+        });
+
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/tabler/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/tabler/views/auth/passwords', resource_path('views/auth/passwords'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/tabler/views/layouts', resource_path('views/layouts'));
+
+        // Demo table
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/tabler/views/users', resource_path('views/users'));
+
+        // Assets
+        (new Filesystem)->ensureDirectoryExists(public_path('img')); // juste Tabler logo
+        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/tabler/img', public_path('img'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/tabler/sass', resource_path('sass'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/tabler/js', resource_path('js'));
+
+        copy(__DIR__ . '/../../resources/stubs/ui/tabler/views/home.blade.php', resource_path('views/home.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/ui/tabler/views/about.blade.php', resource_path('views/about.blade.php'));
 
         $this->info('Laravel UI scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
