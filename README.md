@@ -1,5 +1,19 @@
-# Larastarters
+<p align="center">
+    <img src="./art/logo.svg" alt="Logo Laravel Breeze">
+</p>
+<p align="center">
+    <a href="https://packagist.org/packages/laraveldaily/larastarters">
+        <img src="https://img.shields.io/packagist/dt/laraveldaily/larastarters" alt="Total Downloads">
+    </a>
+    <a href="https://packagist.org/packages/laraveldaily/larastarters">
+        <img src="https://img.shields.io/packagist/v/laraveldaily/larastarters" alt="Latest Stable Version">
+    </a>
+    <a href="https://packagist.org/packages/laraveldaily/larastarters">
+        <img src="https://img.shields.io/packagist/l/laraveldaily/larastarters" alt="License">
+    </a>
+</p>
 
+# Larastarters
 Package to install a regular Laravel Starter Kit with a non-regular different design theme.
 
 The package suggests to install [Laravel Breeze](https://github.com/laravel/breeze) (Tailwind) or [Laravel UI](https://github.com/laravel/ui) (Bootstrap) starter kit, and adds the chosen design theme on top.
@@ -14,14 +28,33 @@ This package should be used **immediately after installing Laravel**. If you add
 
 ---
 
-## Usage
+## Usage/Installation
+First, Create a fresh Laravel Project ([Laravel Installation](https://laravel.com/docs/9.x/installation))
 
-1. Install fresh Laravel project
-2. Run `composer require laraveldaily/larastarters --dev`
-3. Run `php artisan larastarters:install` - it will show a wizard to choose the starter kit and the theme (options are listed below)
-4. Run `npm install && npm run dev`
-5. That's it, you have Laravel Auth starter, just visit the home page and click Log in / Register
+Then, install Larastarters using composer:
+```sh
+composer require laraveldaily/larastarters --dev
+```
 
+After the package installation using composer, run:
+```sh
+php artisan larastarters:install
+```
+it will show a wizard to choose the starter kit and the theme (options are listed below)
+
+
+Now install and compile your assets and run the database migrations:
+```sh
+npm install && npm run dev
+```
+```sh
+
+php artisan migrate
+```
+
+That's it, you have Laravel Auth starter, just start your application and visit the *Login* or *Register* page to see the result.
+
+---
 
 ![Larastarters Install](https://laraveldaily.com/wp-content/uploads/2021/11/Screenshot-2021-11-02-at-10.36.03.png)
 
