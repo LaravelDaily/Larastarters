@@ -17,9 +17,9 @@
       leave-to-class="opacity-0 transform -translate-x-20">
     <aside v-show="$page.props.showingMobileMenu" class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white md:hidden">
       <div class="py-4 text-gray-500 dark:text-gray-400">
-        <a class="ml-6 text-lg font-bold text-gray-800" href="{{ route('dashboard') }}">
-          Windmill
-        </a>
+        <Link class="ml-6 text-lg font-bold text-gray-800" :href="route('dashboard')">
+        Windmill
+      </Link>
         <ul class="mt-6">
           <li class="relative px-6 py-3">
             <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
