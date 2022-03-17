@@ -1,5 +1,5 @@
 <template>
-  <Head title="About us"/>
+  <Head title="Users"/>
 
   <BreezeAuthenticatedLayout>
   <template #header>
@@ -56,11 +56,13 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import Pagination from '@/Components/Pagination.vue';
+import { Head } from '@inertiajs/inertia-vue3'; 
 
 export default {
   components: {
     BreezeAuthenticatedLayout,
     Pagination,
+    Head,
   },
 
   props: {
