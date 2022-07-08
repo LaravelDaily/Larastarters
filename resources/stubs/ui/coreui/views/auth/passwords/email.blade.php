@@ -7,7 +7,13 @@
                 <h1>{{ __('Reset Password') }}</h1>
                 <form action="{{ route('password.email') }}" method="POST">
                     @csrf
-
+                    @if(session('status'))
+                        <div role="alert" class="alert alert-success py-2 ">
+                            <ul class="py-0 m-0">
+                                <li>{{ session('status') }}</li>
+                            </ul>
+                        </div>
+                    @endif
                     <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
