@@ -14,7 +14,8 @@ class InstallCommand extends Command
      * @var string
      */
     protected $signature = 'larastarters:install
-                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
+                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}
+                            {--a|artisan_command=php : The artisan command to run internaly}';
 
     /**
      * The console command description.
@@ -22,6 +23,13 @@ class InstallCommand extends Command
      * @var string
      */
     protected $description = 'Install one of the Larastarters Themes';
+
+    /**
+     * The artisan command to run. Default is php.
+     *
+     * @var string
+     */
+    protected string $artisan_command;
 
     /**
      * Create a new command instance.
@@ -40,6 +48,8 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $this->artisan_command = $this->option('artisan_command');
+        
         $kit = $this->choice(
             'Which Laravel starter kit you want to use?',
             ['Laravel Breeze (Tailwind)', 'Laravel Breeze & Inertia (Tailwind)', 'Laravel UI (Bootstrap)'],
@@ -55,7 +65,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^1.4');
-            shell_exec('php artisan breeze:install');
+            shell_exec("{$this->artisan_command} artisan breeze:install");
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -90,7 +100,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^1.4');
-            shell_exec('php artisan breeze:install vue');
+            shell_exec("{$this->artisan_command} artisan breeze:install vue");
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -126,7 +136,7 @@ class InstallCommand extends Command
             );
 
             $this->requireComposerPackages('laravel/ui:^3.3');
-            shell_exec('php artisan ui bootstrap --auth');
+            shell_exec("{$this->artisan_command} artisan ui bootstrap --auth");
 
             file_put_contents(
                 base_path('routes/web.php'),
