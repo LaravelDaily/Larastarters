@@ -125,7 +125,7 @@ class InstallCommand extends Command
                 0
             );
 
-            $this->requireComposerPackages('laravel/ui:^3.3');
+            $this->requireComposerPackages('laravel/ui:^4.0');
             shell_exec('php artisan ui bootstrap --auth');
 
             file_put_contents(
@@ -266,7 +266,7 @@ class InstallCommand extends Command
             return [
                     'jquery'=> '^3.6.0',
                     'resolve-url-loader' => '^4.0.0',
-                    'bootstrap' => '^5.1.3',
+                    'bootstrap' => '5.1.3',
                 ] + $packages;
         });
 
@@ -310,7 +310,7 @@ class InstallCommand extends Command
             return [
                 '@coreui/coreui' => '^4.0.2',
                 'resolve-url-loader' => '^4.0.0',
-                'bootstrap' => '^5.1.3',
+                'bootstrap' => '5.1.3',
             ] + $packages;
         });
 
@@ -348,7 +348,7 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                'bootstrap' => '^5.1.3',
+                'bootstrap' => '5.1.3',
                 '@popperjs/core' => '^2.10.2',
                 'resolve-url-loader' => '^4.0.0',
             ] + $packages;
@@ -422,7 +422,7 @@ class InstallCommand extends Command
             $dependencies = [
                 "@fortawesome/fontawesome-free" => "^5.15.4",
                 "@popperjs/core" => "^2.10.2",
-                "bootstrap" => "^5.1.3",
+                "bootstrap" => "5.1.3",
                 "cross-env" => "^7.0.3",
                 "node-sass" => "^6.0.0",
                 "onscreen" => "1.3.4",
