@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="theme-color" content="#ffffff">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite('resources/sass/app.scss')
 </head>
 <body>
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
@@ -82,6 +82,6 @@
                 Components</a></div>
     </footer>
 </div>
-<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
+@vite('resources/js/coreui.bundle.min.js')
 </body>
 </html>
