@@ -15,7 +15,7 @@ class InstallCommand extends Command
      */
     protected $signature = 'larastarters:install
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}
-                            {--a|artisan_command=php : The artisan command to run internaly}';
+                            {--php_version=php : Php version command, like `sail` or `./vendor/bin/sail` or `docker-compose up...`}';
 
     /**
      * The console command description.
@@ -29,7 +29,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected string $artisan_command;
+    protected string $php_version;
 
     /**
      * Create a new command instance.
@@ -48,7 +48,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->artisan_command = $this->option('artisan_command');
+        $this->php_version = $this->option('php_version');
         
         $kit = $this->choice(
             'Which Laravel starter kit you want to use?',
@@ -65,7 +65,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^1.4');
-            shell_exec("{$this->artisan_command} artisan breeze:install");
+            shell_exec("{$this->php_version} artisan breeze:install");
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -100,7 +100,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^1.4');
-            shell_exec("{$this->artisan_command} artisan breeze:install vue");
+            shell_exec("{$this->php_version} artisan breeze:install vue");
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -136,7 +136,7 @@ class InstallCommand extends Command
             );
 
             $this->requireComposerPackages('laravel/ui:^3.3');
-            shell_exec("{$this->artisan_command} artisan ui bootstrap --auth");
+            shell_exec("{$this->php_version} artisan ui bootstrap --auth");
 
             file_put_contents(
                 base_path('routes/web.php'),

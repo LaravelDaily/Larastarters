@@ -24,7 +24,7 @@ This package should be used **immediately after installing Laravel**. If you add
 
 ### Developing within a container
 
-Internally this package runs several `php artisan` commands during the install process. This command may not work and the installation process hang if you are within a container. Alternatively, you may pass the `--artisan_command` flag to change this behaviour. For example: `php artisan larastarters:install --artisan_command=./vendor/bin/sail` or `php artisan larastarters:install --artisan_command=sail`.
+Internally this package runs several `php artisan` commands during the install process. This command may not work and the installation process hang if you are within a container. Alternatively, you may pass the `--php_version` flag to change this behaviour. For example: `php artisan larastarters:install --php_version=./vendor/bin/sail`.
 
 ![Larastarters Install](https://laraveldaily.com/wp-content/uploads/2021/11/Screenshot-2021-11-02-at-10.36.03.png)
 
