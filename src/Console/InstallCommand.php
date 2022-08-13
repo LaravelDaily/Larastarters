@@ -14,7 +14,8 @@ class InstallCommand extends Command
      * @var string
      */
     protected $signature = 'larastarters:install
-                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
+                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}
+                            {--php_version=php : Php version command, like `sail` or `./vendor/bin/sail` or `docker-compose up...`}';
 
     /**
      * The console command description.
@@ -22,6 +23,13 @@ class InstallCommand extends Command
      * @var string
      */
     protected $description = 'Install one of the Larastarters Themes';
+
+    /**
+     * The artisan command to run. Default is php.
+     *
+     * @var string
+     */
+    protected string $php_version;
 
     /**
      * Create a new command instance.
@@ -40,6 +48,8 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $this->php_version = $this->option('php_version');
+
         $kit = $this->choice(
             'Which Laravel starter kit you want to use?',
             ['Laravel Breeze (Tailwind)', 'Laravel Breeze & Inertia (Tailwind)', 'Laravel UI (Bootstrap)'],
@@ -55,7 +65,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^1.4');
-            shell_exec('php artisan breeze:install');
+            shell_exec("{$this->php_version} artisan breeze:install");
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -90,7 +100,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^1.4');
-            shell_exec('php artisan breeze:install vue');
+            shell_exec("{$this->php_version} artisan breeze:install vue");
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -126,7 +136,7 @@ class InstallCommand extends Command
             );
 
             $this->requireComposerPackages('laravel/ui:^4.0');
-            shell_exec('php artisan ui bootstrap --auth');
+            shell_exec("{$this->php_version} artisan ui bootstrap --auth");
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -267,7 +277,7 @@ class InstallCommand extends Command
             return [
                     'jquery'=> '^3.6.0',
                     'resolve-url-loader' => '^4.0.0',
-                    'bootstrap' => '5.1.3',
+                    'bootstrap' => '~5.1.3',
                 ] + $packages;
         });
 
@@ -311,7 +321,7 @@ class InstallCommand extends Command
             return [
                 '@coreui/coreui' => '^4.0.2',
                 'resolve-url-loader' => '^4.0.0',
-                'bootstrap' => '5.1.3',
+                'bootstrap' => '~5.1.3',
             ] + $packages;
         });
 
@@ -349,7 +359,7 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                'bootstrap' => '5.1.3',
+                'bootstrap' => '~5.1.3',
                 '@popperjs/core' => '^2.10.2',
                 'resolve-url-loader' => '^4.0.0',
             ] + $packages;
@@ -423,7 +433,7 @@ class InstallCommand extends Command
             $dependencies = [
                 "@fortawesome/fontawesome-free" => "^5.15.4",
                 "@popperjs/core" => "^2.10.2",
-                "bootstrap" => "5.1.3",
+                "bootstrap" => "~5.1.3",
                 "cross-env" => "^7.0.3",
                 "node-sass" => "^6.0.0",
                 "onscreen" => "1.3.4",
