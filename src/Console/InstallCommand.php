@@ -140,6 +140,7 @@ class InstallCommand extends Command
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
 
             copy(__DIR__ . '/../../resources/stubs/ui/AppServiceProvider.php', app_path('Providers/AppServiceProvider.php'));
+            copy(__DIR__ . '/../../resources/stubs/ui/vite.config.js', app_path('vite.config.js'));
 
             if ($theme === 'adminlte') {
                 return $this->replaceWithAdminLTETheme();
