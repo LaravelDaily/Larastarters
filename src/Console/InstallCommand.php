@@ -521,7 +521,8 @@ class InstallCommand extends Command
                 "@tabler/core"       => "^1.0.0-beta8",
                 "resolve-url-loader" => "^5.0.0",
                 "autosize"           => "^5.0.1",
-                "imask"              => "^6.4.0"
+                "imask"              => "^6.4.0",
+                "bootstrap"          => "~5.1.3",
             ];
             return $dependencies + $packages;
         });
