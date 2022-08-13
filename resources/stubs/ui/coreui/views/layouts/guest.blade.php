@@ -18,6 +18,6 @@
         </div>
     </div>
 </div>
-@vite('resources/js/coreui.bundle.min.js')
+<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 </body>
 </html>
