@@ -25,8 +25,10 @@
     @yield('content')
 
 </div>
-<script src="{{ asset('js/app.js') }}"></script>
+@vite('resources/js/app.js')
+
 <!-- Core plugin JavaScript-->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/jquery.easing-1.4.1.min.js') }}"></script>
 
 <!-- Custom scripts for all pages-->
