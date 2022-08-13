@@ -27,10 +27,10 @@
 </div>
 <!-- /.login-box -->
 
-<script src="{{ asset('js/app.js') }}"></script>
+@vite('resources/js/app.js')
 <!-- Bootstrap 4 -->
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('js/adminlte.min.js') }}"></script>
+<script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 </body>
 </html>
