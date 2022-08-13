@@ -430,6 +430,7 @@ class InstallCommand extends Command
                 "resolve-url-loader" => "4.0.0",
                 "simplebar" => "^5.3.6",
                 "smooth-scroll" => "^16.1.3",
+                "sass" => "~1.32.12",
             ];
             return $dependencies + $packages;
         });
