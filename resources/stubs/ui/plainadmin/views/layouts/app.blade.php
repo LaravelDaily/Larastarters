@@ -119,7 +119,7 @@
 <!-- ======== main-wrapper end =========== -->
 
 <!-- ========= All Javascript files linkup ======== -->
-<script src="{{ asset('js/app.js') }}"></script>
+@vite('resources/js/app.js')
 <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

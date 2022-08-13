@@ -1,5 +1,5 @@
 import lodash from 'lodash';
-import Popper from '@popperjs/core';
+import Popper from '@popperjs/core/dist/umd/popper.js';
 import axios from 'axios';
 import 'bootstrap';
 
