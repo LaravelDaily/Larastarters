@@ -8,7 +8,7 @@
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}"/>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite('resources/sass/app.scss')
 </head>
 <body>
 <!-- ======== sidebar-nav start =========== -->
