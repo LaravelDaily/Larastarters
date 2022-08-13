@@ -12,7 +12,7 @@
     @vite('resources/sass/app.scss')
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @vite('resources/js/app.js')
 </head>
 
 <body>
