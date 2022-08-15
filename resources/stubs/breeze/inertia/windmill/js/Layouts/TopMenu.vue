@@ -44,7 +44,7 @@
 <script>
 import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
-import DropdownLink from "../Components/DropdownLink";
+import DropdownLink from "../Components/DropdownLink.vue";
 
 export default {
   components: {
