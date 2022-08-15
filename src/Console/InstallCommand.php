@@ -492,6 +492,13 @@ class InstallCommand extends Command
 
 	protected function replaceWithSBAdmin2()
     {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                "bootstrap" => "^4.6.2",
+            ] + $packages;
+        });
+
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
