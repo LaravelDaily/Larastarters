@@ -99,12 +99,12 @@
 </template>
 
 <script>
-import Divider from '@/Components/Divider';
+import Divider from '@/Components/Divider.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
-import NavHeading from '@/Components/NavHeading'
-import NavLink from '@/Components/NavLink'
+import NavHeading from '@/Components/NavHeading.vue'
+import NavLink from '@/Components/NavLink.vue'
 
 export default {
     components: {

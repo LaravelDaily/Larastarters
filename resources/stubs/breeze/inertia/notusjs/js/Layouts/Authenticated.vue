@@ -43,9 +43,9 @@ import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeNavLink from '@/Components/NavLink.vue'
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 import { Link } from '@inertiajs/inertia-vue3';
-import Navigation from "@/Layouts/Navigation";
-import MobileNavigation from '@/Layouts/MobileNavigation';
-import Divider from '@/Components/Divider';
+import Navigation from "@/Layouts/Navigation.vue";
+import MobileNavigation from '@/Layouts/MobileNavigation.vue';
+import Divider from '@/Components/Divider.vue';
 
 export default {
     components: {
