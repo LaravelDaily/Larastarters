@@ -7,11 +7,8 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/init-alpine.js') }}"></script>
 </head>
 <body>
