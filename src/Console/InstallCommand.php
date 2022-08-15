@@ -496,6 +496,8 @@ class InstallCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 "bootstrap" => "^4.6.2",
+                "popper.js" => "^2.10.2",
+                "jquery" => "^3.3.1",
             ] + $packages;
         });
 
