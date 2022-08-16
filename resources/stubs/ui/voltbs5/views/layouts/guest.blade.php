@@ -8,7 +8,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    @vite(['resources/sass/app.scss'])
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>
