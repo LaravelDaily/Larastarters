@@ -9,7 +9,7 @@
     <meta name="author" content="Mehrdad Amini">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Custom fonts for this template-->
     <link href="{{ asset('css/fontawsome-free-all.min.css') }}" rel="stylesheet" type="text/css">
     <link
