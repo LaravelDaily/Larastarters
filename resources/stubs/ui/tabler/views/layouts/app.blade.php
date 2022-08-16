@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this Page-->
     @yield('custom_styles')

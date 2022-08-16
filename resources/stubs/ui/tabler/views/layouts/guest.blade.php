@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    @vite(['resources/sass/app.scss'])
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="border-top-wide border-primary d-flex flex-column">
 
