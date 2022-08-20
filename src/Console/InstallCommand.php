@@ -275,9 +275,10 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    'jquery'=> '^3.6.0',
+                    'jquery'=> '^3.3.1',
                     'resolve-url-loader' => '^4.0.0',
                     'bootstrap' => '~4.6.1',
+                    'popper.js' => '^1.14.3',
                 ] + $packages;
         });
 
