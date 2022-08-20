@@ -277,7 +277,7 @@ class InstallCommand extends Command
             return [
                     'jquery'=> '^3.6.0',
                     'resolve-url-loader' => '^4.0.0',
-                    'bootstrap' => '~5.1.3',
+                    'bootstrap' => '~4.6.1',
                 ] + $packages;
         });
 
