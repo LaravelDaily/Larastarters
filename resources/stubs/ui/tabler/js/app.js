@@ -1,4 +1,4 @@
 
-require('@tabler/core/src/js/tabler.js');
+import '@tabler/core/src/js/tabler.js';
 
-require('./bootstrap');
+import './bootstrap';

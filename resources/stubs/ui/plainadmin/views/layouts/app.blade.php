@@ -8,7 +8,7 @@
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}"/>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite('resources/sass/app.scss')
 </head>
 <body>
 <!-- ======== sidebar-nav start =========== -->
@@ -119,7 +119,7 @@
 <!-- ======== main-wrapper end =========== -->
 
 <!-- ========= All Javascript files linkup ======== -->
-<script src="{{ asset('js/app.js') }}"></script>
+@vite('resources/js/app.js')
 <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
