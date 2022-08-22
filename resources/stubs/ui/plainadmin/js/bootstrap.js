@@ -1,4 +1,9 @@
-window._ = require('lodash');
+import lodash from 'lodash';
+import Popper from '@popperjs/core/dist/umd/popper.js';
+import axios from 'axios';
+import 'bootstrap';
+
+window._ = lodash;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -6,11 +11,7 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-try {
-    window.Popper = require('@popperjs/core').default;
-
-    require('bootstrap');
-} catch (e) {}
+window.Popper = Popper;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -18,7 +19,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -29,8 +30,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 // import Echo from 'laravel-echo';
+// import pusher from 'pusher-js'
 
-// window.Pusher = require('pusher-js');
+// window.Pusher = pusher;
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',

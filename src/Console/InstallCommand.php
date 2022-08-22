@@ -135,7 +135,7 @@ class InstallCommand extends Command
                 0
             );
 
-            $this->requireComposerPackages('laravel/ui:^3.3');
+            $this->requireComposerPackages('laravel/ui:^4.0');
             shell_exec("{$this->php_version} artisan ui bootstrap --auth");
 
             file_put_contents(
@@ -150,6 +150,7 @@ class InstallCommand extends Command
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
 
             copy(__DIR__ . '/../../resources/stubs/ui/AppServiceProvider.php', app_path('Providers/AppServiceProvider.php'));
+            copy(__DIR__ . '/../../resources/stubs/ui/vite.config.js', base_path('vite.config.js'));
 
             if ($theme === 'adminlte') {
                 return $this->replaceWithAdminLTETheme();
@@ -274,9 +275,10 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    'jquery'=> '^3.6.0',
+                    'jquery'=> '^3.3.1',
                     'resolve-url-loader' => '^4.0.0',
-                    'bootstrap' => '^5.1.3',
+                    'bootstrap' => '~4.6.1',
+                    'popper.js' => '^1.14.3',
                 ] + $packages;
         });
 
@@ -320,7 +322,7 @@ class InstallCommand extends Command
             return [
                 '@coreui/coreui' => '^4.0.2',
                 'resolve-url-loader' => '^4.0.0',
-                'bootstrap' => '^5.1.3',
+                'bootstrap' => '~5.1.3',
             ] + $packages;
         });
 
@@ -358,7 +360,7 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                'bootstrap' => '^5.1.3',
+                'bootstrap' => '~5.1.3',
                 '@popperjs/core' => '^2.10.2',
                 'resolve-url-loader' => '^4.0.0',
             ] + $packages;
@@ -432,13 +434,14 @@ class InstallCommand extends Command
             $dependencies = [
                 "@fortawesome/fontawesome-free" => "^5.15.4",
                 "@popperjs/core" => "^2.10.2",
-                "bootstrap" => "^5.1.3",
+                "bootstrap" => "~5.1.3",
                 "cross-env" => "^7.0.3",
                 "node-sass" => "^6.0.0",
                 "onscreen" => "1.3.4",
                 "resolve-url-loader" => "4.0.0",
                 "simplebar" => "^5.3.6",
                 "smooth-scroll" => "^16.1.3",
+                "sass" => "^1.38.0",
             ];
             return $dependencies + $packages;
         });
@@ -490,6 +493,15 @@ class InstallCommand extends Command
 
 	protected function replaceWithSBAdmin2()
     {
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                "bootstrap" => "^4.6.2",
+                "popper.js" => "^1.14.3",
+                "jquery" => "^3.3.1",
+            ] + $packages;
+        });
+
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
@@ -529,7 +541,8 @@ class InstallCommand extends Command
                 "@tabler/core"       => "^1.0.0-beta8",
                 "resolve-url-loader" => "^5.0.0",
                 "autosize"           => "^5.0.1",
-                "imask"              => "^6.4.0"
+                "imask"              => "^6.4.0",
+                "bootstrap"          => "~5.1.3",
             ];
             return $dependencies + $packages;
         });
