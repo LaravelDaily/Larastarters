@@ -104,7 +104,7 @@ import BreezeLabel from '@/Components/Label.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, useForm } from '@inertiajs/inertia-vue3';
-import Divider from "@/Components/Divider";
+import Divider from "@/Components/Divider.vue";
 
 export default {
     components: {

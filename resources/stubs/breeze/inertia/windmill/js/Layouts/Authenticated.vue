@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import Navigation from './Navigation';
-import TopMenu from "./TopMenu";
-import NavigationMobile from './NavigationMobile';
+import Navigation from './Navigation.vue';
+import TopMenu from "./TopMenu.vue";
+import NavigationMobile from './NavigationMobile.vue';
 
 export default {
   components: {

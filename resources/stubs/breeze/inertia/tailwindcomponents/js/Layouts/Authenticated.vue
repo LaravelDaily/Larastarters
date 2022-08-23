@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Header from '@/Layouts/Header';
-import Navigation from '@/Layouts/Navigation';
+import Header from '@/Layouts/Header.vue';
+import Navigation from '@/Layouts/Navigation.vue';
 
 export default {
     components: {
