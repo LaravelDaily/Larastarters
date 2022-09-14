@@ -41,8 +41,6 @@ In the current version, there are 9 themes supported.
 - [Notus JS](https://www.creative-tim.com/product/notus-js)
 - [Tailwind Components](https://github.com/tailwindcomponents/dashboard)
 
-**Notice**: Tailwind themes are slightly tweaked to work on Tailwind v2.
-
 Example screenshots from Windmill theme:
 
 ![Register](https://laraveldaily.com/wp-content/uploads/2021/10/Screenshot-2021-10-26-at-07.24.59.png)
