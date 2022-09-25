@@ -74,6 +74,6 @@ Want more functions? Raise an issue with your suggestion, or check out our [Quic
 
 ## More from our LaravelDaily Team
 
-- Enroll in our [Laravel Online Courses](https://laraveldaily.teachable.com/)
+- Enroll in our [Laravel Online Courses](https://laraveldaily.com/courses)
 - Check out our adminpanel generator [QuickAdminPanel](https://quickadminpanel.com)
 - Subscribe to our [YouTube channel Laravel Daily](https://www.youtube.com/channel/UCTuplgOBi6tJIlesIboymGA)
