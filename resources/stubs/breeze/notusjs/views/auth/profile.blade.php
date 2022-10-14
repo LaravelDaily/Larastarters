@@ -1,10 +1,10 @@
 <x-app-layout>
     <div class="px-4 w-full">
-        <div class="flex relative flex-col mb-6 min-w-0 break-words bg-white rounded shadow-lg bg-blueGray-100 xl:mb-0">
+        <div class="flex relative flex-col mb-6 min-w-0 break-words bg-white rounded shadow-lg bg-slate-100 xl:mb-0">
 
             <div class="px-6 py-6 mb-0 bg-white rounded-t">
                 <div class="flex justify-between text-center">
-                    <h6 class="text-xl font-bold text-blueGray-700">
+                    <h6 class="text-xl font-bold text-slate-700">
                         {{ __('My profile') }}
                     </h6>
                 </div>

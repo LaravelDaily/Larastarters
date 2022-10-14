@@ -10,11 +10,11 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="text-blueGray-700 antialiased">
+<body class="text-slate-700 antialiased">
 <div class="font-sans text-gray-900 antialiased">
     <main>
         <section class="relative w-full h-full py-40 min-h-screen">
-            <div class="absolute top-0 w-full h-full bg-blueGray-800 bg-full bg-no-repeat" style="background-image: url({{ asset('images/register_bg_2.png') }})"></div>
+            <div class="absolute top-0 w-full h-full bg-slate-800 bg-full bg-no-repeat" style="background-image: url({{ asset('images/register_bg_2.png') }})"></div>
 
             <div class="container mx-auto px-4 h-full">
                 <div class="flex content-center items-center justify-center h-full">
@@ -22,9 +22,9 @@
                 </div>
             </div>
 
-            <footer class="absolute w-full bottom-0 bg-blueGray-800 pb-6">
+            <footer class="absolute w-full bottom-0 bg-slate-800 pb-6">
                 <div class="container mx-auto px-4">
-                    <hr class="mb-6 border-b-1 border-blueGray-600"/>
+                    <hr class="mb-6 border-b-1 border-slate-600"/>
                     <div
                         class="flex flex-wrap items-center md:justify-between justify-center"
                     >
@@ -35,7 +35,7 @@
                                 Copyright © <span id="get-current-year"></span>
                                 <a
                                     href="https://www.creative-tim.com?ref=njs-login"
-                                    class="text-white hover:text-blueGray-300 text-sm font-semibold py-1"
+                                    class="text-white hover:text-slate-300 text-sm font-semibold py-1"
                                 >Creative Tim</a
                                 >
                             </div>

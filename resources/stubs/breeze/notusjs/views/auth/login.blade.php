@@ -1,10 +1,10 @@
 <x-guest-layout>
     <div class="px-4 w-full lg:w-4/12">
         <div
-            class="flex relative flex-col mb-6 w-full min-w-0 break-words rounded-lg border-0 shadow-lg bg-blueGray-200">
+            class="flex relative flex-col mb-6 w-full min-w-0 break-words rounded-lg border-0 shadow-lg bg-slate-200">
             <div class="px-6 py-6 mb-0 rounded-t">
                 <div class="mb-3 text-center">
-                    <h6 class="text-sm font-bold text-blueGray-500">
+                    <h6 class="text-sm font-bold text-slate-500">
                         {{__('Sign in')}}
                     </h6>
                 </div>
@@ -12,7 +12,7 @@
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')"/>
 
-                <hr class="mt-6 border-b-1 border-blueGray-300"/>
+                <hr class="mt-6 border-b-1 border-slate-300"/>
             </div>
             <div class="flex-auto px-4 py-10 pt-0 lg:px-10">
                 <form method="POST" action="{{ route('login') }}">
@@ -46,9 +46,9 @@
                         <input id="remember_me"
                                 type="checkbox"
                                 name="remember"
-                                class="ml-1 w-5 h-5 rounded border-0 transition-all duration-150 ease-linear form-checkbox text-blueGray-700"
+                                class="ml-1 w-5 h-5 rounded border-0 transition-all duration-150 ease-linear form-checkbox text-slate-700"
                             />
-                            <span class="ml-2 text-sm font-semibold text-blueGray-600">
+                            <span class="ml-2 text-sm font-semibold text-slate-600">
                                 {{ __('Remember me') }}
                             </span>
                         </label>
