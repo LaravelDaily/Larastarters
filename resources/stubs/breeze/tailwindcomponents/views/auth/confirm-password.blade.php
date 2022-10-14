@@ -7,25 +7,23 @@
         {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
     </div>
 
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors"/>
-
     <form method="POST" action="{{ route('password.confirm') }}">
-    @csrf
+        @csrf
 
         <!-- Password -->
-        <x-label for="password" :value="__('Password')"/>
-        <x-input type="password"
+        <x-input-label for="password" :value="__('Password')"/>
+        <x-text-input type="password"
                  name="password"
                  id="password"
                  required
                  autocomplete="current-password"
         />
+        <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
         <div class="flex justify-end mt-4">
-            <x-button class="w-full">
+            <x-primary-button class="w-full">
                 {{ __('Confirm') }}
-            </x-button>
+            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
