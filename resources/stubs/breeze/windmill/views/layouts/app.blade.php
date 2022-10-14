@@ -25,9 +25,11 @@
         @include('layouts.top-menu')
         <main class="h-full overflow-y-auto">
             <div class="container px-6 mx-auto grid">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700">
-                    {{ $header }}
-                </h2>
+                @if (isset($header))
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700">
+                        {{ $header }}
+                    </h2>
+                @endif
 
                 {{ $slot }}
             </div>
