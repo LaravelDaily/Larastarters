@@ -625,7 +625,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/tailwindcomponents/js/Pages', resource_path('js/Pages'));
 
         $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->warn('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->runCommands(['npm run build']);
     }
 
     /**

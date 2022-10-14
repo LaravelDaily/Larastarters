@@ -1,65 +1,47 @@
 <template>
     <Head title="Confirm Password" />
 
-    <Link href="/" class="flex justify-center items-center mb-4">
-        <BreezeApplicationLogo class="w-10 h-10 fill-current text-gray-500"/>
-    </Link>
+    <GuestLayout>
+        <Link href="/" class="mb-4 flex items-center justify-center">
+            <ApplicationLogo class="h-10 w-10 fill-current text-gray-500" />
+        </Link>
 
-    <div class="mb-4 text-sm text-gray-600">
-        This is a secure area of the application. Please confirm your password before continuing.
-    </div>
-
-    <BreezeValidationErrors class="mb-4" />
-
-    <form @submit.prevent="submit">
-        <div>
-            <BreezeLabel for="password" value="Password" />
-            <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
+        <div class="mb-4 text-sm text-gray-600">
+            This is a secure area of the application. Please confirm your password before continuing.
         </div>
 
-        <div class="flex justify-end mt-4">
-            <BreezeButton class="w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Confirm
-            </BreezeButton>
-        </div>
-    </form>
+        <form @submit.prevent="submit">
+            <div>
+                <InputLabel for="password" value="Password" />
+                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
+                <InputError class="mt-2" :message="form.errors.password" />
+            </div>
+
+            <div class="mt-4 flex justify-end">
+                <PrimaryButton class="w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Confirm
+                </PrimaryButton>
+            </div>
+        </form>
+    </GuestLayout>
 </template>
 
-<script>
-import BreezeButton from '@/Components/Button.vue'
-import BreezeGuestLayout from '@/Layouts/Guest.vue'
-import BreezeInput from '@/Components/Input.vue'
-import BreezeLabel from '@/Components/Label.vue'
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
-import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
-import { Head } from '@inertiajs/inertia-vue3';
+<script setup>
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import { Head, useForm } from '@inertiajs/inertia-vue3';
 
-export default {
-    layout: BreezeGuestLayout,
+const form = useForm({
+    password: '',
+});
 
-    components: {
-        BreezeButton,
-        BreezeInput,
-        BreezeLabel,
-        BreezeValidationErrors,
-        BreezeApplicationLogo,
-        Head,
-    },
-
-    data() {
-        return {
-            form: this.$inertia.form({
-                password: '',
-            })
-        }
-    },
-
-    methods: {
-        submit() {
-            this.form.post(this.route('password.confirm'), {
-                onFinish: () => this.form.reset(),
-            })
-        }
-    }
-}
+const submit = () => {
+    form.post(route('password.confirm'), {
+        onFinish: () => form.reset(),
+    })
+};
 </script>

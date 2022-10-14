@@ -1,7 +1,7 @@
 <template>
-    <Head title="About us"/>
+    <Head title="About us" />
 
-    <BreezeAuthenticatedLayout>
+    <AuthenticatedLayout>
         <template #header>
             About us
         </template>
@@ -11,17 +11,10 @@
                 Sample static text page
             </div>
         </div>
-    </BreezeAuthenticatedLayout>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+<script setup>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
-
-export default {
-    components: {
-        BreezeAuthenticatedLayout,
-        Head,
-    },
-}
 </script>
