@@ -16,9 +16,6 @@
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')"/>
 
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors"/>
-
             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
@@ -35,11 +32,12 @@
                             id="email"
                             placeholder="{{ __('Email') }}"
                         />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
-                    <x-button class="w-full">
+                    <x-primary-button class="w-full">
                         {{ __('Email Password Reset Link') }}
-                    </x-button>
+                    </x-primary-button>
                 </form>
             </div>
         </div>

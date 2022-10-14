@@ -13,17 +13,14 @@
                 <hr class="mt-6 border-b-1 border-blueGray-300"/>
             </div>
 
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors"/>
-
             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form method="POST" action="{{ route('password.confirm') }}">
                     @csrf
 
                     <!-- Password -->
                     <div class="relative w-full mb-3">
-                        <x-label for="password" :value="__('Password')" />
-                        <x-input
+                        <x-input-label for="password" :value="__('Password')" />
+                        <x-text-input
                             type="password"
                             required
                             autocomplete="current-password"
@@ -31,11 +28,12 @@
                             id="password"
                             placeholder="{{ __('Password') }}"
                         />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <x-button class="w-full">
+                    <x-primary-button class="w-full">
                         {{ __('Confirm') }}
-                    </x-button>
+                    </x-primary-button>
                 </form>
             </div>
         </div>

@@ -15,8 +15,8 @@
                     @csrf
 
                     <div class="relative w-full mb-3">
-                        <x-label for="name" :value="__('Name')"/>
-                        <x-input
+                        <x-input-label for="name" :value="__('Name')"/>
+                        <x-text-input
                             type="text"
                             placeholder="{{ __('Name') }}"
                             name="name"
@@ -25,11 +25,12 @@
                             required
                             autofocus
                         />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label for="email" :value="__('Email')" />
-                        <x-input
+                        <x-input-label for="email" :value="__('Email')" />
+                        <x-text-input
                             type="email"
                             name="email"
                             id="email"
@@ -37,34 +38,37 @@
                             placeholder="{{ __('Email') }}"
                             required
                         />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label for="password" :value="__('Password')" />
-                        <x-input
+                        <x-input-label for="password" :value="__('Password')" />
+                        <x-text-input
                             type="password"
                             name="password"
                             id="password"
                             placeholder="{{ __('Password') }}"
                             required
                         />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="relative w-full mb-3">
-                        <x-label for="password_confirmation" :value="__('Confirm Password')" />
-                        <x-input
+                        <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                        <x-text-input
                             type="password"
                             name="password_confirmation"
                             id="password_confirmation"
                             placeholder="{{ __('Confirm Password') }}"
                             required
                         />
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
                     <div class="text-center mt-6">
-                        <x-button class="w-full">
+                        <x-primary-button class="w-full">
                             {{ __('Register') }}
-                        </x-button>
+                        </x-primary-button>
 
                         <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                             {{ __('Already registered?') }}
