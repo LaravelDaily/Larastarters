@@ -597,13 +597,6 @@ class InstallCommand extends Command
 
     protected function replaceWithInertiaNotusjs()
     {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                'color' => '^4.0.1'
-            ] + $packages;
-        });
-
         // Js
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Users'));
 
@@ -622,7 +615,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/images', public_path('images'));
 
         $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->warn('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->runCommands(['npm run build']);
     }
 
     protected function replaceWithInertiaTailwindComponents()
