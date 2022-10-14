@@ -2,6 +2,7 @@
 
 namespace LaravelDaily\Larastarters\Console;
 
+use RuntimeException;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
@@ -216,7 +217,7 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/pagination/tailwind.blade.php', resource_path('views/vendor/pagination/tailwind.blade.php'));
 
         $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->warn('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->runCommands(['npm run build']);
     }
 
     protected function replaceWithNotusjs()
@@ -245,7 +246,7 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->warn('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->runCommands(['npm run build']);
     }
 
     protected function replaceWithTailwindComponents()
@@ -269,7 +270,7 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
 
         $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->warn('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->runCommands(['npm run build']);
     }
 
     protected function replaceWithAdminLTETheme()
@@ -690,5 +691,29 @@ class InstallCommand extends Command
             base_path('package.json'),
             json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
         );
+    }
+
+    /**
+     * Run the given commands.
+     * Taken from https://github.com/laravel/breeze/blob/1.x/src/Console/InstallCommand.php
+     *
+     * @param  array  $commands
+     * @return void
+     */
+    protected function runCommands($commands)
+    {
+        $process = Process::fromShellCommandline(implode(' && ', $commands), null, null, null, null);
+
+        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
+            try {
+                $process->setTty(true);
+            } catch (RuntimeException $e) {
+                $this->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
+            }
+        }
+
+        $process->run(function ($type, $line) {
+            $this->output->write('    '.$line);
+        });
     }
 }
