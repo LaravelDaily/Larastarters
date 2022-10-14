@@ -11,50 +11,52 @@
                     Create account
                 </h1>
 
-                <x-auth-validation-errors :errors="$errors"/>
-
                 <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                     <div class="mt-4">
-                        <x-label for="name" :value="__('Name')"/>
-                        <x-input type="text"
+                        <x-input-label for="name" :value="__('Name')"/>
+                        <x-text-input type="text"
                                  id="name"
                                  name="name"
                                  class="block w-full"
                                  value="{{ old('name') }}"
                                  required
                                  autofocus/>
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-label for="email" :value="__('Email')"/>
-                        <x-input name="email"
+                        <x-input-label for="email" :value="__('Email')"/>
+                        <x-text-input name="email"
                                  type="email"
                                  class="block w-full"
                                  value="{{ old('email') }}"/>
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-label for="password" :value="__('Password')"/>
-                        <x-input type="password"
+                        <x-input-label for="password" :value="__('Password')"/>
+                        <x-text-input type="password"
                                  name="password"
                                  class="block w-full"
                                  required/>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-label id="password_confirmation" :value="__('Confirm Password')"/>
-                        <x-input type="password"
+                        <x-input-label id="password_confirmation" :value="__('Confirm Password')"/>
+                        <x-text-input type="password"
                                  name="password_confirmation"
                                  class="block w-full"
                                  required/>
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-button class="block w-full">
+                        <x-primary-button class="block w-full">
                             {{ __('Register') }}
-                        </x-button>
+                        </x-primary-button>
                     </div>
                 </form>
 

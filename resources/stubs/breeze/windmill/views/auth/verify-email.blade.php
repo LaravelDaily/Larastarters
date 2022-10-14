@@ -17,19 +17,19 @@
                 @endif
 
                 <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
+                    @csrf
 
-                    <x-button class="mt-4 w-full">
+                    <x-primary-button class="mt-4 w-full">
                         {{ __('Resend Verification Email') }}
-                    </x-button>
+                    </x-primary-button>
                 </form>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-button type="submit" class="mt-4 w-full">
+                    <x-primary-button type="submit" class="mt-4 w-full">
                         {{ __('Log Out') }}
-                    </x-button>
+                    </x-primary-button>
                 </form>
             </div>
         </div>

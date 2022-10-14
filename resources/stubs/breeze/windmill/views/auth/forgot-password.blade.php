@@ -13,25 +13,24 @@
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')"/>
 
-                <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
 
                     <div class="mt-4">
-                        <x-label for="email" :value="__('Email')"/>
-                        <x-input type="email"
+                        <x-input-label for="email" :value="__('Email')"/>
+                        <x-text-input type="email"
                                  class="block w-full"
                                  name="email"
                                  id="email"
                                  required
                         />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <x-button class="block mt-4 w-full">
+                    <x-primary-button class="block mt-4 w-full">
                         {{ __('Email Password Reset Link') }}
-                    </x-button>
+                    </x-primary-button>
                 </form>
             </div>
         </div>
