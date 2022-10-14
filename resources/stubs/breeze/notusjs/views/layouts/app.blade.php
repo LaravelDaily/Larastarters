@@ -17,17 +17,17 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased text-blueGray-700">
+<body class="antialiased text-slate-700">
     @include('layouts.navigation')
 
-    <div class="relative md:ml-64 bg-blueGray-50">
+    <div class="relative md:ml-64 bg-slate-50">
         <!-- TOP NAV -->
         <nav
             class="absolute top-0 left-0 z-10 flex items-center w-full p-4 bg-transparent md:flex-row md:flex-nowrap md:justify-start">
             <div class="flex flex-wrap items-center justify-end w-full px-4 mx-auto md:flex-nowrap md:px-10">
                 <x-dropdown>
                     <x-slot name="trigger">
-                        <a class="block text-blueGray-500" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
+                        <a class="block text-slate-500" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
                             <span class="text-white">{{ Auth::user()->name }}</span>
                         </a>
                     </x-slot>

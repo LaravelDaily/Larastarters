@@ -10,9 +10,6 @@
                     {{__('Forgot password')}}
                 </h1>
 
-                <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors"/>
-
                 <form method="POST" action="{{ route('password.update') }}">
                 @csrf
 
@@ -20,35 +17,38 @@
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                     <div class="mt-4">
-                        <x-label for="email" :value="__('Email')"/>
-                        <x-input type="email"
+                        <x-input-label for="email" :value="__('Email')"/>
+                        <x-text-input type="email"
                                  class="block w-full"
                                  id="email"
                                  name="email"
                                  value="{{ old('email', $request->email) }}"
                                  required
                                  autofocus/>
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-label :value="__('Password')"/>
-                        <x-input type="password"
+                        <x-input-label :value="__('Password')"/>
+                        <x-text-input type="password"
                                  class="block w-full"
                                  name="password"
                                  required/>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-label :value="__('Confirm Password')"/>
-                        <x-input type="password"
+                        <x-input-label :value="__('Confirm Password')"/>
+                        <x-text-input type="password"
                                  class="block w-full"
                                  name="password_confirmation"
                                  required/>
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
-                    <x-button class="mt-4 w-full">
+                    <x-primary-button class="mt-4 w-full">
                         {{ __('Reset Password') }}
-                    </x-button>
+                    </x-primary-button>
                 </form>
             </div>
         </div>

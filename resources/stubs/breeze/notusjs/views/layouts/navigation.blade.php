@@ -12,7 +12,7 @@
             <i class="fas fa-bars"></i>
         </button>
         <a
-            class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             href="{{ route('dashboard') }}"
         >
             Notus JS
@@ -20,13 +20,13 @@
         <ul class="md:hidden items-center flex flex-wrap list-none">
             <li class="inline-block relative">
                 <a
-                    class="text-blueGray-500 block"
+                    class="text-slate-500 block"
                     href="#pablo"
                     onclick="openDropdown(event,'user-responsive-dropdown')"
                 >
                     <div class="items-center flex">
                   <span
-                      class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"
+                      class="w-12 h-12 text-sm text-white bg-slate-200 inline-flex items-center justify-center rounded-full"
                   ><img
                           alt="..."
                           class="w-full rounded-full align-middle border-none shadow-lg"
@@ -39,14 +39,14 @@
                     id="user-responsive-dropdown"
                 >
                     <div
-                        class="h-0 my-2 border border-solid border-blueGray-100"
+                        class="h-0 my-2 border border-solid border-slate-100"
                     ></div>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a
                             href="{{ route('logout') }}"
                             onclick="event.preventDefault(); this.closest('form').submit();"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
                         >{{ __('Log Out') }}</a
                         >
                     </form>
@@ -58,12 +58,12 @@
             id="example-collapse-sidebar"
         >
             <div
-                class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
+                class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-slate-200"
             >
                 <div class="flex flex-wrap">
                     <div class="w-6/12">
                         <a
-                            class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                            class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                             href="{{ route('dashboard') }}"
                         >
                             Notus JS

@@ -11,30 +11,30 @@
                     Login
                 </h1>
 
-                <x-auth-validation-errors :errors="$errors"/>
-
                 <form method="POST" action="{{ route('login') }}">
-                @csrf
+                    @csrf
 
                     <!-- Input[ype="email"] -->
                     <div class="mt-4">
-                        <x-label :value="__('Email')"/>
-                        <x-input type="email"
+                        <x-input-label :value="__('Email')"/>
+                        <x-text-input type="email"
                                  id="email"
                                  name="email"
                                  value="{{ old('email') }}"
                                  class="block w-full"
                                  required
                                  autofocus/>
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Input[ype="password"] -->
                     <div class="mt-4">
-                        <x-label for="password" :value="__('Password')"/>
-                        <x-input type="password"
+                        <x-input-label for="password" :value="__('Password')"/>
+                        <x-text-input type="password"
                                  id="password"
                                  name="password"
                                  class="block w-full"/>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="flex mt-6 text-sm">
@@ -47,9 +47,9 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-button class="block w-full">
+                        <x-primary-button class="block w-full">
                             {{ __('Log in') }}
-                        </x-button>
+                        </x-primary-button>
                     </div>
                 </form>
 

@@ -1,10 +1,10 @@
 <x-guest-layout>
     <div class="w-full lg:w-6/12 px-4">
         <div
-            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-200 border-0">
             <div class="rounded-t mb-0 px-6 py-6">
                 <div class="text-center mb-3">
-                    <h6 class="text-blueGray-500 text-sm font-bold">
+                    <h6 class="text-slate-500 text-sm font-bold">
                         {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
                     </h6>
                 </div>
@@ -20,18 +20,18 @@
                         @csrf
 
                         <div>
-                            <x-button class="w-full">
+                            <x-primary-button class="w-full">
                                 {{ __('Resend Verification Email') }}
-                            </x-button>
+                            </x-primary-button>
                         </div>
                     </form>
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <x-button class="w-full">
+                        <x-primary-button class="w-full">
                             {{ __('Log Out') }}
-                        </x-button>
+                        </x-primary-button>
                     </form>
                 </div>
             </div>
