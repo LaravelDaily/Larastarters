@@ -75,9 +75,9 @@ const form = useForm({
 });
 
 const submit = () => {
-      form.put(route('profile.update'), {
-        onSuccess: () => form.reset('password', 'password_confirmation'),
-        onError: () => form.reset('password', 'password_confirmation'),
-      });
-    };
+  form.put(route('profile.update'), {
+    onSuccess: () => form.reset('password', 'password_confirmation'),
+    onError: () => form.reset('password', 'password_confirmation'),
+  });
+};
 </script>
