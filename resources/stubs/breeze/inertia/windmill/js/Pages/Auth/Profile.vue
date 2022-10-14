@@ -1,7 +1,7 @@
 <template>
   <Head title="My profile"/>
 
-  <BreezeAuthenticatedLayout>
+  <AuthenticatedLayout>
     <template #header>
       My profile
     </template>
@@ -26,100 +26,58 @@
         </div>
       </div>
 
-      <BreezeValidationErrors class="mb-4"/>
-
       <form @submit.prevent="submit">
         <div class="mt-4">
-          <BreezeLabel for="name" value="Name"/>
-          <BreezeInput
-              id="name"
-              type="text"
-              class="block mt-1 w-full"
-              v-model="form.name"
-              required
-          />
+          <InputLabel for="name" value="Name"/>
+          <TextInput id="name" type="text" class="block mt-1 w-full" v-model="form.name" required />
+          <InputError class="mt-2" :message="form.errors.name" />
         </div>
 
         <div class="mt-4">
-          <BreezeLabel for="email" value="Email"/>
-          <BreezeInput
-              id="email"
-              type="email"
-              class="block mt-1 w-full"
-              v-model="form.email"
-              required
-          />
+          <InputLabel for="email" value="Email"/>
+          <TextInput id="email" type="email" class="block mt-1 w-full" v-model="form.email" required />
+          <InputError class="mt-2" :message="form.errors.email" />
         </div>
 
         <div class="mt-4">
-          <BreezeLabel for="password" value="New password"/>
-          <BreezeInput
-              id="password"
-              type="password"
-              class="block mt-1 w-full"
-              v-model="form.password"
-          />
+          <InputLabel for="password" value="New password"/>
+          <TextInput id="password" type="password" class="block mt-1 w-full" v-model="form.password" />
+          <InputError class="mt-2" :message="form.errors.password" />
         </div>
 
         <div class="mt-4">
-          <BreezeLabel for="password_confirmation" value="New password confirmation"/>
-          <BreezeInput
-              id="password_confirmation"
-              type="password"
-              class="block mt-1 w-full"
-              v-model="form.password_confirmation"
-          />
+          <InputLabel for="password_confirmation" value="New password confirmation"/>
+          <TextInput id="password_confirmation" type="password" class="block mt-1 w-full" v-model="form.password_confirmation" />
         </div>
 
-        <BreezeButton
-            class="block mt-4 w-full"
-            :class="{ 'opacity-25': form.processing }"
-            :disabled="form.processing"
-        >
+        <PrimaryButton class="block mt-4 w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
           Submit
-        </BreezeButton>
+        </PrimaryButton>
       </form>
     </div>
-  </BreezeAuthenticatedLayout>
+  </AuthenticatedLayout>
 </template>
 
-<script>
-import BreezeButton from '@/Components/Button.vue';
-import BreezeInput from '@/Components/Input.vue';
-import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head, useForm } from '@inertiajs/inertia-vue3';
+<script setup>
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
 
-export default {
-  components: {
-    BreezeAuthenticatedLayout,
-    Head,
-    BreezeButton,
-    BreezeInput,
-    BreezeLabel,
-    BreezeValidationErrors,
-  },
+const form = useForm({
+  _method: 'PUT',
+  name: usePage().props.value.auth.user.name,
+  email: usePage().props.value.auth.user.email,
+  password: null,
+  password_confirmation: null,
+});
 
-  data() {
-    return {
-      form: useForm({
-        _method: 'put',
-        name: this.$page.props.auth.user.name,
-        email: this.$page.props.auth.user.email,
-        password: null,
-        password_confirmation: null,
-      }),
-    };
-  },
-
-  methods: {
-    submit() {
-      this.form.post(this.route('profile.update'), {
-        onSuccess: () => this.form.reset('password', 'password_confirmation'),
-        onError: () => this.form.reset('password', 'password_confirmation'),
+const submit = () => {
+      form.put(route('profile.update'), {
+        onSuccess: () => form.reset('password', 'password_confirmation'),
+        onError: () => form.reset('password', 'password_confirmation'),
       });
-    },
-  },
-};
+    };
 </script>

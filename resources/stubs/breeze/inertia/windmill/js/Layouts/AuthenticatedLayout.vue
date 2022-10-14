@@ -21,16 +21,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Navigation from './Navigation.vue';
 import TopMenu from "./TopMenu.vue";
 import NavigationMobile from './NavigationMobile.vue';
-
-export default {
-  components: {
-    NavigationMobile,
-    TopMenu,
-    Navigation,
-  },
-}
 </script>
