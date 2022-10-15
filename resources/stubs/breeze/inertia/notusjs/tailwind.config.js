@@ -1,16 +1,15 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
-const colors = require("tailwindcss/colors");
 
 module.exports = {
-    purge: ["./resources/js/**/*.vue"],
-
-    mode: 'jit',
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './resources/js/**/*.vue',
+    ],
 
     theme: {
-        colors: {
-            ...colors,
-        },
         extend: {
             minHeight: {
                 "screen-75": "75vh",

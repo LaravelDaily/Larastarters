@@ -1,7 +1,7 @@
 <template>
   <Head title="Users"/>
 
-  <BreezeAuthenticatedLayout>
+  <AuthenticatedLayout>
   <template #header>
     Users
   </template>
@@ -50,23 +50,15 @@
       </div>
     </div>
   </div>
-  </BreezeAuthenticatedLayout>
+  </AuthenticatedLayout>
 </template>
 
-<script>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+<script setup>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 import { Head } from '@inertiajs/inertia-vue3'; 
 
-export default {
-  components: {
-    BreezeAuthenticatedLayout,
-    Pagination,
-    Head,
-  },
-
-  props: {
-    users: Object,
-  }
-}
+const props = defineProps({
+    users: Object
+})
 </script>

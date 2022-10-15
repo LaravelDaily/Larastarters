@@ -1,32 +1,26 @@
 <template>
     <input type="checkbox" :value="value" v-model="proxyChecked"
-           class="ml-1 w-5 h-5 rounded border-0 transition-all duration-150 ease-linear form-checkbox text-blueGray-700">
+           class="ml-1 w-5 h-5 rounded border-0 transition-all duration-150 ease-linear form-checkbox text-slate-700">
 </template>
 
-<script>
-export default {
-    emits: ['update:checked'],
-
-    props: {
-        checked: {
-            type: [Array, Boolean],
-            default: false,
-        },
-        value: {
-            default: null,
-        },
+<script setup>
+import { computed } from 'vue';
+const emit = defineEmits(['update:checked']);
+const props = defineProps({
+    checked: {
+        type: [Array, Boolean],
+        default: false,
     },
-
-    computed: {
-        proxyChecked: {
-            get() {
-                return this.checked;
-            },
-
-            set(val) {
-                this.$emit("update:checked", val);
-            },
-        },
+    value: {
+        default: null,
     },
-}
+});
+const proxyChecked = computed({
+    get() {
+        return props.checked;
+    },
+    set(val) {
+        emit('update:checked', val);
+    },
+});
 </script>

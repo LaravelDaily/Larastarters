@@ -8,7 +8,7 @@
           </svg>
         </button>
 
-        <BreezeDropdown>
+        <Dropdown>
           <template #trigger>
             <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" aria-label="Account" aria-haspopup="true">
               {{ $page.props.auth.user.name }}
@@ -35,22 +35,13 @@
               </template>
             </DropdownLink>
           </template>
-        </BreezeDropdown>
+        </Dropdown>
 
       </div>
     </header>
 </template>
 
-<script>
-import BreezeDropdown from '@/Components/Dropdown.vue'
-import BreezeDropdownLink from '@/Components/DropdownLink.vue'
-import DropdownLink from "../Components/DropdownLink.vue";
-
-export default {
-  components: {
-    DropdownLink,
-    BreezeDropdown,
-    BreezeDropdownLink,
-  },
-}
+<script setup>
+import Dropdown from '@/Components/Dropdown.vue'
+import DropdownLink from '@/Components/DropdownLink.vue'
 </script>

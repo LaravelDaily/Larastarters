@@ -7,31 +7,31 @@
                 <i class="fas fa-bars"></i>
             </button>
             <Link :href="route('dashboard')"
-                class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase whitespace-nowrap md:block md:pb-2 text-blueGray-600">
+                class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase whitespace-nowrap md:block md:pb-2 text-slate-600">
                 Notus JS
             </Link>
-            <BreezeDropdown class="flex md:hidden">
+            <Dropdown class="flex md:hidden">
                 <template #trigger>
-                    <button type="button" class="block text-blueGray-500">
-                        <span class="text-blueGray-600">{{ $page.props.auth.user.name }}</span>
+                    <button type="button" class="block text-slate-500">
+                        <span class="text-slate-600">{{ $page.props.auth.user.name }}</span>
                     </button>
                 </template>
 
                 <template #content>
-                    <BreezeDropdownLink :href="route('profile.show')">My profile</BreezeDropdownLink>
+                    <DropdownLink :href="route('profile.show')">My profile</DropdownLink>
                     <divider/>
-                    <BreezeDropdownLink :href="route('logout')" class="w-full text-left" method="post" as="button">
+                    <DropdownLink :href="route('logout')" class="w-full text-left" method="post" as="button">
                         Log Out
-                    </BreezeDropdownLink>
+                    </DropdownLink>
                 </template>
-            </BreezeDropdown>
+            </Dropdown>
 
             <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden">
-                <div class="block pb-4 mb-4 border-b border-solid md:min-w-full md:hidden border-blueGray-200">
+                <div class="block pb-4 mb-4 border-b border-solid md:min-w-full md:hidden border-slate-200">
                     <div class="flex flex-wrap">
                         <div class="w-6/12">
                             <Link
-                                class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase whitespace-nowrap md:block md:pb-2 text-blueGray-600"
+                                class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase whitespace-nowrap md:block md:pb-2 text-slate-600"
                                 :href="route('dashboard')"
                             >
                                 Notus JS
@@ -98,30 +98,11 @@
     </nav>
 </template>
 
-<script>
+<script setup>
 import Divider from '@/Components/Divider.vue';
 import { Link } from '@inertiajs/inertia-vue3';
-import BreezeDropdown from '@/Components/Dropdown.vue'
-import BreezeDropdownLink from '@/Components/DropdownLink.vue'
+import Dropdown from '@/Components/Dropdown.vue'
+import DropdownLink from '@/Components/DropdownLink.vue'
 import NavHeading from '@/Components/NavHeading.vue'
 import NavLink from '@/Components/NavLink.vue'
-
-export default {
-    components: {
-        BreezeDropdownLink,
-        BreezeDropdown,
-        NavHeading,
-        NavLink,
-        Divider,
-        Link
-    },
-
-    computed: {
-        classes() {
-            return $page.props.showingMobileMenu
-                ? "md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
-                : "overflow-y-auto overflow-x-hidden absolute top-0 right-0 left-0 z-40 flex-1 items-center px-6 py-3 m-2 h-auto bg-white rounded shadow md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none";
-        },
-    },
-}
 </script>

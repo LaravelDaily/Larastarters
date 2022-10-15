@@ -21,9 +21,11 @@
 
                 <main class="overflow-y-auto overflow-x-hidden flex-1 bg-gray-200">
                     <div class="container px-6 py-8 mx-auto">
-                        <h3 class="mb-4 text-3xl font-medium text-gray-700">
-                            {{ $header }}
-                        </h3>
+                        @if (isset($header))
+                            <h3 class="mb-4 text-3xl font-medium text-gray-700">
+                                {{ $header }}
+                            </h3>
+                        @endif
 
                         {{ $slot }}
                     </div>

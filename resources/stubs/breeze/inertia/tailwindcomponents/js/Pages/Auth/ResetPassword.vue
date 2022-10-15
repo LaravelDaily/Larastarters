@@ -1,80 +1,63 @@
 <template>
     <Head title="Reset Password" />
 
-    <Link href="/" class="flex justify-center items-center mb-4">
-        <BreezeApplicationLogo class="w-20 h-20 text-gray-500 fill-current"/>
-    </Link>
+    <GuestLayout>
+        <Link href="/" class="mb-4 flex items-center justify-center">
+            <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
+        </Link>
 
-    <BreezeValidationErrors class="mb-4" />
+        <form @submit.prevent="submit">
+            <div>
+                <InputLabel for="email" value="Email" />
+                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+                <InputError class="mt-2" :message="form.errors.email" />
+            </div>
 
-    <form @submit.prevent="submit">
-        <div>
-            <BreezeLabel for="email" value="Email" />
-            <BreezeInput id="email" type="email" class="block mt-1 w-full" v-model="form.email" required autofocus autocomplete="username" />
-        </div>
+            <div class="mt-3">
+                <InputLabel for="password" value="Password" />
+                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
+                <InputError class="mt-2" :message="form.errors.password" />
+            </div>
 
-        <div class="mt-3">
-            <BreezeLabel for="password" value="Password" />
-            <BreezeInput id="password" type="password" class="block mt-1 w-full" v-model="form.password" required autocomplete="new-password" />
-        </div>
+            <div class="mt-3">
+                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <TextInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
+                <InputError class="mt-2" :message="form.errors.password_confirmation" />
+            </div>
 
-        <div class="mt-3">
-            <BreezeLabel for="password_confirmation" value="Confirm Password" />
-            <BreezeInput id="password_confirmation" type="password" class="block mt-1 w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
-        </div>
-
-        <div class="flex justify-end items-center mt-4">
-            <BreezeButton class="w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Reset Password
-            </BreezeButton>
-        </div>
-    </form>
+            <div class="mt-4 flex items-center justify-end">
+                <PrimaryButton class="w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Reset Password
+                </PrimaryButton>
+            </div>
+        </form>
+    </GuestLayout>
 </template>
 
-<script>
-import BreezeButton from '@/Components/Button.vue'
-import BreezeGuestLayout from '@/Layouts/Guest.vue'
-import BreezeInput from '@/Components/Input.vue'
-import BreezeLabel from '@/Components/Label.vue'
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
-import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
-import { Link, Head } from '@inertiajs/inertia-vue3';
+<script setup>
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import { Head, useForm } from '@inertiajs/inertia-vue3';
 
-export default {
-    layout: BreezeGuestLayout,
+const props = defineProps({
+    email: String,
+    token: String,
+});
 
-    components: {
-        BreezeButton,
-        BreezeInput,
-        BreezeLabel,
-        BreezeValidationErrors,
-        BreezeApplicationLogo,
-        Link,
-        Head,
-    },
+const form = useForm({
+    token: props.token,
+    email: props.email,
+    password: '',
+    password_confirmation: '',
+});
 
-    props: {
-        email: String,
-        token: String,
-    },
-
-    data() {
-        return {
-            form: this.$inertia.form({
-                token: this.token,
-                email: this.email,
-                password: '',
-                password_confirmation: '',
-            })
-        }
-    },
-
-    methods: {
-        submit() {
-            this.form.post(this.route('password.update'), {
-                onFinish: () => this.form.reset('password', 'password_confirmation'),
-            })
-        }
-    }
-}
+const submit = () => {
+    form.post(route('password.update'), {
+        onFinish: () => form.reset('password', 'password_confirmation'),
+    });
+};
 </script>

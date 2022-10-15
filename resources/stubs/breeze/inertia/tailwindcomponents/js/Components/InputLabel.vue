@@ -5,8 +5,6 @@
     </label>
 </template>
 
-<script>
-export default {
-    props: ['value']
-}
+<script setup>
+defineProps(['value']);
 </script>
