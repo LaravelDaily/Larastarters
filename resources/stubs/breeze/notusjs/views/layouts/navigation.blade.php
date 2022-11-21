@@ -30,9 +30,8 @@
                   ><img
                           alt="..."
                           class="w-full rounded-full align-middle border-none shadow-lg"
-                          src="{{ asset('images/team-1-800x800.jpg') }}"
-                      /></span></div
-                    >
+                          src="https://eu.ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}"
+                      /></span></div>
                 </a>
                 <div
                     class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
