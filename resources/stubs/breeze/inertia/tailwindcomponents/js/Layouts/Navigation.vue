@@ -84,7 +84,7 @@
 
 <script>
 import NavLink from '@/Components/NavLink.vue';
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue'
 
 export default {
