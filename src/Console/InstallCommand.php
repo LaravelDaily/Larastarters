@@ -66,7 +66,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^1.4');
-            shell_exec("{$this->php_version} artisan breeze:install");
+            shell_exec("{$this->php_version} artisan breeze:install blade");
 
             file_put_contents(
                 base_path('routes/web.php'),
