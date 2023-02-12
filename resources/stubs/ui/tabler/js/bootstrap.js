@@ -1,5 +1,4 @@
 import lodash from 'lodash';
-import 'bootstrap';
 
 window._ = lodash;
 
