@@ -18,7 +18,7 @@
                 </template>
 
                 <template #content>
-                    <DropdownLink :href="route('profile.show')">My profile</DropdownLink>
+                    <DropdownLink :href="route('profile.edit')">Profile</DropdownLink>
                     <divider/>
                     <DropdownLink :href="route('logout')" class="w-full text-left" method="post" as="button">
                         Log Out

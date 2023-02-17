@@ -99,13 +99,9 @@ class InstallCommand extends Command
             $this->requireComposerPackages('laravel/breeze:^1.4');
             shell_exec("{$this->php_version} artisan breeze:install vue");
 
-            file_put_contents(
-                base_path('routes/web.php'),
-                file_get_contents(__DIR__ . '/../../resources/stubs/breeze/inertia/routes.stub'),
-                FILE_APPEND
-            );
+            copy(__DIR__ . '/../../resources/stubs/breeze/inertia/routes.php', base_path('routes/web.php'));
 
-            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/controllers', app_path('Http/Controllers/'));
+            copy(__DIR__ . '/../../resources/stubs/breeze/inertia/controllers/UserController.php', app_path('Http/Controllers/UserController.php'));
 
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/Middleware', app_path('Http/Middleware/'));
 
