@@ -22,8 +22,7 @@
 
     <div class="relative md:ml-64 bg-slate-50">
         <!-- TOP NAV -->
-        <nav
-            class="absolute top-0 left-0 z-10 flex items-center w-full p-4 bg-transparent md:flex-row md:flex-nowrap md:justify-start">
+        <nav class="absolute top-0 left-0 z-10 flex items-center w-full p-4 bg-transparent md:flex-row md:flex-nowrap md:justify-start">
             <div class="flex flex-wrap items-center justify-end w-full px-4 mx-auto md:flex-nowrap md:px-10">
                 <x-dropdown>
                     <x-slot name="trigger">
@@ -32,7 +31,7 @@
                         </a>
                     </x-slot>
                     <x-slot name="content">
-                        <x-dropdown-link href="{{ route('profile.show') }}">{{ __('My profile') }}</x-dropdown-link>
+                        <x-dropdown-link href="{{ route('profile.edit') }}">{{ __('Profile') }}</x-dropdown-link>
                         <x-divider />
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
