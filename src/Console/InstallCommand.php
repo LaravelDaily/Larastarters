@@ -68,13 +68,9 @@ class InstallCommand extends Command
             $this->requireComposerPackages('laravel/breeze:^1.4');
             shell_exec("{$this->php_version} artisan breeze:install blade");
 
-            file_put_contents(
-                base_path('routes/web.php'),
-                file_get_contents(__DIR__ . '/../../resources/stubs/routes.stub'),
-                FILE_APPEND
-            );
+            copy(__DIR__ . '/../../resources/stubs/routes.php', base_path('routes/web.php'));
 
-            (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/controllers', app_path('Http/Controllers/'));
+            copy(__DIR__ . '/../../resources/stubs/controllers/UserController.php', app_path('Http/Controllers/UserController.php'));
 
             (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
@@ -201,6 +197,7 @@ class InstallCommand extends Command
 
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/about.blade.php', resource_path('views/about.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/profile/edit.blade.php', resource_path('views/profile/edit.blade.php'));
 
         // Assets
         copy(__DIR__ . '/../../resources/stubs/breeze/windmill/tailwind.config.js', base_path('tailwind.config.js'));
@@ -234,6 +231,7 @@ class InstallCommand extends Command
 
         copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/about.blade.php', resource_path('views/about.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/profile/edit.blade.php', resource_path('views/profile/edit.blade.php'));
 
         // Assets
         copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/tailwind.config.js', base_path('tailwind.config.js'));
@@ -264,6 +262,7 @@ class InstallCommand extends Command
 
         copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
         copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/about.blade.php', resource_path('views/about.blade.php'));
+        copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/profile/edit.blade.php', resource_path('views/profile/edit.blade.php'));
 
         // Demo table
         (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));

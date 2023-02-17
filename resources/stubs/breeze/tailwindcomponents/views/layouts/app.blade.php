@@ -13,13 +13,13 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+        <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-slate-200 font-roboto">
             @include('layouts.navigation')
 
             <div class="flex overflow-hidden flex-col flex-1">
                 @include('layouts.header')
 
-                <main class="overflow-y-auto overflow-x-hidden flex-1 bg-gray-200">
+                <main class="overflow-y-auto overflow-x-hidden flex-1 bg-slate-200">
                     <div class="container px-6 py-8 mx-auto">
                         @if (isset($header))
                             <h3 class="mb-4 text-3xl font-medium text-gray-700">
