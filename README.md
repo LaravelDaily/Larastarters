@@ -60,7 +60,7 @@ Larastarters requires PHP 8+ and Laravel 9+.
 
     Choose your preferred starter kit and Design Theme.
 
-    ![Larastarters Install](https://user-images.githubusercontent.com/79267265/220314313-d3055051-3997-427d-98df-8bc7bbd34dd7.png)
+    ![Larastarters Install](https://laraveldaily.com/uploads/2023/02/220314313-d3055051-3997-427d-98df-8bc7bbd34dd7.png)
 
 4. Compile the project assets, run:
 
