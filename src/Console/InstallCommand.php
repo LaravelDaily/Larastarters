@@ -277,6 +277,7 @@ class InstallCommand extends Command
                     'resolve-url-loader' => '^4.0.0',
                     'bootstrap' => '~4.6.1',
                     'popper.js' => '^1.14.3',
+                    'lodash' => '^4.17.21'
                 ] + $packages;
         });
 
