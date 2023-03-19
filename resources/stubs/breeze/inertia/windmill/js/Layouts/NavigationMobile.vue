@@ -16,7 +16,7 @@
       leave-from-class="opacity-100"
       leave-to-class="opacity-0 transform -translate-x-20">
     <aside v-show="$page.props.showingMobileMenu" class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white md:hidden">
-      <div class="py-4 text-gray-500 dark:text-gray-400">
+      <div class="py-4 text-gray-500">
         <Link class="ml-6 text-lg font-bold text-gray-800" :href="route('dashboard')">
         Windmill
       </Link>
@@ -77,9 +77,9 @@
                     clip-rule="evenodd"></path>
             </svg>
           </button>
-            <ul v-show="showingTwoLevelMenu" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+            <ul v-show="showingTwoLevelMenu" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"
                 aria-label="submenu">
-              <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+              <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
                 <a class="w-full" href="#">Child menu</a>
               </li>
             </ul>
