@@ -536,9 +536,9 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             $dependencies = [
-                "@tabler/core"       => "^1.0.0-beta16",
+                "@tabler/core"       => "^1.0.0-beta19",
                 "resolve-url-loader" => "^5.0.0",
-                "autosize"           => "^5.0.1",
+                "autosize"           => "^6.0.1",
                 "imask"              => "^6.4.3",
                 "sass"               => "^1.56.1",
                 "bootstrap"          => "~5.2.2",
