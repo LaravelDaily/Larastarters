@@ -16,7 +16,8 @@ class InstallCommand extends Command
      */
     protected $signature = 'larastarters:install
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}
-                            {--php_version=php : Php version command, like `sail` or `./vendor/bin/sail` or `docker-compose up...`}';
+                            {--php_version=php : Php version command, like `sail` or `./vendor/bin/sail` or `docker-compose up...`}
+                            {--update-laravel-ui=false : Update Laravel UI to the latest version}';
 
     /**
      * The console command description.
@@ -31,6 +32,15 @@ class InstallCommand extends Command
      * @var string
      */
     protected string $php_version;
+
+    
+    /**
+     * Flag to update laravel/ui to the latest version.
+     *
+     * @var bool
+     */
+    protected string $update_laravel_ui;
+
 
     /**
      * Create a new command instance.
@@ -50,6 +60,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->php_version = $this->option('php_version');
+        $this->update_laravel_ui = $this->option('update-laravel-ui');
         
         $kit = $this->components->choice(
             'Which Laravel starter kit you want to use?',
@@ -128,7 +139,27 @@ class InstallCommand extends Command
                 0
             );
 
-            $this->requireComposerPackages('laravel/ui:^4.0');
+
+            
+            if ($this->update_laravel_ui === 'true') {
+                $this->requireComposerPackages('laravel/ui:^4.0');
+                shell_exec("{$this->php_version} artisan ui bootstrap --auth");
+            }else{
+
+                // check if laravel/ui is installed, if not,  print an error message to install it
+                // require to install with composer require laravel/ui 4.2.2
+
+                // check if laravel/ui is installed
+                $composer = json_decode(file_get_contents(base_path('composer.json')), true);
+                if (!isset($composer['require']['laravel/ui'])) {
+                    $this->components->error('laravel/ui is not installed. Please install it with:');
+                    $this->components->info('composer require laravel/ui "4.2.2"');
+                    return;
+                }
+
+                $this->components->info('laravel/ui is installed');
+
+            }
             shell_exec("{$this->php_version} artisan ui bootstrap --auth");
 
             file_put_contents(

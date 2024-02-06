@@ -52,7 +52,13 @@ Larastarters requires PHP 8+ and Laravel 9+.
     composer require laraveldaily/larastarters --dev
     ```
 
-3. Configure Larastarters, run the command below:
+3. Require laravel/ui as dependency, run:
+
+    ```shell
+    composer require laravel/ui "4.2.2"
+    ```
+
+4. Configure Larastarters, run the command below:
 
     ```shell
     php artisan larastarters:install
@@ -68,7 +74,7 @@ Larastarters requires PHP 8+ and Laravel 9+.
     npm install && npm run dev
     ```
 
-5. That's it! You have Laravel Auth starter, just visit the home page and click Log in / Register.
+6. That's it! You have Laravel Auth starter, just visit the home page and click Log in / Register.
 
 <br/>
 
