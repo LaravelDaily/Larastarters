@@ -128,7 +128,7 @@ class InstallCommand extends Command
                 0
             );
 
-            $this->requireComposerPackages('laravel/ui:^4.0');
+            $this->requireComposerPackages('laravel/ui 4.2.2');
             shell_exec("{$this->php_version} artisan ui bootstrap --auth");
 
             file_put_contents(
