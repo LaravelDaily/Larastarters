@@ -4,11 +4,14 @@ namespace LaravelDaily\Larastarters\Console;
 
 use RuntimeException;
 use Illuminate\Console\Command;
+use function Laravel\Prompts\select;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
+    use InstallBreezeThemes, InstallBreezeInertiaThemes, InstallUiThemes;
+
     /**
      * The name and signature of the console command.
      *
@@ -50,22 +53,22 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->php_version = $this->option('php_version');
-        
-        $kit = $this->components->choice(
-            'Which Laravel starter kit you want to use?',
-            ['Laravel Breeze (Tailwind)', 'Laravel Breeze & Inertia (Tailwind)', 'Laravel UI (Bootstrap)'],
-            0
+
+        $kit = select(
+            label: 'Which Laravel starter kit you want to use?',
+            options: ['Laravel Breeze (Tailwind)', 'Laravel Breeze & Inertia (Tailwind)', 'Laravel UI (Bootstrap)'],
+            default: 'Laravel Breeze (Tailwind)',
         );
 
         if ($kit === "Laravel Breeze (Tailwind)") {
-            $theme = $this->components->choice(
-                'Which design theme you want to use?',
-                ['windmill', 'notusjs', 'tailwindcomponents'],
-                0
+            $theme = select(
+                label: 'Which design theme you want to use?',
+                options: ['windmill', 'notusjs', 'tailwindcomponents'],
+                default: 'windmill',
             );
 
             // Install breeze
-            $this->requireComposerPackages('laravel/breeze:^1.4');
+            $this->requireComposerPackages('laravel/breeze:^2.0');
             shell_exec("{$this->php_version} artisan breeze:install blade");
 
             copy(__DIR__ . '/../../resources/stubs/routes.php', base_path('routes/web.php'));
@@ -76,27 +79,27 @@ class InstallCommand extends Command
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
 
             if ($theme === 'windmill') {
-                return $this->replaceWindmill();
+                $this->replaceWindmill();
             }
 
             if ($theme === 'notusjs') {
-                return $this->replaceWithNotusjs();
+                $this->replaceWithNotusjs();
             }
 
             if ($theme === 'tailwindcomponents') {
-                return $this->replaceWithTailwindComponents();
+                $this->replaceWithTailwindComponents();
             }
         }
 
         if ($kit === "Laravel Breeze & Inertia (Tailwind)") {
-            $theme = $this->components->choice(
-                'Which design theme you want to use?',
-                ['windmill', 'notusjs', 'tailwindcomponents'],
-                0
+            $theme = select(
+                label: 'Which design theme you want to use?',
+                options: ['windmill', 'notusjs', 'tailwindcomponents'],
+                default: 'windmill',
             );
 
             // Install breeze
-            $this->requireComposerPackages('laravel/breeze:^1.4');
+            $this->requireComposerPackages('laravel/breeze:^2.0');
             shell_exec("{$this->php_version} artisan breeze:install vue");
 
             copy(__DIR__ . '/../../resources/stubs/breeze/inertia/routes.php', base_path('routes/web.php'));
@@ -109,23 +112,23 @@ class InstallCommand extends Command
             (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/requests', app_path('Http/Requests/'));
 
             if ($theme === 'windmill') {
-                return $this->replaceWithInertiaWindmill();
+                $this->replaceWithInertiaWindmill();
             }
 
             if ($theme === 'notusjs') {
-                return $this->replaceWithInertiaNotusjs();
+                $this->replaceWithInertiaNotusjs();
             }
 
             if ($theme === 'tailwindcomponents') {
-                return $this->replaceWithInertiaTailwindComponents();
+                $this->replaceWithInertiaTailwindComponents();
             }
         }
 
         if ($kit === "Laravel UI (Bootstrap)") {
-            $theme = $this->components->choice(
-                'Which design theme you want to use?',
-                ['adminlte', 'coreui', 'plainadmin', 'volt', 'sb-admin-2', 'tabler'],
-                0
+            $theme = select(
+                label: 'Which design theme you want to use?',
+                options: ['adminlte', 'coreui', 'plainadmin', 'volt', 'sb-admin-2', 'tabler'],
+                default: 'adminlte',
             );
 
             $this->requireComposerPackages('laravel/ui 4.2.2');
@@ -146,434 +149,25 @@ class InstallCommand extends Command
             copy(__DIR__ . '/../../resources/stubs/ui/vite.config.js', base_path('vite.config.js'));
 
             if ($theme === 'adminlte') {
-                return $this->replaceWithAdminLTETheme();
+                $this->replaceWithAdminLTETheme();
             }
 
             if ($theme === 'coreui') {
-                return $this->replaceWithCoreUITheme();
+                $this->replaceWithCoreUITheme();
             }
 
             if ($theme === 'plainadmin') {
-                return $this->replaceWithPlainAdminTheme();
+                $this->replaceWithPlainAdminTheme();
             }
 
             if ($theme === 'volt') {
-                return $this->replaceWithVolt();
+                $this->replaceWithVolt();
             }
 
             if ($theme === 'sb-admin-2') {
-                return $this->replaceWithSBAdmin2();
+                $this->replaceWithSBAdmin2();
             }
         }
-    }
-
-    protected function replaceWindmill()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                'color' => '^4.0.1'
-            ] + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->ensureDirectoryExists(public_path('js'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/views/components', resource_path('views/components'));
-
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/about.blade.php', resource_path('views/about.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/profile/edit.blade.php', resource_path('views/profile/edit.blade.php'));
-
-        // Assets
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/js/init-alpine.js', public_path('js/init-alpine.js'));
-
-        // Images
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/windmill/images', public_path('images'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/vendor/pagination'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/windmill/views/pagination/tailwind.blade.php', resource_path('views/vendor/pagination/tailwind.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Breeze scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithNotusjs()
-    {
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/components', resource_path('views/components'));
-
-        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/about.blade.php', resource_path('views/about.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/profile/edit.blade.php', resource_path('views/profile/edit.blade.php'));
-
-        // Assets
-        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/tailwind.config.js', base_path('tailwind.config.js'));
-
-        // Images
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/notusjs/images', public_path('images'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/notusjs/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Breeze scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithTailwindComponents()
-    {
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/components', resource_path('views/components'));
-
-        (new Filesystem)->delete(resource_path('views/components/responsive-nav-link.blade.php'));
-
-        copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/about.blade.php', resource_path('views/about.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/profile/edit.blade.php', resource_path('views/profile/edit.blade.php'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/breeze/tailwindcomponents/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Breeze scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithAdminLTETheme()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                    'jquery'=> '^3.3.1',
-                    'resolve-url-loader' => '^4.0.0',
-                    'bootstrap' => '~4.6.1',
-                    'popper.js' => '^1.14.3',
-                ] + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/views/auth/passwords', resource_path('views/auth/passwords'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/views/layouts', resource_path('views/layouts'));
-
-        // Assets
-        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
-        (new Filesystem)->ensureDirectoryExists(public_path('css'));
-        (new Filesystem)->ensureDirectoryExists(public_path('js'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->ensureDirectoryExists(public_path('webfonts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/css', public_path('css'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/js', public_path('js'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/images', public_path('images'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/adminlte/webfonts', public_path('webfonts'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/home.blade.php', resource_path('views/home.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/about.blade.php', resource_path('views/about.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/ui/adminlte/js/bootstrap.js', resource_path('js/bootstrap.js'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/ui/adminlte/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Laravel UI scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithCoreUITheme()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                '@coreui/coreui' => '^4.0.2',
-                'resolve-url-loader' => '^4.0.0',
-                'bootstrap' => '~5.1.3',
-            ] + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/auth/passwords', resource_path('views/auth/passwords'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/views/layouts', resource_path('views/layouts'));
-
-        // Assets
-        (new Filesystem)->ensureDirectoryExists(public_path('icons'));
-        (new Filesystem)->ensureDirectoryExists(public_path('js'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/icons', public_path('icons'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/sass', resource_path('sass'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/coreui/js', public_path('js'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/home.blade.php', resource_path('views/home.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/about.blade.php', resource_path('views/about.blade.php'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/ui/coreui/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Laravel UI scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithPlainAdminTheme()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                'bootstrap' => '~5.1.3',
-                '@popperjs/core' => '^2.10.2',
-                'resolve-url-loader' => '^4.0.0',
-            ] + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/auth/passwords', resource_path('views/auth/passwords'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/layouts', resource_path('views/layouts'));
-
-        // Assets
-        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
-        (new Filesystem)->ensureDirectoryExists(public_path('js'));
-        (new Filesystem)->ensureDirectoryExists(public_path('css'));
-        (new Filesystem)->ensureDirectoryExists(public_path('fonts'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images/auth'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images/logo'));
-
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/alerts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/buttons'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/cards'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/forms'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/header'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/icons'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/notification'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/tables'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/typography'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/js/bootstrap.js', resource_path('js/bootstrap.js'));
-        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/js/main.js', public_path('js/main.js'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/fonts', public_path('fonts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/css', public_path('css'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/images/auth', public_path('images/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/images/logo', public_path('images/logo'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass', resource_path('sass'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/alerts', resource_path('sass/alerts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/auth', resource_path('sass/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/buttons', resource_path('sass/buttons'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/cards', resource_path('sass/cards'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/forms', resource_path('sass/forms'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/header', resource_path('sass/header'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/icons', resource_path('sass/icons'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/notification', resource_path('sass/notification'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/tables', resource_path('sass/tables'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/plainadmin/sass/typography', resource_path('sass/typography'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/home.blade.php', resource_path('views/home.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/about.blade.php', resource_path('views/about.blade.php'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/ui/plainadmin/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Laravel UI scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithVolt()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            $dependencies = [
-                "@fortawesome/fontawesome-free" => "^5.15.4",
-                "@popperjs/core" => "^2.10.2",
-                "bootstrap" => "~5.1.3",
-                "cross-env" => "^7.0.3",
-                "node-sass" => "^6.0.0",
-                "onscreen" => "1.3.4",
-                "resolve-url-loader" => "4.0.0",
-                "simplebar" => "^5.3.6",
-                "smooth-scroll" => "^16.1.3",
-                "sass" => "^1.38.0",
-            ];
-            return $dependencies + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/auth/passwords', resource_path('views/auth/passwords'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/layouts', resource_path('views/layouts'));
-
-        // Assets
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images/brand'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/custom'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/components'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/forms'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/layout'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass/volt/mixins'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/images', public_path('images'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/images/brand', public_path('images/brand'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/js/app.js', resource_path('js/app.js'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass', resource_path('sass'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/custom', resource_path('sass/custom'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt', resource_path('sass/volt'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/components', resource_path('sass/volt/components'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/forms', resource_path('sass/volt/forms'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/layout', resource_path('sass/volt/layout'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/voltbs5/sass/volt/mixins', resource_path('sass/volt/mixins'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/home.blade.php', resource_path('views/home.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/about.blade.php', resource_path('views/about.blade.php'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/ui/voltbs5/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Laravel UI scaffolding replaced successfully.');
-    }
-
-	protected function replaceWithSBAdmin2()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                "bootstrap" => "^4.6.2",
-                "popper.js" => "^1.14.3",
-                "jquery" => "^3.3.1",
-            ] + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/auth/passwords', resource_path('views/auth/passwords'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/layouts', resource_path('views/layouts'));
-
-        // Assets
-        (new Filesystem)->ensureDirectoryExists(public_path('css'));
-        (new Filesystem)->ensureDirectoryExists(public_path('js'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->ensureDirectoryExists(public_path('webfonts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/css', public_path('css'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/js', public_path('js'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/images', public_path('images'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/webfonts', public_path('webfonts'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/home.blade.php', resource_path('views/home.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/about.blade.php', resource_path('views/about.blade.php'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Laravel UI scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithInertiaWindmill()
-    {
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Users'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/js/Pages', resource_path('js/Pages'));
-
-        // Images
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/windmill/images', public_path('images'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Breeze scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithInertiaNotusjs()
-    {
-        // Js
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Users'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/js/Pages', resource_path('js/Pages'));
-
-        // Assets
-        copy(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/tailwind.config.js', base_path('tailwind.config.js'));
-
-        // Views
-        copy(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/views/app.blade.php', resource_path('views/app.blade.php'));
-
-        // Images
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/notusjs/images', public_path('images'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Breeze scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithInertiaTailwindComponents()
-    {
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/tailwindcomponents/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/tailwindcomponents/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/breeze/inertia/tailwindcomponents/js/Pages', resource_path('js/Pages'));
-
-        $this->runCommands(['npm install', 'npm run build']);
-        $this->components->info('Breeze scaffolding replaced successfully.');
     }
 
     /**
@@ -583,7 +177,7 @@ class InstallCommand extends Command
      * @param mixed $packages
      * @return void
      */
-    protected function requireComposerPackages($packages)
+    protected function requireComposerPackages($packages): void
     {
         $composer = $this->option('composer');
 
@@ -611,7 +205,7 @@ class InstallCommand extends Command
      * @param bool $dev
      * @return void
      */
-    protected static function updateNodePackages(callable $callback, $dev = true)
+    protected static function updateNodePackages(callable $callback, bool $dev = true): void
     {
         if (!file_exists(base_path('package.json'))) {
             return;
@@ -641,7 +235,7 @@ class InstallCommand extends Command
      * @param  array  $commands
      * @return void
      */
-    protected function runCommands($commands)
+    protected function runCommands($commands): void
     {
         $process = Process::fromShellCommandline(implode(' && ', $commands), null, null, null, null);
 

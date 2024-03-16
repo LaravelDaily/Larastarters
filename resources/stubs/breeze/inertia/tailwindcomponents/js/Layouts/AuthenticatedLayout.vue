@@ -1,3 +1,8 @@
+<script setup>
+import Header from '@/Layouts/Header.vue';
+import Navigation from '@/Layouts/Navigation.vue';
+</script>
+
 <template>
     <div class="flex h-screen bg-gray-200 font-roboto">
         <Navigation />
@@ -17,8 +22,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import Header from '@/Layouts/Header.vue';
-import Navigation from '@/Layouts/Navigation.vue';
-</script>

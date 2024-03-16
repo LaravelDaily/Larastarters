@@ -1,3 +1,11 @@
+<script setup>
+import NavLink from '@/Components/NavLink.vue';
+import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue'
+
+let showingTwoLevelMenu = ref(false)
+</script>
+
 <template>
     <div :class="$page.props.showingMobileMenu ? 'block' : 'hidden'" @click="$page.props.showingMobileMenu = false"
          class="fixed inset-0 z-20 bg-black opacity-50 transition-opacity lg:hidden"></div>
@@ -79,30 +87,4 @@
             </transition>
         </nav>
     </div>
-
 </template>
-
-<script>
-import NavLink from '@/Components/NavLink.vue';
-import { Link } from '@inertiajs/vue3';
-import { ref } from 'vue'
-
-export default {
-    components: {
-        NavLink,
-        Link,
-    },
-
-    setup() {
-        let showingTwoLevelMenu = ref(false)
-
-        return {
-            showingTwoLevelMenu
-        }
-    },
-}
-</script>
-
-<style scoped>
-
-</style>

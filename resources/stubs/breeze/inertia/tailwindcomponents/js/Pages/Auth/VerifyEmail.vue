@@ -1,3 +1,25 @@
+<script setup>
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import { computed } from 'vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+
+const props = defineProps({
+    status: {
+		type: String,
+    },
+});
+
+const form = useForm();
+
+const submit = () => {
+    form.post(route('verification.send'));
+};
+
+const verificationLinkSent = computed(() => props.status === 'verification-link-sent');
+</script>
+
 <template>
     <Head title="Email Verification" />
 
@@ -28,23 +50,3 @@
         </form>
     </GuestLayout>
 </template>
-
-<script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { computed } from 'vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-
-const props = defineProps({
-    status: String,
-});
-
-const form = useForm();
-
-const submit = () => {
-    form.post(route('verification.send'));
-};
-
-const verificationLinkSent = computed(() => props.status === 'verification-link-sent');
-</script>

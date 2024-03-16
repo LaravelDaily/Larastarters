@@ -1,13 +1,10 @@
-<template>
-    <input class="block mt-1 w-full rounded-md form-input focus:border-indigo-600" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
-</template>
-
 <script setup>
 import { onMounted, ref } from 'vue';
 
-defineProps(['modelValue']);
-
-defineEmits(['update:modelValue']);
+const model = defineModel({
+	type: String,
+	required: true,
+});
 
 const input = ref(null);
 
@@ -17,3 +14,10 @@ onMounted(() => {
     }
 });
 </script>
+
+<template>
+    <input class="block mt-1 w-full rounded-md form-input focus:border-indigo-600"
+           v-model="model"
+           ref="input"
+    />
+</template>
