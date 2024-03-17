@@ -69,7 +69,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^2.0');
-            shell_exec("{$this->php_version} artisan breeze:install blade");
+            $this->runCommands(["{$this->php_version} artisan breeze:install blade"]);
 
             copy(__DIR__ . '/../../resources/stubs/routes.php', base_path('routes/web.php'));
 
@@ -100,7 +100,7 @@ class InstallCommand extends Command
 
             // Install breeze
             $this->requireComposerPackages('laravel/breeze:^2.0');
-            shell_exec("{$this->php_version} artisan breeze:install vue");
+            $this->runCommands(["{$this->php_version} artisan breeze:install vue"]);
 
             copy(__DIR__ . '/../../resources/stubs/breeze/inertia/routes.php', base_path('routes/web.php'));
 
@@ -127,12 +127,12 @@ class InstallCommand extends Command
         if ($kit === "Laravel UI (Bootstrap)") {
             $theme = select(
                 label: 'Which design theme you want to use?',
-                options: ['adminlte', 'coreui', 'plainadmin', 'volt', 'sb-admin-2', 'tabler'],
+                options: ['adminlte', 'coreui', 'plainadmin', 'volt'],
                 default: 'adminlte',
             );
 
-            $this->requireComposerPackages('laravel/ui 4.2.2');
-            shell_exec("{$this->php_version} artisan ui bootstrap --auth");
+            $this->requireComposerPackages('laravel/ui ^4.5');
+            $this->runCommands(["{$this->php_version} artisan ui:auth --force"]);
 
             file_put_contents(
                 base_path('routes/web.php'),
@@ -162,10 +162,6 @@ class InstallCommand extends Command
 
             if ($theme === 'volt') {
                 $this->replaceWithVolt();
-            }
-
-            if ($theme === 'sb-admin-2') {
-                $this->replaceWithSBAdmin2();
             }
         }
     }

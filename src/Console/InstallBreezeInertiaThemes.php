@@ -28,6 +28,7 @@ trait InstallBreezeInertiaThemes
             $this->runCommands(['npm install', 'npm run build']);
         }
 
+        $this->line('');
         $this->components->info('Breeze scaffolding replaced successfully.');
     }
 
@@ -60,6 +61,7 @@ trait InstallBreezeInertiaThemes
             $this->runCommands(['npm install', 'npm run build']);
         }
 
+        $this->line('');
         $this->components->info('Breeze scaffolding replaced successfully.');
     }
 
@@ -77,6 +79,7 @@ trait InstallBreezeInertiaThemes
             $this->runCommands(['npm install', 'npm run build']);
         }
 
+        $this->line('');
         $this->components->info('Breeze scaffolding replaced successfully.');
     }
 }

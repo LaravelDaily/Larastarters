@@ -57,6 +57,7 @@ trait InstallUiThemes
             $this->runCommands(['npm install', 'npm run build']);
         }
 
+        $this->line('');
         $this->components->info('Laravel UI scaffolding replaced successfully.');
     }
 
@@ -106,6 +107,7 @@ trait InstallUiThemes
             $this->runCommands(['npm install', 'npm run build']);
         }
 
+        $this->line('');
         $this->components->info('Laravel UI scaffolding replaced successfully.');
     }
 
@@ -187,6 +189,7 @@ trait InstallUiThemes
             $this->runCommands(['npm install', 'npm run build']);
         }
 
+        $this->line('');
         $this->components->info('Laravel UI scaffolding replaced successfully.');
     }
 
@@ -199,12 +202,11 @@ trait InstallUiThemes
                 "@popperjs/core" => "^2.10.2",
                 "bootstrap" => "~5.1.3",
                 "cross-env" => "^7.0.3",
-                "node-sass" => "^6.0.0",
                 "onscreen" => "1.3.4",
                 "resolve-url-loader" => "4.0.0",
                 "simplebar" => "^5.3.6",
                 "smooth-scroll" => "^16.1.3",
-                "sass" => "^1.38.0",
+                "sass" => "^1.72.0",
             ];
             return $dependencies + $packages;
         });
@@ -260,57 +262,7 @@ trait InstallUiThemes
             $this->runCommands(['npm install', 'npm run build']);
         }
 
-        $this->components->info('Laravel UI scaffolding replaced successfully.');
-    }
-
-    protected function replaceWithSBAdmin2(): void
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                    "bootstrap" => "^4.6.2",
-                    "popper.js" => "^1.14.3",
-                    "jquery" => "^3.3.1",
-                ] + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth/passwords'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/auth/passwords', resource_path('views/auth/passwords'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/layouts', resource_path('views/layouts'));
-
-        // Assets
-        (new Filesystem)->ensureDirectoryExists(public_path('css'));
-        (new Filesystem)->ensureDirectoryExists(public_path('js'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images'));
-        (new Filesystem)->ensureDirectoryExists(public_path('webfonts'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/css', public_path('css'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/js', public_path('js'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/images', public_path('images'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/webfonts', public_path('webfonts'));
-
-        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/home.blade.php', resource_path('views/home.blade.php'));
-        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/about.blade.php', resource_path('views/about.blade.php'));
-
-        // Demo table
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/users'));
-        copy(__DIR__ . '/../../resources/stubs/ui/sb-admin-2/views/users/index.blade.php', resource_path('views/users/index.blade.php'));
-
-        $this->components->info('Installing and building Node dependencies.');
-
-        if (file_exists(base_path('pnpm-lock.yaml'))) {
-            $this->runCommands(['pnpm install', 'pnpm run build']);
-        } elseif (file_exists(base_path('yarn.lock'))) {
-            $this->runCommands(['yarn install', 'yarn run build']);
-        } else {
-            $this->runCommands(['npm install', 'npm run build']);
-        }
-
+        $this->line('');
         $this->components->info('Laravel UI scaffolding replaced successfully.');
     }
 }

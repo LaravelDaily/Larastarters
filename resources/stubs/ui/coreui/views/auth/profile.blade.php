@@ -47,7 +47,7 @@
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
                     </svg></span>
                     <input class="form-control @error('password') is-invalid @enderror" type="password"
-                           name="password" placeholder="{{ __('New password') }}" required>
+                           name="password" placeholder="{{ __('New password') }}">
                     @error('password')
                     <span class="invalid-feedback">
                             {{ $message }}
@@ -60,7 +60,7 @@
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
                     </svg></span>
                     <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password"
-                           name="password_confirmation" placeholder="{{ __('New password confirmation') }}" required>
+                           name="password_confirmation" placeholder="{{ __('New password confirmation') }}">
                 </div>
 
             </div>
