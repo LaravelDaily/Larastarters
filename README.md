@@ -42,7 +42,7 @@ Along with the Design Themes, Larastarters adds a few features that are typical 
 
 ## Get Started
 
-Larastarters requires PHP 8+ and Laravel 9+.
+Larastarters requires PHP 8+ and Laravel 11+.
 
 1. Create a new Laravel project.
 
