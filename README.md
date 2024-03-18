@@ -78,7 +78,7 @@ php artisan larastarters:install --php_version=./vendor/bin/sail`.
 
 ## Available Themes
 
-In the current version, there are 9 themes supported.
+In the current version, there are 7 themes supported.
 
 **Tailwind Themes with Laravel Breeze**
 
