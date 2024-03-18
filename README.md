@@ -7,7 +7,7 @@
         <a href="#features">Features</a> |
         <a href="https://quickadminpanel.com" target="_blank">🔥 QuickAdminPanel</a>
             <br/> <br/>
-        <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Laravel Version" src="https://img.shields.io/static/v1?label=laravel&message=%E2%89%A59.0&color=0078BE&logo=laravel&style=flat-square"></a>
+        <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Laravel Version" src="https://img.shields.io/static/v1?label=laravel&message=%E2%89%A511.0&color=0078BE&logo=laravel&style=flat-square"></a>
         <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Latest Version" src="https://img.shields.io/packagist/v/LaravelDaily/Larastarters"></a>
         <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/LaravelDaily/Larastarters"></a>
   </p>
