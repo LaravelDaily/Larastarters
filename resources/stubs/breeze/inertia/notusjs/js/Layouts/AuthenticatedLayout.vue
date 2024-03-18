@@ -1,3 +1,11 @@
+<script setup>
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
+import Navigation from '@/Layouts/Navigation.vue';
+import MobileNavigation from '@/Layouts/MobileNavigation.vue';
+import Divider from '@/Components/Divider.vue';
+</script>
+
 <template>
     <navigation v-show="$page.props.showingMobileMenu === false" />
     <mobile-navigation v-show="$page.props.showingMobileMenu === true" />
@@ -35,11 +43,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import Navigation from '@/Layouts/Navigation.vue';
-import MobileNavigation from '@/Layouts/MobileNavigation.vue';
-import Divider from '@/Components/Divider.vue';
-</script>

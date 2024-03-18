@@ -19,16 +19,16 @@
         <div class="card-style-3 mb-30">
             <div class="card-content">
 
-                @if ($message = Session::get('success'))
+                @session('success')
                     <div class="alert-box success-alert">
                         <div class="alert">
                             <h4 class="alert-heading">Success</h4>
                             <p class="text-medium">
-                                {{ $message }}
+                                {{ $value }}
                             </p>
                         </div>
                     </div>
-                @endif
+                @endsession
 
                 <form action="{{ route('profile.update') }}" method="POST">
                     @csrf
@@ -68,7 +68,7 @@
                                 <label for="password">{{ __('New password') }}</label>
                                 <input type="password" @error('password') class="form-control is-invalid"
                                        @enderror name="password" id="password" placeholder="{{ __('New password') }}"
-                                       required>
+                                >
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -82,7 +82,8 @@
                                 <label for="password_confirmation">{{ __('New password confirmation') }}</label>
                                 <input type="password" @error('password') class="form-control is-invalid"
                                        @enderror name="password_confirmation" id="password_confirmation"
-                                       placeholder="{{ __('New password confirmation') }}" required>
+                                       placeholder="{{ __('New password confirmation') }}"
+                                >
                             </div>
                         </div>
                         <!-- end col -->

@@ -1,3 +1,8 @@
+<script setup>
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
+</script>
+
 <template>
     <header class="flex items-center justify-between border-b-4 border-indigo-600 bg-white px-6 py-4">
         <div class="flex items-center">
@@ -29,8 +34,3 @@
         </div>
     </header>
 </template>
-
-<script setup>
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-</script>

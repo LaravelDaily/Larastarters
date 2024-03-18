@@ -106,22 +106,14 @@
 @endsection
 
 @section('scripts')
-    @if ($message = Session::get('success'))
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @session('success')
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
-            toastr.options = {
-                "closeButton": true,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-
-            toastr.success('{{ $message }}')
+            Toastify({
+                text: "{{ $value }}",
+                duration: 3000,
+                close: true,
+            }).showToast();
         </script>
-    @endif
+    @endsession
 @endsection

@@ -1,3 +1,12 @@
+<script setup>
+import Divider from '@/Components/Divider.vue';
+import { Link } from '@inertiajs/vue3';
+import Dropdown from '@/Components/Dropdown.vue'
+import DropdownLink from '@/Components/DropdownLink.vue'
+import NavHeading from '@/Components/NavHeading.vue'
+import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
+</script>
+
 <template>
     <nav
         class="flex relative z-10 flex-wrap justify-between items-center px-6 py-4 bg-white shadow-xl md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden md:w-64">
@@ -97,12 +106,3 @@
         </div>
     </nav>
 </template>
-
-<script setup>
-import Divider from '@/Components/Divider.vue';
-import { Link } from '@inertiajs/vue3';
-import Dropdown from '@/Components/Dropdown.vue'
-import DropdownLink from '@/Components/DropdownLink.vue'
-import NavHeading from '@/Components/NavHeading.vue'
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
-</script>
