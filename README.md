@@ -7,7 +7,7 @@
         <a href="#features">Features</a> |
         <a href="https://quickadminpanel.com" target="_blank">🔥 QuickAdminPanel</a>
             <br/> <br/>
-        <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Laravel Version" src="https://img.shields.io/static/v1?label=laravel&message=%E2%89%A59.0&color=0078BE&logo=laravel&style=flat-square"></a>
+        <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Laravel Version" src="https://img.shields.io/static/v1?label=laravel&message=%E2%89%A511.0&color=0078BE&logo=laravel&style=flat-square"></a>
         <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Latest Version" src="https://img.shields.io/packagist/v/LaravelDaily/Larastarters"></a>
         <a href="https://packagist.org/packages/LaravelDaily/Larastarters"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/LaravelDaily/Larastarters"></a>
   </p>
@@ -42,7 +42,7 @@ Along with the Design Themes, Larastarters adds a few features that are typical 
 
 ## Get Started
 
-Larastarters requires PHP 8+ and Laravel 9+.
+Larastarters requires PHP 8+ and Laravel 11+.
 
 1. Create a new Laravel project.
 
@@ -62,13 +62,7 @@ Larastarters requires PHP 8+ and Laravel 9+.
 
     ![Larastarters Install](https://laraveldaily.com/uploads/2023/02/220314313-d3055051-3997-427d-98df-8bc7bbd34dd7.png)
 
-4. Compile the project assets, run:
-
-    ```shell
-    npm install && npm run dev
-    ```
-
-5. That's it! You have Laravel Auth starter, just visit the home page and click Log in / Register.
+4. That's it! You have Laravel Auth starter, just visit the home page and click Log in / Register.
 
 <br/>
 
