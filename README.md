@@ -62,13 +62,7 @@ Larastarters requires PHP 8+ and Laravel 9+.
 
     ![Larastarters Install](https://laraveldaily.com/uploads/2023/02/220314313-d3055051-3997-427d-98df-8bc7bbd34dd7.png)
 
-4. Compile the project assets, run:
-
-    ```shell
-    npm install && npm run dev
-    ```
-
-5. That's it! You have Laravel Auth starter, just visit the home page and click Log in / Register.
+4. That's it! You have Laravel Auth starter, just visit the home page and click Log in / Register.
 
 <br/>
 
